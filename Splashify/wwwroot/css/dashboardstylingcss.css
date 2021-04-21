@@ -1,0 +1,51 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
+/*Dashboard.cshtml*/
+
+
+.view-container {
+}
+
+.view-scoring {
+    align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+
+
+.view-topbox {
+    border: 1px #CAD3C8 solid;
+    box-shadow: 5px 5px 12px #888888;
+    background-color: white;
+    border-radius: 3px;
+    width: 940px;
+    height: 200px;
+}
+
+.view-bottombox1 {
+    border: 1px #CAD3C8 solid;
+    box-shadow: 5px 5px 12px #888888;
+    background-color: white;
+    border-radius: 3px;
+    width: 400px;
+    margin-top: 3%;
+}
+
+.view-bottombox2 {
+    border: 1px #CAD3C8 solid;
+    box-shadow: 5px 5px 12px #888888;
+    background-color: white;
+    border-radius: 3px;
+    width: 400px;
+    margin-top: 3%;
+}
+
+.donut-chart {
+}

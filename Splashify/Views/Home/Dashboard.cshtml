@@ -4,6 +4,12 @@
 
 @model Splashify.Models.IndexModel
 
+
+@section css {
+    <link href="@Url.Content("~/css/dashboardstylingcss.css")" rel="stylesheet" type="text/css" />
+}
+
+
 <script>
     /* Attempt of getting dynamic data from viewbag into google grapgs */
     /*var temp1 = ViewBag.dataj;
@@ -64,7 +70,7 @@
                     var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
                     chart.draw(data, options);
                 }</script>
-                <div id="donutchart" style="width: 400px; height: 200px;"></div>
+            <div id="donutchart" style="width: 400px; height: 200px;"></div>
         </div>
     </div>
 </div>

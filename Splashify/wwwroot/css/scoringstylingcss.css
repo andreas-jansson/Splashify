@@ -22,6 +22,7 @@
     grid-template-rows: 100px;
 }
 
+
 .scoring-boxes {
     background-color: white;
     box-shadow: 5px 5px 12px #888888;
@@ -34,12 +35,13 @@
 }
 
 .box1 {
-    min-width: 300px;
+    min-width: 250px;
     grid-column: 4/ span 8;
     grid-row: 4/ span 5;
 
 }
 
+/* Hides box2 on mobile*/
 .box2 {
     text-align: center;
     grid-column: 14/ span 8;
@@ -47,14 +49,26 @@
 
 }
 
+@media only screen and (max-width:600px) {
+    .box1 {
+        grid-column: 1/ -1;
+        grid-row: 1/ -1;
+    }
+
+    .box2 {
+        visibility: hidden;
+        clear: both;
+    }
+}
+
 .lable-box {
-    width:35%;
+    width: 35%;
     text-align: right;
-    float:left;
+    float: left;
 }
 
 .input-box {
-    padding-top:6%;
+    padding-top: 6%;
     width: 50%;
     float: right;
 }
@@ -71,7 +85,7 @@ input[type=submit] {
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    width:100%;
+    width: 100%;
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
@@ -81,7 +95,7 @@ input[type=submit] {
 }
 
 text {
-    width: 200px;
+width: 200px;
 }
 
 
@@ -89,9 +103,9 @@ text {
 }
 
 ul {
-    list-style-type: none;
+list-style-type: none;
 }
 
 li {
-    margin: 35px 0 35px 0; /*Align text is lable-box with inputs in inputbox*/
+margin: 35px 0 35px 0; /*Align text is lable-box with inputs in inputbox*/
 }

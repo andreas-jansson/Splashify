@@ -4,12 +4,19 @@
     height:100%;
 }
 
+
 .grid-container {
     display: grid;
     background-color: #d2dae2;
     grid-template-columns: repeat(12, 1fr);
     grid-template-rows: 10vh 85vh 5vh;
+
+
 }
+
+
+
+
 
 .grid {
     /*border: 2px black solid;
@@ -17,6 +24,8 @@
     width: 200px;
     min-height: 100px;*/
 }
+
+
 
 /*Header styling */
 
@@ -26,60 +35,76 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    text-align: center;
     
 }
 
+
 .app-logo {
-    min-width: 100px;
-    min-height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #405466;
+    width:100px;
+    height:100px;
 }
 
 .image-logo {
     background-image: url('loggaOnly.png');
     background-repeat: no-repeat;
-    width:150px;
-    height:100px;
-    margin-left:90px;
-    margin-top:15px;
-    
+    width: 100px;
+    height: 100px;
 }
 
 
 
-.title {
-    align-content: center;
-    /*  font-family: Arial, Helvetica, sans-serif;*/
+.main-title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-family: 'Ubuntu', sans-serif;
     font-size: 35px;
     font-weight: bold;
-    /*color: #1e90ff;*/
     color: #1e1258;
-    line-height: inherit;
-    text-align: center;
 }
 
 .sign-in-out {
-    /*margin-left:auto;*/
-    min-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border: 1px #a4b0be solid;
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
-    padding-top: 10px;
     color: #2C3A47;
     border-radius: 3px;
+    vertical-align: middle;
+}
+
+@media only screen and (max-width:600px) {
+    .app-logo{
+        visibility:hidden;
+        clear:none;
+        
+    }
+
+    .main-title {
+        font-size: 20px;
+    }
+    .sign-in-out {
+        font-size: 14px;
+    }
 }
 
 
-
+/* Content */
+.content {
+    background-color: #ced6e0;
+    grid-column: 3 / -1;
+    font-family: 'Roboto', sans-serif;
+}
 
 
 
 /*Sidebar styling*/
+
 
 .side-bar {
     background-color: #2C3A47;
@@ -87,7 +112,10 @@
     text-align: center;
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
+
+
 
 .user-info {
     min-height: 200px;
@@ -110,6 +138,8 @@
     line-height: 40px;
 }
 
+
+
 /* Button/hover/text styling */
 
 a {
@@ -117,9 +147,9 @@ a {
     text-decoration: none;
 }
 
-a:hover {
-    text-decoration: underline;
-}
+    a:hover {
+        text-decoration: underline;
+    }
 
 sign-in-out-btn {
     color: black;
@@ -127,13 +157,6 @@ sign-in-out-btn {
 }
 
 
-
-/* Content */
-.content {
-    background-color: #ced6e0;
-    grid-column: 3 / -1;
-    font-family: 'Roboto', sans-serif;
-}
 
 
 
@@ -144,66 +167,39 @@ sign-in-out-btn {
 .footer {
     background-color: #1e272e;
     grid-column: 1 / -1;
+    order: 4;
 }
 
 
+/* Mobile alterations depending on screen size*/
 
+@media only screen and (max-width:600px) {
 
-/*Dashboard.cshtml*/
+    .grid-container {
+        grid-template-rows: 5vh 85vh 10vh 5vh;
+    }
 
+    .content {
+        grid-column: 1 / -1;
+    }
 
-.view-container {
+    .side-bar {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        order: 2;
+    }
 
-}
+    .side-bar {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        order: 3;
+    }
 
-.view-scoring {
-    align-self: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-}
+    .button-area {
+        flex-direction: row;
+    }
 
-.view-box1 {
-    padding-top: 3%;
-    height: 200px;
-}
-
-.view-box2 {
-    height: 400px;
-   
-}
-
-.view-box3 {
-}
-
-
-.view-topbox {
-    border: 1px #CAD3C8 solid;
-    box-shadow: 5px 5px 12px #888888;
-    background-color: white;
-    border-radius: 3px;
-    width: 940px;
-    height:200px;
-}
-
-.view-bottombox1 {
-    border: 1px #CAD3C8 solid;
-    box-shadow: 5px 5px 12px #888888;
-    background-color: white;
-    border-radius: 3px;
-    width: 400px;
-    margin-top: 3%;
-}
-
-.view-bottombox2 {
-    border: 1px #CAD3C8 solid;
-    box-shadow: 5px 5px 12px #888888;
-    background-color: white;
-    border-radius: 3px;
-    width: 400px;
-    margin-top: 3%;
-}
-
-.donut-chart{
-
+    .footer {
+        grid-column: 1 / -1;
+    }
 }
