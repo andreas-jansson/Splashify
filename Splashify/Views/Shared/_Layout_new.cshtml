@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Splashify</title>
+    @RenderSection("css", false)
+
+
+    @*<link rel="stylesheet" href="~/css/newstylingcss.css" />*@
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet"> @*body*@
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,900&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    @*title*@
+
+    <link href="@Url.Content("~/css/newstylingcss.css")" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+    <div class="grid-container">
+        <div class="header">
+            <div class="app-logo">
+                <div class="image-logo">
+
+                </div>
+            </div>
+            <div class="title">
+               <p>Splashify</p>
+            </div>
+            <div class="sign-in-out">
+                <p>Sign in</p>
+            </div>
+        </div>
+
+        <div class="grid side-bar">
+            <div class="user-info">
+                <p>Menu</p>
+            </div>
+
+            <div class="button-area">
+                <div class="sidebutton button1">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
+                </div>
+
+                <div class="sidebutton button2">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Scoring">Scoring</a>
+                </div>
+
+                <div class="sidebutton button3">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registration">Registration</a>
+                </div>
+
+                <div class="sidebutton button4">
+                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Managment">Managment</a>
+                </div>
+             </div>
+
+        </div>
+
+        <div class="grid content">
+                <main role="main" class="pb-3">
+                    @RenderBody()
+                </main>
+        </div>
+
+        <div class="grid footer">
+            <p>Footer</p>
+        </div>
+    </div>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+
+
+

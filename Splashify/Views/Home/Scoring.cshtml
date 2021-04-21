@@ -1,0 +1,64 @@
+﻿@model Splashify.Models.IndexModel
+
+@{
+    ViewData["Title"] = "Scoring";
+}
+
+@section css {
+    <link href="@Url.Content("~/css/scoringstylingcss.css")" rel="stylesheet" type="text/css" />
+}
+
+<div class="scoring-container">
+    <div class="scoring-boxes box1">
+ 
+        @using (Html.BeginForm("SetScore", "Scoring", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+        <fieldset>
+            <div class="lable-box">
+                <ul>
+                <li><lable>Contestant ID</lable></li>
+                <li><lable>Event ID</lable></li>
+                <li><lable>Jump nr</lable></li>
+                <li><lable>Score</lable></li>
+                </ul>
+            </div>
+            <div class="input-box">
+                <input type="number" name="ContestantIDField" placeholder="Contest ID.." />
+                <input type="number" name="EventIDField" placeholder="Event ID.." />
+                <input type="number" name="JumpNrField" placeholder="Jump nr.." />
+                <input type="number" name="ScoreField" placeholder="Score.." />
+                <input type="submit" value="submit" />
+            </div>
+        </fieldset>
+        }
+
+
+    </div>
+
+    <div class="scoring-boxes box2">
+        <div class="scoring-header">
+            <p>Current competition<p />
+            @* method name, controller name without the ending"Controller"... *@
+            @using (Html.BeginForm("SetPerson", "AddPerson", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    First <input type="text" name="FnameField" />
+                    Last <input type="text" name="LnameField" />
+                    <input type="submit" value="submit" />
+                </fieldset>
+            }@*
+
+            @using (Html.BeginForm("GetPerson", "FetchPerson", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <input type="submit" value="Get people" />
+                </fieldset>
+
+            }
+                 *@
+        </div>
+    </div>
+</div>

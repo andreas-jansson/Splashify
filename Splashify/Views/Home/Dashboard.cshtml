@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+@model Splashify.Models.IndexModel
+
+<script>
+    /* Attempt of getting dynamic data from viewbag into google grapgs */
+    /*var temp1 = ViewBag.dataj;
+    var datassa = JSON.parse(temp1);*/
+
+    var datass = @Html.Raw(Json.Serialize(@ViewBag.dataj));
+                @ViewBag.dataj
+</script>
+
+<div class="view-container">
+    <div class="view-scoring view-box1">
+        <div class="view-topbox">
+            @ViewBag.dataj
+
+        </div>
+    </div>
+
+    <div class="view-scoring view-box2">
+        <div class="view-bottombox1">
+            <form action="SetScore" method="post">
+                <lable>Search</lable>
+                <input type="text" name="SearchField" placeholder="Enter here.." />
+
+                <div class="custom-select" style="width:200px;">
+                    <select>
+                        <option value="0">Select type:</option>
+                        <option value="1">Competitor</option>
+                        <option value="2">Judge</option>
+                        <option value="3">Event</option>
+                    </select>
+                </div>
+                <input type="submit" value="submit" />
+
+            </form>
+        </div>
+
+        <div class="view-bottombox2">
+
+            @*Google chart *@
+            @* Need to get correct fromat into/from viewbag for dynamic graph data*@
+            <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+            <script type="text/javascript">google.charts.load("current", { packages: ["corechart"] });
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                    var data = google.visualization.arrayToDataTable([
+                        ['Task', 'Hours per Day'],
+                        ['VM', 11],
+                        ['OS Summer', 2],
+                        ['SM', 2],
+                        ['EM', 4],
+                    ]);
+
+                    var options = {
+                        title: 'Events',
+                        pieHole: 0.4,
+                    };
+
+                    var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+                    chart.draw(data, options);
+                }</script>
+                <div id="donutchart" style="width: 400px; height: 200px;"></div>
+        </div>
+    </div>
+</div>

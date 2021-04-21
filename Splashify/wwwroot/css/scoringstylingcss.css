@@ -1,0 +1,97 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+
+/*       CSS for Scoring.cshtml          */
+/*        These are inside .content    */
+
+.scoring-container {
+    /* align-self: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    height: 100%;
+    margin-top:7%;
+    border:2px red solid;*/
+
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-template-rows: 100px;
+}
+
+.scoring-boxes {
+    background-color: white;
+    box-shadow: 5px 5px 12px #888888;
+    border-radius: 3px;
+    border: 1px #CAD3C8 solid;
+    font-weight: 200;
+    color: #8099af;
+    min-height:500px;
+
+}
+
+.box1 {
+    min-width: 300px;
+    grid-column: 4/ span 8;
+    grid-row: 4/ span 5;
+
+}
+
+.box2 {
+    text-align: center;
+    grid-column: 14/ span 8;
+    grid-row: 4/ span 5;
+
+}
+
+.lable-box {
+    width:35%;
+    text-align: right;
+    float:left;
+}
+
+.input-box {
+    padding-top:6%;
+    width: 50%;
+    float: right;
+}
+
+input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+input[type=submit] {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    width:100%;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+}
+
+text {
+    width: 200px;
+}
+
+
+.scoring-header{
+}
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 35px 0 35px 0; /*Align text is lable-box with inputs in inputbox*/
+}
