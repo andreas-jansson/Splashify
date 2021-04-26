@@ -12,13 +12,13 @@
     justify-content: space-around;
     height: 100%;
     width: 100%;
-    overflow: scroll;
+    overflow: hidden;
 }
  
 .scroll-container {
     position:relative;
     height: 100%;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 
 .rows-even {
@@ -38,6 +38,7 @@
 .box1{
     height:auto;
 }
+
 
 .box2{
     display:flex;

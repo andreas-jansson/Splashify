@@ -69,6 +69,7 @@
         width: 100%;
         position: fixed;
         bottom: 0;
+        overflow:hidden;
     }
 
     .content {
@@ -252,15 +253,18 @@
             justify-content: flex-start;
             height: 100%;
             margin-top: 75px;
-            overflow-y: auto;
+            overflow-y:scroll;
             min-height: 100vh;
+            z-index:-1;
         }
 
         .side-bar {
+            z-index:1;
             background-color: #2C3A47;
             height: 100vh;
             width: 200px;
             position: fixed;
+            overflow:hidden;
         }
 
         .content {

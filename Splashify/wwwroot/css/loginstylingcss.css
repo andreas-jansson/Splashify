@@ -8,6 +8,7 @@
     height: 100vh;
     font-family: 'Roboto', sans-serif;
     background-image: url('images/loginimage.jpg');
+    background-size:cover;
     display:flex;
     flex-direction:column;
     justify-content:center;
