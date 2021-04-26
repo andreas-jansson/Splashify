@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Splashify.Models;
@@ -23,7 +24,7 @@ namespace Splashify.Controllers
         {
             return View();
         }
-
+        //[Authorize]
         public IActionResult Scoring()
         {
             return View();
@@ -39,6 +40,8 @@ namespace Splashify.Controllers
             return View();
         }
 
+
+        //[Authorize(Roles = "admin")]
         public IActionResult Managment()
         {
             /*
@@ -49,7 +52,18 @@ namespace Splashify.Controllers
             return View();
         }
 
-        public IActionResult Registration()
+        //[Authorize]
+        public IActionResult Application()
+        {
+            return View();
+        }
+
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Register()
         {
             return View();
         }

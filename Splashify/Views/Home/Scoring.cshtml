@@ -39,16 +39,7 @@
     <div class="scoring-boxes box2">
         <div class="scoring-header">
             <p>Current competition<p />
-            @* method name, controller name without the ending"Controller"... *@
-            @using (Html.BeginForm("SetPerson", "AddPerson", FormMethod.Post))
-            {
-                @Html.ValidationSummary(true)
-                <fieldset>
-                    First <input type="text" name="FnameField" />
-                    Last <input type="text" name="LnameField" />
-                    <input type="submit" value="submit" />
-                </fieldset>
-            }@*
+            @Html.Raw(ViewBag.ppl)
 
             @using (Html.BeginForm("GetPerson", "FetchPerson", FormMethod.Post))
             {
@@ -58,7 +49,6 @@
                 </fieldset>
 
             }
-                 *@
         </div>
     </div>
 </div>

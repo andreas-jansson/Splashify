@@ -14,64 +14,88 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,900&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     @*title*@
 
-    <link href="@Url.Content("~/css/newstylingcss.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/css/layoutstylingcss.css")" rel="stylesheet" type="text/css" />
 
 </head>
 
 <body>
-    <div class="grid-container">
-        <div class="header">
-            <div class="app-logo">
+    <div class="header">
+         <div class="app-logo">
                 <div class="image-logo">
 
                 </div>
             </div>
             <div class="main-title">
                 <div>
-                    <p>Splashify</p>
+                    <a href="/">Splashify.</a>
                 </div>
             </div>
             <div class="sign-in-out">
-                <p>Sign in</p>
+                <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="login">
+                    <div class="login-out-icon">
+
+                    </div>
+                </a>
             </div>
-        </div>
+    </div>
+    <div class="container">
 
         <div class="grid side-bar">
-            <div class="user-info">
-                <p>Menu</p>
-            </div>
+            <div class="user-info-box">
+                    <div class="user-pic">
+                        <div class="user-pic-holder">
+                        </div>
+                    </div>
+                    <div class="user-text">
 
-            <div class="button-area">
-                <div class="sidebutton button1">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">Dashboard</a>
+                    </div>
                 </div>
 
-                <div class="sidebutton button2">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Scoring">Scoring</a>
-                </div>
+                <div class="button-area">
+                    <div class="sidebutton button1">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">
+                        <div class="button-icon btn1"></div>
+                        <div class=" button-text">Dashboard</div>
+                        </a>
+                    </div>
 
-                <div class="sidebutton button3">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Registration">Registration</a>
-                </div>
+                    <div class="sidebutton button2">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Scoring">
+                            <div class="button-icon btn2"></div>
+                            <div class=" button-text">Scoring</div>
+                        </a>
+                    </div>
 
-                <div class="sidebutton button4">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Managment">Managment</a>
-                </div>
-             </div>
+                    <div class="sidebutton button3">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Application">
+                            <div class="button-icon btn3"></div>
+                            <div class=" button-text">Application</div>
+                        </a>
+                    </div>
+
+                    <div class="sidebutton button4">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Managment">
+                            <div class="button-icon btn4"></div>
+                            <div class=" button-text">Managment</div>
+                        </a>
+                    </div>
+                    </div>
 
         </div>
 
         <div class="grid content">
+            
                 <main role="main" class="pb-3">
                     @RenderBody()
                 </main>
         </div>
-
         <div class="grid footer">
-            <p>Footer</p>
+            <p>
+                System- och programvaruutveckling, VT21, DT117G
+                Andréas Jansson, Gunnar Stutter, Anton Rosbo, Björn Nickander
+            </p>
         </div>
     </div>
-
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

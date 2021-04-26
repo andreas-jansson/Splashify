@@ -1,10 +1,78 @@
 ﻿@{
     ViewData["Title"] = "Managment";
 }
-<h1>@ViewData["Title"]</h1>
+
+
+@section css {
+    <link href="@Url.Content("~/css/managmentstylingcss.css")" rel="stylesheet" type="text/css" />
+}
+
 
 <div class="managment-container">
-    container
-</div>
+    <div class="scroll-container">
+        <div class="rows-even box1">
+            <h1>Create Event</h1>
+
+            @* method name, controller name without the ending"Controller"... *@
+            @using (Html.BeginForm("", "", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <input type="text" name="EventNameField" placeholder="Event name" />
+                    <input type="datetime" name="EventDateField" placeholder="Date" />
+                    <input type="text" name="EventGenderField" placeholder="Gender" />
+                    <input type="number" name="Judge1Field" placeholder="Judge id" />
+                    <input type="number" name="Judge2Field" placeholder="Judge id" />
+                    <input type="number" name="Judge3Field" placeholder="Judge id" />
+                    <input type="submit" value="Create" />
+                </fieldset>
+            }
+        </div>
+
+        <div class="rows-even box2">
+            <h1>Role Applications</h1>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>E-mail</th>
+                        <th>Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Kenny</td>
+                        <td>Starfighter</td>
+                        <td>123@mail.se</td>
+                        <td>Judge</td>
+                    </tr>
+                    <tr>
+                        <td>Elliot</td>
+                        <td>Alderson</td>
+                        <td>456@mail.se</td>
+                        <td>Organizer</td>
+                    </tr>
+                    <tr>
+                        <td>Leia</td>
+                        <td>Organa</td>
+                        <td>789@mail.se</td>
+                        <td>Club</td>
+                    </tr>
+                </tbody>
+            </table>
+            <fieldset>
+                <input type="submit" id="approvebtn" value="Approve" />
+                <input type="submit" id="denybtn" value="Deny" />
+            </fieldset>
+        </div>
+
+
+                <div class="rows-even box3">
+                    
+                </div>
+            </div>
+        </div>
 
 

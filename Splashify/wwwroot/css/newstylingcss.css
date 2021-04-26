@@ -30,29 +30,33 @@
 /*Header styling */
 
 .header {
-    background-color: white;
+    /*background-color: #2C3A47;*/
     grid-column: 1 / -1;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    
+    background: rgb(44,58,71);
+    background: linear-gradient(90deg, rgba(44,58,71,1) 14%, rgba(87,121,121,1) 72%, rgba(255,255,255,1) 750%);
+
 }
 
 
 .app-logo {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-content:center;
     width:100px;
     height:100px;
+    padding-left:6%;
 }
 
 .image-logo {
-    background-image: url('loggaOnly.png');
+    background-image: url('icons/sharkloggo.png');
     background-repeat: no-repeat;
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    height: auto;
 }
+
 
 
 
@@ -63,11 +67,18 @@
     font-family: 'Ubuntu', sans-serif;
     font-size: 35px;
     font-weight: bold;
-    color: #1e1258;
+    color: #eaf5fa;
 }
-
+/*
+h1 {
+    color: mix(#fff, #e91e63, 85%);
+    font-size: calc(1em + 20vw);
+    font-weight: 900;
+    text-shadow: -0.0075em 0.0075em 0 mix(#fff, #e91e63, 94%), 0.005em 0.005em 0 mix(#fff, #e91e63, 60%), 0.01em 0.01em 0 mix(#fff, #e91e63, 62%), 0.015em 0.015em mix(#fff, #e91e63, 64%), 0.02em 0.02em 0 mix(#fff, #e91e63, 66%), 0.025em 0.025em 0 mix(#fff, #e91e63, 68%), 0.03em 0.03em 0 mix(#fff, #e91e63, 70%), 0.035em 0.035em 0 mix(#fff, #e91e63, 72%);
+}
+*/
 .sign-in-out {
-    display: flex;
+    /*display: flex;
     justify-content: center;
     align-items: center;
     border: 1px #a4b0be solid;
@@ -76,7 +87,24 @@
     color: #2C3A47;
     border-radius: 3px;
     vertical-align: middle;
+    border: 1px red solid;
+    width: 100px;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 55px;
+    width: 100px;
+    padding-top: 0.8%;
 }
+
+
+.login-out-icon {
+    background-image: url('icons/login-32.png');
+    background-repeat: no-repeat;
+    width: 35px;
+    height: 35px;
+}
+
 
 @media only screen and (max-width:600px) {
     .app-logo{
@@ -99,6 +127,8 @@
     background-color: #ced6e0;
     grid-column: 3 / -1;
     font-family: 'Roboto', sans-serif;
+    background: rgb(166,173,181);
+    background: linear-gradient(0deg, rgba(166,173,181,1) 22%, rgba(206,214,224,1) 96%);
 }
 
 
@@ -112,13 +142,38 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
+.user-info-box {
+    margin-top:20%;
+    height: 30vh;
+    width: 100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-self:flex-start;
+    min-height:150px;
+ 
+}
 
+.user-pic {
+    width: 100%;
+    height: 70%;
+    display: flex;
+    justify-content: center;
 
-.user-info {
-    min-height: 200px;
+}
+
+.user-pic-holder {
+    background-image: url('icons/contacts-128.png');
+    background-repeat: no-repeat;
+    width: 128px;
+    height: 128px;
+}
+.user-text {
+    width: 100%;
+    height:30%;
 }
 
 .button-area {
@@ -133,15 +188,53 @@
 .sidebutton {
     background-color: #222c36;
     margin: 1px;
-    height: 40px;
+    height: 50px;
     min-height: 30px;
     line-height: 40px;
+    background: rgb(44,58,71);
+    background: linear-gradient(90deg, rgba(44,58,71,1) 0%, rgba(48,78,74,1) 100%, rgba(255,255,255,1) 750%);
 }
 
 
+.text-dark{
+    display:flex;
+}
+.button-icon {  
+    width: 40px;
+    height: 35px;
+    align-content:center;
+    margin-top:4%;
+    margin-left:8%;
+}
+
+.button-text {
+    margin-top:2%;
+    width: 50%;
+    height: auto;
+}
+
+
+ .btn1 {
+    background-image: url('icons/analytics-32.png');
+    background-repeat: no-repeat;
+}
+
+.btn2 {
+    background-image: url('icons/pencil-32.png');
+    background-repeat: no-repeat;
+}
+
+.btn3 {
+    background-image: url('icons/text-file-3-32.png');
+    background-repeat: no-repeat;
+}
+
+.btn4 {
+    background-image: url('icons/article-marketing-32.png');
+    background-repeat: no-repeat;
+}
 
 /* Button/hover/text styling */
-
 a {
     color: white;
     text-decoration: none;
@@ -149,18 +242,8 @@ a {
 
     a:hover {
         text-decoration: underline;
+        opacity:0.5;
     }
-
-sign-in-out-btn {
-    color: black;
-    text-decoration: none;
-}
-
-
-
-
-
-
 
 
 /*Footer styling*/
@@ -168,7 +251,12 @@ sign-in-out-btn {
     background-color: #1e272e;
     grid-column: 1 / -1;
     order: 4;
+    color: #F0E68C;
+    text-align: right;
+    font-size: 10px;
+    position:relative;
 }
+
 
 
 /* Mobile alterations depending on screen size*/
@@ -197,6 +285,42 @@ sign-in-out-btn {
 
     .button-area {
         flex-direction: row;
+        height:100%;
+        min-height:0;     
+
+    }
+
+    .sidebutton {
+        text-align: center;
+        min-height: 0;
+        height: 100%;
+        background: rgb(44,58,71);
+        background: linear-gradient(0deg, rgba(44,58,71,1) 22%, rgba(48,78,74,1) 100%);
+    }
+
+    .button1-icon {
+      
+        width: 100%;
+        height: auto;
+    }
+
+    .button2 {
+        background-image: url('icons/house-2-alternate.png');
+        background-repeat: no-repeat;
+        width: 100%;
+        height: auto;
+    }
+    .button3 {
+        background-image: url('icons/login-2.png');
+        background-repeat: no-repeat;
+        width: 100%;
+        height: auto;
+    }
+    .button4 {
+        background-image: url('icons/house-2-alternate.png');
+        background-repeat: no-repeat;
+        width: 100%;
+        height: auto;
     }
 
     .footer {

@@ -30,8 +30,8 @@
     border: 1px #CAD3C8 solid;
     font-weight: 200;
     color: #8099af;
-    min-height:500px;
-
+    min-height: 500px;
+    display: inline-block;
 }
 
 .box1 {
@@ -43,9 +43,12 @@
 
 /* Hides box2 on mobile*/
 .box2 {
+    display:flex;
+    justify-content:center;
     text-align: center;
     grid-column: 14/ span 8;
     grid-row: 4/ span 5;
+    align-content:center;
 
 }
 
@@ -62,16 +65,26 @@
 }
 
 .lable-box {
-    width: 35%;
+    margin-top:2%;
+    width: 30%;
     text-align: right;
     float: left;
+    white-space:nowrap;
+    flex-shrink:1;
 }
+
+
 
 .input-box {
     padding-top: 6%;
-    width: 50%;
+    width: 65%;
     float: right;
 }
+
+input {
+    cursor: pointer;
+}
+
 
 input[type=number] {
     width: 100%;
@@ -92,7 +105,7 @@ input[type=submit] {
     display: inline-block;
     font-size: 16px;
 }
-}
+
 
 text {
 width: 200px;
@@ -107,5 +120,15 @@ list-style-type: none;
 }
 
 li {
-margin: 35px 0 35px 0; /*Align text is lable-box with inputs in inputbox*/
+margin: 40px 0 20px 0; /*Align text is lable-box with inputs in inputbox*/
+}
+
+fieldset {
+    border: 0;
+}
+
+
+.table, th, td {
+    /* border-collapse: collapse;*/
+    border: 1px black solid;
 }

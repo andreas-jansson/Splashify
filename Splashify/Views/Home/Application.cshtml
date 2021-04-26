@@ -1,0 +1,62 @@
+﻿@{
+    ViewData["Title"] = "Application";
+}
+
+@model Splashify.Models.IndexModel
+
+@section css {
+    <link href="@Url.Content("~/css/applicationstylingcss.css")" rel="stylesheet" type="text/css" />
+}
+
+
+<div class="container">
+    <div class="box1">
+        Event Application
+        @using (Html.BeginForm("", "", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <input type="number" name="EventNameField" placeholder="Event ID" />
+                <input type="submit" value="Apply" />
+            </fieldset>
+        }
+
+        Club Application
+        @using (Html.BeginForm("", "", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <input type="text" name="ClubNameField" placeholder="Club Name" />
+                <input type="submit" value="Apply" />
+            </fieldset>
+        }
+
+
+    </div>
+    <div class="box2">
+        Upcoming Events
+        @using (Html.BeginForm("", "", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <input type="submit" value="Search" />
+            </fieldset>
+        }
+
+
+        @Html.Raw(ViewBag.ppl)
+
+        Clubs
+        @using (Html.BeginForm("", "", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <input type="submit" value="Search" />
+            </fieldset>
+        }
+
+
+        @Html.Raw(ViewBag.ppl)
+
+    </div>
+</div>

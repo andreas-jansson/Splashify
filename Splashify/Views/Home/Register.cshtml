@@ -1,0 +1,47 @@
+﻿@model Splashify.Models.IndexModel
+
+@{
+    Layout = null;
+}
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Splashify</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet"> @*body*@
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,900&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    @*title*@
+    <link href="@Url.Content("~/css/registerstylingcss.css")" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div class="register-container">
+        <div class="register-box">
+            @using (Html.BeginForm("", "", FormMethod.Post))
+            {
+                <h1>Sign up</h1>
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <ul>
+                        <li><input type="text" name="Fname" placeholder="First Name" /></li>
+                        <li><input type="text" name="Last Name" placeholder="Last Name" /></li>
+                        <li><input type="text" name="Birthdata" placeholder="yymmdd-xxxx" /></li>
+                        <li><input type="text" name="Gender" placeholder="Gender" /></li>
+                        <li><input type="text" name="E-mail" placeholder="E-mail" /></li>
+                        <li><input type="text" name="Password" placeholder="Password" /></li>
+                        <input type="submit" value="Sign up" />
+                    </ul>
+                </fieldset>
+            }
+        </div>
+    </div>
+</body>
+</html>

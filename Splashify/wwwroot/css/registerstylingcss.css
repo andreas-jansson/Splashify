@@ -1,0 +1,70 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: url('images/loginimage.jpg');
+    display: flex;
+    justify-content: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.register-container {
+    margin-top: 30%;
+    background-color: rgba(204, 204, 204, 0.2);
+    width: 310px;
+    height: 600px;
+    display: flex;
+    justify-content: center;
+    border-radius: 30px;
+}
+
+.register-box {
+    margin-top: 15%;
+    background-color: rgba(204, 204, 204, 0.0);
+    height: 400px;
+    width: 300px;
+}
+
+
+ul {
+    list-style-type: none;
+}
+
+li {
+    margin: 35px 0 35px 0; /*Align text is lable-box with inputs in inputbox*/
+}
+
+fieldset {
+    border: 0;
+}
+
+
+input {
+    cursor: pointer;
+}
+
+input[type=text] {
+    width: 80%;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+input[type=submit] {
+    border-radius: 25px;
+    background-color: #008CBA; /* Blue */
+    border: none;
+    color: white;
+    width: 50%;
+    height: 30px;
+    margin-left: 15%;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+h1{
+    color:white;
+    text-align:center;
+    font-family:
+}

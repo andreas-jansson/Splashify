@@ -1,0 +1,391 @@
+﻿html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: no-display;
+    background: rgb(166,173,181);
+    background: linear-gradient(0deg, rgba(166,173,181,1) 22%, rgba(206,214,224,1) 96%);
+    font-family: 'Roboto', sans-serif;
+}
+
+
+
+/*              Phone               *
+*                                   *
+*                                   *
+*                                   *
+*                                   */
+
+@media only screen and (max-width:600px) {
+
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        height: 40px;
+        position: fixed;
+        top: 0px;
+        z-index: 1;
+        background: rgb(44,58,71);
+        background: linear-gradient(90deg, rgba(44,58,71,1) 14%, rgba(87,121,121,1) 72%, rgba(255,255,255,1) 750%);
+    }
+
+    .main-title {
+        padding-left:18%;
+        display: flex;
+        justify-content: center;
+        align-self: center;
+        font-family: 'Ubuntu', sans-serif;
+        font-size: 20px;
+        font-weight: bold;
+        color: #eaf5fa;
+    }
+
+    .sign-in-out {
+        display: flex;
+        justify-content:end;
+        align-items: flex-end;
+        height: 40px;
+        width: 100px;
+    }
+
+
+    .login-out-icon {
+        background-image: url('icons/login-32.png');
+        background-repeat: no-repeat;
+        width: 35px;
+        height: 35px;
+    }
+
+    .container {
+        display: table;
+    }
+
+    .side-bar {
+        order: 2;
+        background-color: #2C3A47;
+        height: 15vh;
+        width: 100%;
+        position: fixed;
+        bottom: 0;
+    }
+
+    .content {
+        order: 1;
+        width: 100%;
+        height: auto;
+        min-height: 100vh;
+        background: rgb(166,173,181);
+        background: linear-gradient(0deg, rgba(166,173,181,1) 22%, rgba(206,214,224,1) 96%);
+        overflow-x:hidden;
+    }
+
+
+    .button-area {
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        color: #CAD3C8;
+        font-family: 'Roboto', sans-serif;
+        height: 100%;
+    }
+
+    .sidebutton {
+        background-color: #222c36;
+        margin: 1px;
+        height: 100%;
+        min-height: 30px;
+        width: 25%;
+        line-height: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: rgb(44,58,71);
+        background: linear-gradient(0deg, rgba(44,58,71,1) 22%, rgba(48,78,74,1) 100%);
+    }
+
+
+    .text-dark {
+        display: flex;
+    }
+
+    .button-icon {
+        width: 40px;
+        height: 35px;
+        align-content: center;
+        margin-top: 4%;
+        margin-left: 8%;
+    }
+
+    .button-text {
+        margin-top: 2%;
+        width: 50%;
+        height: auto;
+        font-size: 10px;
+    }
+
+
+    .btn1 {
+        background-image: url('icons/analytics-32.png');
+        background-repeat: no-repeat;
+    }
+
+    .btn2 {
+        background-image: url('icons/pencil-32.png');
+        background-repeat: no-repeat;
+    }
+
+    .btn3 {
+        background-image: url('icons/text-file-3-32.png');
+        background-repeat: no-repeat;
+    }
+
+    .btn4 {
+        background-image: url('icons/article-marketing-32.png');
+        background-repeat: no-repeat;
+    }
+
+
+    /* Button/hover/text styling */
+    a {
+        color: white;
+        text-decoration: none;
+    }
+
+        a:hover {
+            text-decoration: underline;
+            opacity: 0.5;
+        }
+
+
+    /*Footer styling*/
+
+    .footer, content:root {
+        height: 50px;
+        background: rgb(44,58,71);
+        background: linear-gradient(90deg, rgba(44,58,71,1) 14%, rgba(87,121,121,1) 72%, rgba(255,255,255,1) 750%);
+        text-align: right;
+    }
+}
+
+    /*              Desktop             *
+*                                   *
+*                                   *
+*                                   *
+*                                   */
+
+    @media only screen and (min-width:600px) {
+
+
+
+        /*      Header         */
+        /*                     */
+        /*                     */
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            height: 85px;
+            position: fixed;
+            top: 0px;
+            z-index: 1;
+            background: rgb(44,58,71);
+            background: linear-gradient(90deg, rgba(44,58,71,1) 14%, rgba(87,121,121,1) 72%, rgba(255,255,255,1) 750%);
+        }
+
+
+
+        .app-logo {
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            width: 100px;
+            height: 80px;
+            padding-left: 5%;
+            padding-top: 0.2%;
+        }
+
+        .image-logo {
+            background-image: url('icons/sharkloggo.png');
+            background-repeat: no-repeat;
+            width: 100%;
+            height: auto;
+        }
+
+
+        .main-title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Ubuntu', sans-serif;
+            font-size: 35px;
+            font-weight: bold;
+            color: #eaf5fa;
+        }
+
+        .sign-in-out {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 55px;
+            width: 100px;
+            padding-top: 0.8%;
+        }
+
+
+        .login-out-icon {
+            background-image: url('icons/login-32.png');
+            background-repeat: no-repeat;
+            width: 35px;
+            height: 35px;
+        }
+
+
+        /* Content and Side bar*/
+        /*                     */
+        /*                     */
+
+        .container {
+            position: relative;
+            justify-content: flex-start;
+            height: 100%;
+            margin-top: 75px;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+
+        .side-bar {
+            background-color: #2C3A47;
+            height: 100vh;
+            width: 200px;
+            position: fixed;
+        }
+
+        .content {
+            width: auto;
+            height: auto;
+            min-height: 100vh;
+            margin-left: 200px;
+            background: rgb(166,173,181);
+            background: linear-gradient(0deg, rgba(166,173,181,1) 22%, rgba(206,214,224,1) 96%);
+        }
+
+        .user-info-box {
+            margin-top: 25%;
+            height: 30vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-self: flex-start;
+            min-height: 150px;
+        }
+
+        .user-pic {
+            width: 100%;
+            height: 70%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .user-pic-holder {
+            background-image: url('icons/contacts-128.png');
+            background-repeat: no-repeat;
+            width: 128px;
+            height: 128px;
+        }
+
+        .user-text {
+            width: 100%;
+            height: 30%;
+        }
+
+        .button-area {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            color: #CAD3C8;
+            /*font-family: Arial, Helvetica, sans-serif;*/
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .sidebutton {
+            background-color: #222c36;
+            margin: 1px;
+            height: 50px;
+            min-height: 30px;
+            line-height: 40px;
+            background: rgb(44,58,71);
+            background: linear-gradient(90deg, rgba(44,58,71,1) 0%, rgba(48,78,74,1) 100%, rgba(255,255,255,1) 750%);
+        }
+
+
+        .text-dark {
+            display: flex;
+        }
+
+        .button-icon {
+            width: 40px;
+            height: 35px;
+            align-content: center;
+            margin-top: 4%;
+            margin-left: 8%;
+        }
+
+        .button-text {
+            margin-top: 2%;
+            width: 50%;
+            height: auto;
+        }
+
+
+        .btn1 {
+            background-image: url('icons/analytics-32.png');
+            background-repeat: no-repeat;
+        }
+
+        .btn2 {
+            background-image: url('icons/pencil-32.png');
+            background-repeat: no-repeat;
+        }
+
+        .btn3 {
+            background-image: url('icons/text-file-3-32.png');
+            background-repeat: no-repeat;
+        }
+
+        .btn4 {
+            background-image: url('icons/article-marketing-32.png');
+            background-repeat: no-repeat;
+        }
+
+        /* Button/hover/text styling */
+        a {
+            color: white;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration:solid;
+            opacity: 0.5;
+        }
+
+
+        /*Footer styling*/
+
+        .footer, content:root {
+            height: 50px;
+            background: rgb(44,58,71);
+            background: linear-gradient(90deg, rgba(44,58,71,1) 14%, rgba(87,121,121,1) 72%, rgba(255,255,255,1) 750%);
+            text-align: right;
+        }
+    } 
+
+
+
+
+
+
+

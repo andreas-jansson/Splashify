@@ -21,19 +21,39 @@
 
 <div class="view-container">
     <div class="view-scoring view-box1">
-        <div class="view-topbox">
-            @ViewBag.dataj
-
+        <div class="view-topbox1">
+            <span>
+                Competitors: 56
+                </br>
+                Judges:12
+                </br>
+                Clubs: 8
+            </span>
+        </div>
+        <div class="view-topbox2">
+            <span>
+                Next event: 2021-06-06
+                </br>
+                Total events: 132
+            </span>
+        </div>
+        <div class="view-topbox3">
+            <span>
+                Average Score: 7
+                </br>
+                Highest Score: 10
+                </br>
+                Lowest score: 4
+            </span>
         </div>
     </div>
 
     <div class="view-scoring view-box2">
         <div class="view-bottombox1">
-            <form action="SetScore" method="post">
-                <lable>Search</lable>
-                <input type="text" name="SearchField" placeholder="Enter here.." />
+            <form action="" method="post">
+                <input type="text" name="SearchField" placeholder="Search" />
 
-                <div class="custom-select" style="width:200px;">
+                <div class="custom-select">
                     <select>
                         <option value="0">Select type:</option>
                         <option value="1">Competitor</option>
@@ -50,6 +70,7 @@
 
             @*Google chart *@
             @* Need to get correct fromat into/from viewbag for dynamic graph data*@
+            
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">google.charts.load("current", { packages: ["corechart"] });
                 google.charts.setOnLoadCallback(drawChart);
@@ -70,7 +91,8 @@
                     var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
                     chart.draw(data, options);
                 }</script>
-            <div id="donutchart" style="width: 400px; height: 200px;"></div>
+            <div id="donutchart"></div>
+                
         </div>
     </div>
 </div>
