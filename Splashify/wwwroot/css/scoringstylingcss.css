@@ -135,6 +135,15 @@ input[type=text] {
     cursor: pointer;
 }
 
+input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+
 input[type=submit] {
     background-color: #4CAF50; /* Green */
     border: none;
@@ -159,22 +168,24 @@ ul {
 list-style-type: none;
 }
 
+#jmp-info-li {
+    margin: 0;
+}
+
+
 li {
 margin: 20px 0 40px 0; /*Align text is lable-box with inputs in inputbox*/
 }
 
 /* li for jump type codes*/
-#jmp-info-li{
-    margin:0;
-}
 
 #jmp-info-h1{
     font-size:15px;
 }
 
 
-
 .table, th, td {
     /* border-collapse: collapse;*/
     border: 1px black solid;
+    align-self:center;
 }

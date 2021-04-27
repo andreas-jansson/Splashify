@@ -9,9 +9,9 @@
 }
 
 
-<div class="container">
+<div class="container-application">
     <div class="box1">
-        Event Application
+        <div class="title eventapp-title-h1">Event Application</div>
         @using (Html.BeginForm("", "", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
@@ -20,8 +20,9 @@
                 <input type="submit" value="Apply" />
             </fieldset>
         }
-
+    <div class="title clubapp-title-h1">
         Club Application
+    </div>
         @using (Html.BeginForm("", "", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
@@ -30,11 +31,12 @@
                 <input type="submit" value="Apply" />
             </fieldset>
         }
-
-
     </div>
+
     <div class="box2">
-        Upcoming Events
+        <div class="title upcoming-title-h1">
+            Upcoming Events
+        </div>
         @using (Html.BeginForm("", "", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
@@ -45,8 +47,10 @@
 
 
         @Html.Raw(ViewBag.ppl)
+        <div class="title clubs-title-h1">
+            Clubs
+        </div>
 
-        Clubs
         @using (Html.BeginForm("", "", FormMethod.Post))
         {
             @Html.ValidationSummary(true)

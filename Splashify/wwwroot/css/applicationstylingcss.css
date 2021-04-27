@@ -7,27 +7,40 @@
 }
 
 
-/*Shitty css to be replaced*/
+.container-application {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    margin-top: 85px;
+}
+
 .box1 {
+    margin:1% 1% 0 1%;
     background-color: white;
-    height: 500px;
-    width: 500px;
-    float: left;
+    height: 400px;
+    width: 48%;
     font-weight:bold;
-    margin-right: 5%;
-    margin-left: 7%;
-    margin-top: 7%;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-content:center;
 
 }
 
 .box2 {
+    margin: 1% 1% 0 0;
     background-color: white;
-    height: 500px;
-    width: 500px;
-    float: left;
+    height: 400px;
+    width: 48%;
     font-weight: bold;
-    margin-top: 7%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
 }
+
 
 
 input {
@@ -75,5 +88,12 @@ input[type=submit] {
 }
 
 fieldset {
-    border: 0;
+    width: 350px;
+    margin: 0 auto;
+    border:0 none;
+}
+
+.title {
+    font-size: 20px;
+    align-self: center;
 }
