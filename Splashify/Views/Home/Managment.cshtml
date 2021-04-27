@@ -14,12 +14,12 @@
             <h1>Create Event</h1>
 
             @* method name, controller name without the ending"Controller"... *@
-            @using (Html.BeginForm("", "", FormMethod.Post))
+            @using (Html.BeginForm("SetEvent", "CreateEvent", FormMethod.Post))
             {
                 @Html.ValidationSummary(true)
                 <fieldset>
                     <input type="text" name="EventNameField" placeholder="Event name" />
-                    <input type="datetime" name="EventDateField" placeholder="Date" />
+                    <input type="text" name="EventDateField" placeholder="Date" />
                     <input type="text" name="EventGenderField" placeholder="Gender" />
                     <input type="number" name="Judge1Field" placeholder="Judge id" />
                     <input type="number" name="Judge2Field" placeholder="Judge id" />

@@ -6,56 +6,21 @@
 
 
 /*       CSS for Scoring.cshtml          */
-/*        These are inside .content    */
-
-.scoring-container {
-    /* align-self: center;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    height: 100%;
-    margin-top:7%;
-    border:2px red solid;*/
-
-    display: grid;
-    grid-template-columns: repeat(24, 1fr);
-    grid-template-rows: 100px;
-}
+/*        These are inside .content      */
 
 
-.scoring-boxes {
-    background-color: white;
-    box-shadow: 5px 5px 12px #888888;
-    border-radius: 3px;
-    border: 1px #CAD3C8 solid;
-    font-weight: 200;
-    color: #8099af;
-    min-height: 500px;
-    display: inline-block;
-}
 
-.box1 {
-    min-width: 250px;
-    grid-column: 4/ span 8;
-    grid-row: 4/ span 5;
-
-}
-
-/* Hides box2 on mobile*/
-.box2 {
-    display:flex;
-    justify-content:center;
-    text-align: center;
-    grid-column: 14/ span 8;
-    grid-row: 4/ span 5;
-    align-content:center;
-
-}
+/*                                      */
+/*               Phone                   */
+/*                                       */
 
 @media only screen and (max-width:600px) {
+    .scoring-container {
+        margin-top: 40px;
+    }
+
     .box1 {
-        grid-column: 1/ -1;
-        grid-row: 1/ -1;
+
     }
 
     .box2 {
@@ -64,29 +29,105 @@
     }
 }
 
-.lable-box {
-    margin-top:2%;
-    width: 30%;
-    text-align: right;
-    float: left;
-    white-space:nowrap;
-    flex-shrink:1;
+
+
+
+
+/*                                         */
+/*               Desktop                   */
+/*                                         */
+
+
+.scoring-container {
+    margin-top:85px;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap:wrap;
+}
+
+
+.top-box {
+    height:200px;
+    width: 100%;
+    background:white;
+    margin:1% 1% 1% 1%;
+
+}
+
+.main-container {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.main {
+    background-color: white;
+    box-shadow: 5px 5px 12px #888888;
+    border-radius: 3px;
+    border: 1px #CAD3C8 solid;
+    font-weight: 200;
+    color: #8099af;
+    height: 400px;
+    width: 48%;
 }
 
 
 
+.box1 {
+    margin: 1% 1% 0 1%;
+    min-width: 600px;
+    flex-shrink:0;
+}
+
+.box2 {
+    margin: 1% 0 0 0;
+    min-width: 600px;
+    flex-shrink: 0;
+    align-content:center;
+}
+
+
+/* parent to input boxes*/
+
+fieldset {
+    border:0 none;
+}
+
+.lable-box {
+    display: inline-block;
+    width: 28%;
+    min-width:150px;
+    min-height: 380px;
+    text-align: right;
+    white-space: nowrap;
+    float: left;
+}
+
+
 .input-box {
-    padding-top: 6%;
-    width: 65%;
+    display: inline-block;
+    width: 70%;
+    min-height: 380px;
+    min-width: 390px;
     float: right;
+    flex-shrink:0;
+}
+
+.info-box{
+    width:40%;
+    text-align:left;
+    margin:1% 0 0 1%; 
 }
 
 input {
     cursor: pointer;
+    width:90%;
 }
 
 
-input[type=number] {
+input[type=text] {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
@@ -102,7 +143,6 @@ input[type=submit] {
     padding: 15px 32px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
     font-size: 16px;
 }
 
@@ -120,12 +160,18 @@ list-style-type: none;
 }
 
 li {
-margin: 40px 0 20px 0; /*Align text is lable-box with inputs in inputbox*/
+margin: 20px 0 40px 0; /*Align text is lable-box with inputs in inputbox*/
 }
 
-fieldset {
-    border: 0;
+/* li for jump type codes*/
+#jmp-info-li{
+    margin:0;
 }
+
+#jmp-info-h1{
+    font-size:15px;
+}
+
 
 
 .table, th, td {

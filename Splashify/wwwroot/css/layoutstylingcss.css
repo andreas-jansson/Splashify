@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     height: 100%;
-    overflow: no-display;
+    overflow:no-content;
     background: rgb(166,173,181);
     background: linear-gradient(0deg, rgba(166,173,181,1) 22%, rgba(206,214,224,1) 96%);
     font-family: 'Roboto', sans-serif;
@@ -60,6 +60,7 @@
 
     .container {
         display: table;
+        overflow:hidden;
     }
 
     .side-bar {
@@ -70,16 +71,19 @@
         position: fixed;
         bottom: 0;
         overflow:hidden;
+        z-index:1;
     }
 
     .content {
         order: 1;
-        width: 100%;
+        width: auto;
         height: auto;
         min-height: 100vh;
         background: rgb(166,173,181);
         background: linear-gradient(0deg, rgba(166,173,181,1) 22%, rgba(206,214,224,1) 96%);
-        overflow-x:hidden;
+        z-index: -1;
+        overflow: hidden;
+        /*  overflow-x:hidden;*/
     }
 
 
@@ -170,13 +174,16 @@
     }
 }
 
-    /*              Desktop             *
+
+
+
+/*              Desktop             *
 *                                   *
 *                                   *
 *                                   *
 *                                   */
 
-    @media only screen and (min-width:600px) {
+@media only screen and (min-width:600px) {
 
 
 
@@ -248,24 +255,24 @@
         /*                     */
         /*                     */
 
-        .container {
-            position: relative;
-            justify-content: flex-start;
-            height: 100%;
-            margin-top: 75px;
-            overflow-y:scroll;
-            min-height: 100vh;
-            z-index:-1;
-        }
+    .container {
+        /* position: relative;*/
+        justify-content: flex-start;
+        height: 100%;
+        margin-top: 75px;
+        /* overflow-y:scroll;*/
+        min-height: 100vh;
+        z-index: -1;
+    }
 
-        .side-bar {
-            z-index:1;
-            background-color: #2C3A47;
-            height: 100vh;
-            width: 200px;
-            position: fixed;
-            overflow:hidden;
-        }
+    .side-bar {
+        z-index: 1;
+        background-color: #2C3A47;
+        height: 100vh;
+        width: 200px;
+        position: fixed;
+        overflow: hidden;
+    }
 
         .content {
             width: auto;
@@ -311,7 +318,6 @@
             justify-content: center;
             flex-direction: column;
             color: #CAD3C8;
-            /*font-family: Arial, Helvetica, sans-serif;*/
             font-family: 'Roboto', sans-serif;
         }
 

@@ -6,6 +6,7 @@ namespace Splashify.Models
         public int ContestantID { get; set; }
         public int EventID { get; set; }
         public int JumpNr { get; set; }
+        public int JumpTypeField { get; set; }
         public int Score { get; set; }
     }
 }

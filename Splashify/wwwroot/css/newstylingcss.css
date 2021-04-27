@@ -281,6 +281,7 @@ a {
         grid-column: 1 / -1;
         flex-direction: row;
         order: 3;
+        overflow:hidden;
     }
 
     .button-area {

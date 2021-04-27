@@ -45,8 +45,21 @@ namespace Splashify.Controllers
         private static string LoadConnectionString()
         {
             //add name="Default" connectionstring="Data source=./testdb.db;Version=3;" providerName="System.data.sqlClient"   
- 
+
             return ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
         }
+
+        //Event
+        //string EventNameField, string EventDateField, string EventGenderField, int Judge1Field, int Judge2Field, int Judge3Field)
+
+        public static void SaveEvent(Models.EventModel e)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("insert into Event(name,date,gender,judge1ID,judge2ID,judge3ID) values(@name, @date, @gender, @judge1ID, @judge2ID, @judge3ID)", e);
+            }
+        }
+
     }
+
 }

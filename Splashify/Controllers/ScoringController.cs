@@ -13,12 +13,13 @@ namespace Splashify.Controllers
 
         }
 
-        public ActionResult SetScore(int ContestantIDField, int EventIDField, int JumpNrField, int ScoreField)
+        public ActionResult SetScore(int ContestantIDField, int EventIDField, int JumpNrField, int JumpTypeField, int ScoreField)
         {
 
             Console.WriteLine(ContestantIDField);
             Console.WriteLine(EventIDField);
             Console.WriteLine(JumpNrField);
+            Console.WriteLine(JumpTypeField);
             Console.WriteLine(ScoreField);
  
             /*   fungerar att skicka till db

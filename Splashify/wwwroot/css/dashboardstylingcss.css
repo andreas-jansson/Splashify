@@ -10,6 +10,7 @@
 
 
 .view-container {
+    overflow:hidden;
 }
 
 .view-scoring {
@@ -78,7 +79,13 @@ span {
     text-align: center;
 }
 
-
+form{
+    display:flex;
+    flex-direction:row;
+    justify-content:space-evenly;
+    flex-wrap:nowrap;
+    width:100%;
+}
 
 .view-bottombox1 {
     border: 1px #CAD3C8 solid;
@@ -90,7 +97,7 @@ span {
     margin: 1% 1% 0 1%;
     min-height: 300px;
     display: flex;
-    flex-direction:row;
+    flex-direction: row;
     justify-content: center;
 }
 
@@ -107,30 +114,11 @@ span {
     margin: 1% 1% 0 1%;
 }
 
-@media only screen and (max-width:600px) {
-    .view-scoring {
-        display:table;
-        justify-content:stretch;
-    }
-
-    .view-topbox {
-        min-width:0;
-        width: 100vw;
-    }
-    .view-bottombox1 {
-        min-height: 33vh;
-        width: 100vw;
-    }
-    .view-bottomboxw {
-        min-height: 33vh;
-        width: 100vw;
-    }
-
-}
 
 .donutchart{
     height:auto;
-    width:auto;
+    width:50%;
+    align-self:center;
 
 }
 fieldset {
@@ -139,15 +127,36 @@ fieldset {
 
 input {
     cursor: pointer;
+    height:80px;
 }
 
-input[type=text] {
+select {
+    order: 1;
     width: 100%;
+    height: 55px;
+    margin-top: 30%;
+    margin-left: 1%;
+    background-color: DodgerBlue;
+    -webkit-appearance: none;
+    border:0;
+    font:20px;
+    font-weight:bold;
+    color:white; 
+}
+
+
+
+input[type=text] {
+    order:2;
+    width: 70%;
     padding: 12px 20px;
-    margin: 8px 0;
+    margin: 10px 0;
     box-sizing: border-box;
     cursor: pointer;
+    font-size:20px;
+
 }
+
 
 
 input[type=datetime] {
@@ -161,25 +170,57 @@ input[type=datetime] {
 
 input[type=number] {
     width: 100%;
-    padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
     cursor: pointer;
 }
 
-select {
-    width: 100%;
-}
 
 input[type=submit] {
+    margin-top:4%;
+    order: 3;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
-    width: 100%;
-    padding: 15px 32px;
+    width: 70px;
+    height:53px;
     text-align: center;
     text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    align-self: center;
+    font-size: 12px;
+    font-weight:bold;
+}
+
+
+@media only screen and (max-width:600px) {
+    .view-scoring {
+        display: table;
+        justify-content: stretch;
+    }
+
+    .view-topbox1 {
+        min-width: 0;
+        width: 100vw;
+        height:15vh;
+    }
+    .view-topbox2 {
+        min-width: 0;
+        width: 100vw;
+        height: 15vh;
+    }
+    .view-topbox3 {
+        min-width: 0;
+        width: 100vw;
+        height: 15vh;
+    }
+
+    .view-bottombox1 {
+        min-height: 33vh;
+        width: 100vw;
+    }
+
+    .view-bottombox2 {
+        min-height: 33vh;
+        width: 100vw;
+    }
+
 }
