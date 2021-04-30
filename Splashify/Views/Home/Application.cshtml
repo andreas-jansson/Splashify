@@ -2,10 +2,22 @@
     ViewData["Title"] = "Application";
 }
 
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
 @model Splashify.Models.IndexModel
 
 @section css {
     <link href="@Url.Content("~/css/applicationstylingcss.css")" rel="stylesheet" type="text/css" />
+}
+
+
+@{
+    if (Context.Session.GetString("UserSession") != "organizer" && Context.Session.GetString("UserSession") != "club" && Context.Session.GetString("UserSession") != "competitor")
+    {
+        <script>
+            window.location.href = "@Url.Action("Login", "Home")";
+        </script>
+    }
 }
 
 
@@ -20,9 +32,9 @@
                 <input type="submit" value="Apply" />
             </fieldset>
         }
-    <div class="title clubapp-title-h1">
-        Club Application
-    </div>
+        <div class="title clubapp-title-h1">
+            Club Application
+        </div>
         @using (Html.BeginForm("", "", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
@@ -37,16 +49,17 @@
         <div class="title upcoming-title-h1">
             Upcoming Events
         </div>
-        @using (Html.BeginForm("", "", FormMethod.Post))
+        @using (Html.BeginForm("GetEvent", "Event", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
             <fieldset>
                 <input type="submit" value="Search" />
             </fieldset>
+
         }
+        @Html.Raw(ViewBag.events)
 
 
-        @Html.Raw(ViewBag.ppl)
         <div class="title clubs-title-h1">
             Clubs
         </div>

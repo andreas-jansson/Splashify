@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Splashify.Models;
@@ -24,7 +25,7 @@ namespace Splashify.Controllers
         {
             return View();
         }
-        //[Authorize]
+
         public IActionResult Scoring()
         {
             return View();
@@ -41,21 +42,16 @@ namespace Splashify.Controllers
         }
 
 
-        //[Authorize(Roles = "admin")]
         public IActionResult Managment()
         {
-            /*
-            PersonModel p = new PersonModel();
-            p.Fname = "andreas";
-            p.Lname = "jansson";
-            SqliteDataAccess.SavePerson(p);*/
             return View();
         }
 
-        //[Authorize]
         public IActionResult Application()
         {
+
             return View();
+     
         }
 
         public IActionResult Login()

@@ -97,3 +97,9 @@ fieldset {
     font-size: 20px;
     align-self: center;
 }
+
+.table, th, td {
+    /* border-collapse: collapse;*/
+    border: 1px black solid;
+    align-self: center;
+}

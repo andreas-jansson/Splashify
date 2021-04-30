@@ -7,34 +7,43 @@ using Dapper;
 using System.Collections.Generic;
 using System.Text;
 using System.Linq;
+using Splashify.Models;
+
 namespace Splashify.Controllers
 
 {
     public class SqliteDataAccess
     {
-        public static List<Models.PersonModel> LoadPeople()
+
+
+        private static string LoadConnectionString()
+        {
+            return ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+        }
+
+        //Person outdated - doesnt exist in db
+        public static List<UserModel> LoadPeople()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Models.PersonModel>("SELECT * FROM Person", new DynamicParameters());
+                var output = cnn.Query<UserModel>("SELECT * FROM user", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        //outdated - doesnt exist in db
+        public static List<ScoreModel> LoadFinalScore()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<Models.ScoreModel>("SELECT * FROM user", new DynamicParameters());
                 return output.ToList();
             }
 
 
         }
-
-        public static List<Models.ScoreModel> LoadFinalScore()
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = cnn.Query<Models.ScoreModel>("SELECT * FROM Person", new DynamicParameters());
-                return output.ToList();
-            }
-
-
-        }
-
-        public static void SavePerson(Models.PersonModel person)
+        //outdated - doesnt exist in db
+        public static void SavePerson(UserModel person)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
@@ -42,24 +51,43 @@ namespace Splashify.Controllers
             }
         }
 
-        private static string LoadConnectionString()
-        {
-            //add name="Default" connectionstring="Data source=./testdb.db;Version=3;" providerName="System.data.sqlClient"   
-
-            return ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
-        }
-
         //Event
-        //string EventNameField, string EventDateField, string EventGenderField, int Judge1Field, int Judge2Field, int Judge3Field)
-
-        public static void SaveEvent(Models.EventModel e)
+        public static void SaveEvent(EventModel eventObj)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Event(name,date,gender,judge1ID,judge2ID,judge3ID) values(@name, @date, @gender, @judge1ID, @judge2ID, @judge3ID)", e);
+                cnn.Execute("insert into Event(eventID,startdate,gender) values(@name, @startdate, @gender)", eventObj);
             }
         }
 
-    }
 
+        public static List<EventModel> LoadEvent()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<EventModel>("SELECT * FROM event", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+        //Login
+        public static UserModel AuthorizeUser(UserModel user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+
+                UserModel output = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE email = @email", user);
+                if(output == null)
+                {
+                    Console.WriteLine("NULL!");
+                }
+                else
+                {
+                    Console.WriteLine(output.birthdate);
+
+                }
+                return output;
+            }
+        }
+    }
 }

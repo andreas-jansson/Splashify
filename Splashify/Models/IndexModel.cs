@@ -5,9 +5,10 @@ namespace Splashify.Models
 {
     public class IndexModel
     {
-        public ScoreModel personModel { get; set; }
+        public UserModel UserModel { get; set; }
         public ScoreModel scoreModel { get; set; }
         public EventModel eventModel { get; set; }
+        public LoginModel logintModel { get; set; }
     }
 }
 

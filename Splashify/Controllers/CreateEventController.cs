@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Splashify.Models;
 
 
 namespace Splashify.Controllers
 {
-    public class CreateEventController : Controller
+    public class EventController : Controller
     {
 
-        public CreateEventController()
+        List<EventModel> eventObj = new List<EventModel>();
+
+        public EventController()
         {
 
         }
@@ -17,19 +21,45 @@ namespace Splashify.Controllers
         {
             Console.WriteLine("SetEvent triggered!");
 
-            EventModel e = new EventModel();
-            e.name = EventNameField;
-            e.date = EventDateField;
-            e.gender = EventGenderField;
-            e.judge1ID = Judge1Field;
-            e.judge1ID = Judge2Field;
-            e.judge1ID = Judge3Field;
+            EventModel eventObj = new EventModel();
+            eventObj.name = EventNameField;
+            eventObj.startdate = EventDateField;
+            eventObj.gender = EventGenderField;
+            SqliteDataAccess.SaveEvent(eventObj);
 
-
-            SqliteDataAccess.SaveEvent(e);
-
-            return View("~/Views/Home/Managment.cshtml");
+            return View("~/Views/Home/Application.cshtml");
         }
+
+        public ActionResult GetEvent()
+        {
+
+            StringBuilder eventListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>Name</th><th>Date</th><th>Gender</th></tr>");
+
+            eventObj = SqliteDataAccess.LoadEvent();
+
+            foreach (var e in eventObj)
+            {
+                eventListHtml.Append("<tr><td>");
+                eventListHtml.Append(e.name);
+                eventListHtml.Append("</td><td>");
+                eventListHtml.Append(e.startdate);
+                eventListHtml.Append("</td><td>");
+                eventListHtml.Append(e.gender);
+                eventListHtml.Append("</td></tr>");
+            }
+
+            eventListHtml.Append("</table>");
+
+
+            ViewBag.events = eventListHtml;
+
+            return View("~/Views/Home/Application.cshtml");
+
+        }
+
+
+
+
     }
 
 }

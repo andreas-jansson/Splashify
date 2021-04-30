@@ -11,7 +11,7 @@ namespace Splashify.Controllers
 
     public class FetchPersonController : Controller
     {
-        List<PersonModel> people = new List<PersonModel>(); 
+        List<UserModel> people = new List<UserModel>(); 
 
         public FetchPersonController()
         {
@@ -29,9 +29,9 @@ namespace Splashify.Controllers
             foreach (var person in people)
             {
                 peopleListHtml.Append("<tr><td>");
-                peopleListHtml.Append(person.Fname);
+                peopleListHtml.Append(person.fname);
                 peopleListHtml.Append("</td><td>");
-                peopleListHtml.Append(person.Lname);
+                peopleListHtml.Append(person.lname);
                 peopleListHtml.Append("</td></tr>");
             }
 

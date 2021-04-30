@@ -1,11 +1,24 @@
 ﻿@{
     ViewData["Title"] = "Managment";
 }
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Splashify.Models.IndexModel
 
 
 @section css {
     <link href="@Url.Content("~/css/managmentstylingcss.css")" rel="stylesheet" type="text/css" />
 }
+
+@{
+    if (Context.Session.GetString("UserSession") != "organizer")
+    {
+        <script>
+            window.location.href = "@Url.Action("Login", "Home")";
+        </script>
+    }
+}
+
 
 
 <div class="managment-container">
@@ -14,7 +27,7 @@
             <h1>Create Event</h1>
 
             @* method name, controller name without the ending"Controller"... *@
-            @using (Html.BeginForm("SetEvent", "CreateEvent", FormMethod.Post))
+            @using (Html.BeginForm("SetEvent", "Event", FormMethod.Post))
             {
                 @Html.ValidationSummary(true)
                 <fieldset>
@@ -69,10 +82,10 @@
         </div>
 
 
-                <div class="rows-even box3">
-                    
-                </div>
-            </div>
+        <div class="rows-even box3">
+            <p>@Context.Session.GetString("UserSession")</p>
         </div>
+    </div>
+</div>
 
 
