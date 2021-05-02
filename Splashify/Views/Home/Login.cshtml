@@ -38,15 +38,15 @@
                 @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
                 {
                     @Html.ValidationSummary(true)
-                <fieldset>
-                    <ul>
-                        <li><input type="text" name="email" placeholder="E-mail" required /></li>
-                        <li><input type="password" name="password" placeholder="Password" required /></li>
-                    </ul>
-                    <input type="submit" value="Login" />
-                </fieldset>
-                    /*<a href="/">Register</a>*/
-                }
+                    <fieldset>
+                        <ul>
+                            <li><input type="text" name="email" placeholder="E-mail" required /></li>
+                            <li><input type="password" name="password" placeholder="Password" required /></li>
+                        </ul>
+                        <input type="submit" value="Login" />
+                    </fieldset>
+                    <a class="link-register" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+                 }
             </div>
         </div>
     </div>
