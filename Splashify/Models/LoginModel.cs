@@ -6,11 +6,11 @@ namespace Splashify.Models
   
     public class LoginModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "* Enter a valid E-mail")]
+        [EmailAddress(ErrorMessage = "* Enter a valid E-mail")]
         public string email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "* Enter a password")]
         [DataType(DataType.Password)]
-        public string passsword { get; set; }
+        public string password { get; set; }
     }
 }

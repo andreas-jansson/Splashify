@@ -22,7 +22,7 @@ namespace Splashify.Controllers
             Console.WriteLine("SetEvent triggered!");
 
             EventModel eventObj = new EventModel();
-            eventObj.name = EventNameField;
+            eventObj.eventID = EventNameField;
             eventObj.startdate = EventDateField;
             eventObj.gender = EventGenderField;
             SqliteDataAccess.SaveEvent(eventObj);
@@ -40,7 +40,7 @@ namespace Splashify.Controllers
             foreach (var e in eventObj)
             {
                 eventListHtml.Append("<tr><td>");
-                eventListHtml.Append(e.name);
+                eventListHtml.Append(e.eventID);
                 eventListHtml.Append("</td><td>");
                 eventListHtml.Append(e.startdate);
                 eventListHtml.Append("</td><td>");

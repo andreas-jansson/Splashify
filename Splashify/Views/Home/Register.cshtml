@@ -1,5 +1,4 @@
-﻿@model Splashify.Models.IndexModel
-
+﻿@model Splashify.Models.RegisterModel
 @{
     Layout = null;
 }
@@ -7,6 +6,9 @@
 @{
     ViewData["Title"] = "Register";
 }
+
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,27 +23,64 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,700;1,900&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
     @*title*@
     <link href="@Url.Content("~/css/registerstylingcss.css")" rel="stylesheet" type="text/css" />
+
+
+
 </head>
 <body>
-    <div class="register-container">
-        <div class="register-box">
-            @using (Html.BeginForm("", "", FormMethod.Post))
-            {
-                <h1>Sign up</h1>
-                @Html.ValidationSummary(true)
-                <fieldset>
+    <div class="main-container">
+        <h1>Sign Up</h1>
+        <div class="register-container">
+            <div class="register-box">
+
+                <form asp-controller="User" asp-action="Register" method="post">
                     <ul>
-                        <li><input type="text" name="Fname" placeholder="First Name" /></li>
-                        <li><input type="text" name="Last Name" placeholder="Last Name" /></li>
-                        <li><input type="text" name="Birthdata" placeholder="yymmdd-xxxx" /></li>
-                        <li><input type="text" name="E-mail" placeholder="E-mail" /></li>
-                        <li><input type="text" name="Password" placeholder="Password" /></li>
-                        <li><input type="text" name="Gender" placeholder="Gender" /></li>
+                        <li><input asp-for="FnameField" type="text" class="form-control" placeholder="First Name" /></li>
+                        <span id="error-message" asp-validation-for="FnameField"></span>
+                        <li><input asp-for="LnameField" type="text" class="form-control" placeholder="Last Name" /></li>
+                        <span id="error-message" asp-validation-for="LnameField"></span>
+                        <li><input asp-for="BirthField" type="text" class="form-control" placeholder="YYMMDD-XXXX" /></li>
+                        <li><span id="error-message" asp-validation-for="BirthField"></span></li>
+                        <li><input asp-for="EmailField" type="text" class="form-control" placeholder="E-mail" /></li>
+                        <li><span id="error-message" asp-validation-for="EmailField"></span></li>
+                        <li><input asp-for="PasswordField" type="password" class="form-control" placeholder="Password" /></li>
+                        <li><span id="error-message" asp-validation-for="PasswordField"></span></li>
+                        <li><input asp-for="PasswordConfField" type="password"  class="form-control" placeholder="Confirm Password" /></li>
+                        <li><span id="error-message" asp-validation-for="PasswordConfField"></span></li>
+                        <li>
+                            <select asp-for="GenderField">
+                                <option value="">Gender:</option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                            </select>
+                        </li>
+                        <li><span id="error-message" asp-validation-for="GenderField"></span></li>
+
+                        <li>
+                            <select asp-for="RoleField">
+                                <option value="">Role Request:</option>
+                                <option value="competitor">Competitor</option>
+                                <option value="club">Club</option>
+                                <option value="judge">Judge</option>
+                                <option value="organizer">Organizer</option>
+                            </select>
+                        </li>
+                        <li><span id="error-message" asp-validation-for="RoleField"></span></li>
+
                     </ul>
-                    <input type="submit" value="Sign up" />
-                </fieldset>
-            }
+                    <button type="submit">Create</button>
+                </form>
+                <div class="link-register"><a asp-area="" asp-controller="Home" asp-action="Dashboard">Return to Start</a></div>
+
+            </div>
         </div>
     </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
 </body>
 </html>

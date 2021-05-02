@@ -43,11 +43,11 @@ namespace Splashify.Controllers
 
         }
         //outdated - doesnt exist in db
-        public static void SavePerson(UserModel person)
+        public static void SavePerson(UserModel user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Person(fname,lname) values(@fname, @lname)", person);
+                cnn.Execute("insert into User(fname,lname, email, password, birthdate, gender, role) values(@fname, @lname,@email, @password, @birthdate, @gender, 'default')", user);
             }
         }
 
@@ -75,9 +75,11 @@ namespace Splashify.Controllers
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
+               
 
                 UserModel output = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE email = @email", user);
-                if(output == null)
+
+                if (output == null)
                 {
                     Console.WriteLine("NULL!");
                 }
@@ -89,5 +91,45 @@ namespace Splashify.Controllers
                 return output;
             }
         }
+
+
+        //Checks if user exists already
+        public static UserModel UserExist(UserModel user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                /* does 2 queries for email and birthdate*/
+                /* depending on match, returns obj*/
+                /* if no match, returns null*/
+
+                UserModel output1 = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE email = @email", user);
+                UserModel output2 = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE birthdate = @birthdate", user);
+                UserModel output3 = new UserModel();
+
+                if (output1 == null && output2 != null)
+                {
+                    output2.fname = "birthdate duplicate";
+                    return output2;
+                }
+                else if (output1 != null && output2 == null)
+                {
+                    output1.fname = "email duplicate";
+                    return output1;
+
+                }
+                else if (output1 != null && output2 != null)
+                {
+                    output3.fname = "both duplicate";
+                    return output3;
+
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
+
     }
 }

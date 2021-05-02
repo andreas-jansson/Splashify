@@ -1,4 +1,4 @@
-﻿@model Splashify.Models.IndexModel
+﻿@model Splashify.Models.LoginModel
 
 @{
     Layout = null;
@@ -35,18 +35,36 @@
 
         <div class="login-container">
             <div class="login-box">
-                @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true)
-                    <fieldset>
-                        <ul>
-                            <li><input type="text" name="email" placeholder="E-mail" required /></li>
-                            <li><input type="password" name="password" placeholder="Password" required /></li>
-                        </ul>
-                        <input type="submit" value="Login" />
-                    </fieldset>
-                    <a class="link-register" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
-                 }
+
+
+
+                <form asp-controller="User" asp-action="Authorize" method="post">
+                    <ul>
+                        <li><input asp-for="email" type="text" class="form-control" placeholder="E-mail" /></li>
+                        <li><span id="error-message" asp-validation-for="email"></span></li>
+                        <li><input asp-for="password" type="password" class="form-control" placeholder="Password" /></li>
+                        <li><span id="error-message" asp-validation-for="password"></span></li>
+
+                    </ul>
+                    <button type="submit">Login In</button>
+
+                </form>
+                <div class="link-register"><a asp-area="" asp-controller="Home" asp-action="Register">Sign Up</a></div>
+
+
+
+                @*  @using (Html.BeginForm("Authorize", "Login", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                <ul>
+                    <li><input type="text" name="email" placeholder="E-mail"  /></li>
+                    <li><input type="password" name="password" placeholder="Password"  /></li>
+                </ul>
+                <input type="submit" value="Login" />
+            </fieldset>
+            <a class="link-register" asp-area="" asp-controller="Home" asp-action="Register">Register</a>
+         }*@
             </div>
         </div>
     </div>
