@@ -29,6 +29,20 @@
 </head>
 <body>
     <div class="main-container">
+        <ul class="bubble-area">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+
+        </ul>
         <h1>Sign Up</h1>
         <div class="register-container">
             <div class="register-box">
@@ -45,7 +59,7 @@
                         <li><span id="error-message" asp-validation-for="EmailField"></span></li>
                         <li><input asp-for="PasswordField" type="password" class="form-control" placeholder="Password" /></li>
                         <li><span id="error-message" asp-validation-for="PasswordField"></span></li>
-                        <li><input asp-for="PasswordConfField" type="password"  class="form-control" placeholder="Confirm Password" /></li>
+                        <li><input asp-for="PasswordConfField" type="password" class="form-control" placeholder="Confirm Password" /></li>
                         <li><span id="error-message" asp-validation-for="PasswordConfField"></span></li>
                         <li>
                             <select asp-for="GenderField">
