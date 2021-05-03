@@ -9,6 +9,7 @@ namespace Splashify.Models
         public ScoreModel scoreModel { get; set; }
         public EventModel eventModel { get; set; }
         public LoginModel logintModel { get; set; }
+        public SearchModel SearchModel { get; set; }
     }
 }
 

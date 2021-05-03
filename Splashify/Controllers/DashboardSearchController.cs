@@ -62,29 +62,29 @@ namespace Splashify.Controllers
             }
         }
         */
-
-        public ActionResult GetSearch(int value, string SearchField)
+        [HttpPost]
+        public ActionResult GetSearch(SearchModel Search)
         {
 
             Console.WriteLine("GetSearch triggered!");
 
             SearchModel s = new SearchModel();
-            s.SearchField = SearchField;
-            s.value = value;
+            s.SearchField = Search.SearchField;
+            s.value = Search.value;
 
             //SearchModel searchObj = new SearchModel();
 
-            if (value == 1)
+            if (Search.value == 1)
             {
                 Console.WriteLine("value = 1");
                 //return View("~/Views/Home/Dashboard.cshtml");
             }
-            else if (value == 2)
+            else if (Search.value == 2)
             {
                 Console.WriteLine("value = 2");
                 //return View("~/Views/Home/Dashboard.cshtml");
             }
-            else if (value == 3)
+            else if (Search.value == 3)
             {
                 Console.WriteLine("value = 3");
                 //return View("~/Views/Home/Dashboard.cshtml");
@@ -92,8 +92,10 @@ namespace Splashify.Controllers
             else
             {
                 Console.WriteLine("value = 0");
-                Console.WriteLine(value);
-                Console.WriteLine(SearchField);
+                Console.WriteLine(Search.value);
+                Console.WriteLine(Search.SearchField);
+                Console.WriteLine(s.value);
+                Console.WriteLine(s.SearchField);
                 //return View("~/Views/Home/Dashboard.cshtml");
             }
 
