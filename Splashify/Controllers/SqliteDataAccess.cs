@@ -86,8 +86,6 @@ namespace Splashify.Controllers
                 else
                 {
                     Console.WriteLine(output.birthdate);
-                    Console.WriteLine("hej");
-
                 }
                 return output;
             }
