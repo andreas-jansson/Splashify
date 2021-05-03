@@ -50,7 +50,9 @@
 
     <div class="view-scoring view-box2">
         <div class="view-bottombox1">
-            <form action="" method="post">
+            @using (Html.BeginForm("GetSearch", "DashboradSearch", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
                 <input type="text" name="SearchField" placeholder="Search" />
 
                 <div class="custom-select">
@@ -63,7 +65,8 @@
                 </div>
                 <input type="submit" value="submit" />
 
-            </form>
+            }
+            @Html.Raw(ViewBag.search)
         </div>
 
         <div class="view-bottombox2">
