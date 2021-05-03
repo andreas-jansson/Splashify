@@ -70,6 +70,41 @@ namespace Splashify.Controllers
             }
         }
 
+        //Search
+        public static List<SearchModel> CompetitorSearch(SearchModel user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<SearchModel>("SELECT * FROM event", new DynamicParameters());
+                if (user.value == 1)
+                {
+                    Console.WriteLine("value = 1");
+                }
+                else if (user.value == 2)
+                {
+                    Console.WriteLine("value = 2");
+                }
+                else if (user.value == 3)
+                {
+                    Console.WriteLine("value = 3");
+                }
+                else
+                {
+                    Console.WriteLine("value = 0");
+                    Console.WriteLine(user.value);
+                }
+                return output.ToList();
+            }
+        }
+        public static List<SearchModel> LoadSearch()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<SearchModel>("SELECT * FROM event", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
         //Login
         public static UserModel AuthorizeUser(UserModel user)
         {
@@ -86,7 +121,6 @@ namespace Splashify.Controllers
                 else
                 {
                     Console.WriteLine(output.birthdate);
-
                 }
                 return output;
             }
