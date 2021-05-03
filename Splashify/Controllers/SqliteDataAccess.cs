@@ -131,5 +131,30 @@ namespace Splashify.Controllers
             }
         }
 
+        public static void RoleApplication(UserModel user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                //fetches the users data again in order to have a userID for the application query
+                UserModel userRefresh = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE email = @email", user);
+                userRefresh.role = user.role;
+                cnn.Execute("insert into roleapplication(userID, role) values(@userID, @role)", user);
+            }
+        }
+
+
+
+        //Generic test
+        public static T SingleObject<T>(T obj, string table, string column)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                
+                T output = cnn.QuerySingleOrDefault<T>("SELECT * FROM " + table + " WHERE " + column + " = @" + column, obj);
+       
+                return output;
+            }
+        }
+
     }
 }

@@ -68,7 +68,7 @@
                 <h1 id="event-title-h1">Current competition</h1>
                 @Html.Raw(ViewBag.ppl)
 
-                @using (Html.BeginForm("GetUser", "User", FormMethod.Post))
+                @using (Html.BeginForm("GetPerson", "User", FormMethod.Post))
                 {
                     @Html.ValidationSummary(true)
                     <fieldset>

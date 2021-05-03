@@ -5,6 +5,6 @@ namespace Splashify.Models
     {
         public int clubID { get; set; }
         public int userID { get; set; }
-        public string name { get; set; }
+        public string clubname { get; set; }
     }
 }

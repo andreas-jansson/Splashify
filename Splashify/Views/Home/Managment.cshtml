@@ -45,7 +45,14 @@
         <div class="rows-even box2">
             <h1>Role Applications</h1>
 
-            <table>
+            <div class="">
+
+
+
+            </div>
+
+
+           @* <table>
                 <thead>
                     <tr>
                         <th>First Name</th>
@@ -78,12 +85,20 @@
             <fieldset>
                 <input type="submit" id="approvebtn" value="Approve" />
                 <input type="submit" id="denybtn" value="Deny" />
-            </fieldset>
+            </fieldset>*@
         </div>
 
 
         <div class="rows-even box3">
-            <p>@Context.Session.GetString("UserSession")</p>
+
+            @using (Html.BeginForm("GetSingleObject", "User", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <input type="submit" value="Go!" />
+                </fieldset>
+            }
+
         </div>
     </div>
 </div>

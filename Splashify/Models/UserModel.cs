@@ -3,7 +3,7 @@ namespace Splashify.Models
 {
     public class UserModel
     {
-        private int userID { get; set; }
+        public int userID { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }
         public string email { get; set; }
