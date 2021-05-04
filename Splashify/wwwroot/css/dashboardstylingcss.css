@@ -114,6 +114,11 @@ form{
     margin: 1% 1% 0 1%;
 }
 
+.table, th, td {
+    /* border-collapse: collapse;*/
+    border: 1px black solid;
+    align-self: center;
+}
 
 .donutchart{
     height:auto;
@@ -121,6 +126,7 @@ form{
     align-self:center;
 
 }
+
 fieldset {
     border: 0;
 }
@@ -221,6 +227,12 @@ input[type=submit] {
     .view-bottombox2 {
         min-height: 33vh;
         width: 100vw;
+    }
+
+    .table, th, td {
+        /* border-collapse: collapse;*/
+        border: 1px black solid;
+        align-self: center;
     }
 
 }

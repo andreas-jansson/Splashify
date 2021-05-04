@@ -2,7 +2,7 @@
     ViewData["Title"] = "Dashboard";
 }
 
-@model Splashify.Models.IndexModel
+@model Splashify.Models.SearchModel
 
 
 @section css {
@@ -50,13 +50,13 @@
 
     <div class="view-scoring view-box2">
         <div class="view-bottombox1">
-            <form asp-controller="DashboradSearch" asp-action="GetSearch" method="post">
+            <form asp-controller="DashboardSearch" asp-action="GetSearch" method="post">
 
-                <input asp-for="SearchModel.SearchField" type="text" class="SearchBar" placeholder="test" />
-                <span id="error-message" asp-validation-for="SearchModel.SearchField"></span>
+                <input asp-for="SearchField" type="text" class="SearchBar" placeholder="test" />
+                <span id="error-message" asp-validation-for="SearchField"></span>
 
                 <div class="custom-select">
-                    <select asp-for="SearchModel.value">
+                    <select asp-for="Value">
                         <option value="0">Select type:</option>
                         <option value="1">Competitor</option>
                         <option value="2">Judge</option>
@@ -64,10 +64,9 @@
                     </select>
                 </div>
                 <input type="submit" value="submit" />
-
             </form>
             @Html.Raw(ViewBag.search)
-</div>
+        </div>
 
         <div class="view-bottombox2">
 

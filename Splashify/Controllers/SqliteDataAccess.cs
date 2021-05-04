@@ -71,37 +71,34 @@ namespace Splashify.Controllers
         }
 
         //Search
-        public static List<SearchModel> CompetitorSearch(SearchModel user)
+        public static List<SearchModel> LoadSearch(SearchModel user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<SearchModel>("SELECT * FROM event", new DynamicParameters());
-                if (user.value == 1)
+                var output = cnn.Query<SearchModel>("", new DynamicParameters());
+                if (user.Value == 1)
                 {
                     Console.WriteLine("value = 1");
+                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE EventID ='" + user.SearchField + "'", new DynamicParameters());
+                    return output.ToList();
                 }
-                else if (user.value == 2)
+                else if (user.Value == 2)
                 {
                     Console.WriteLine("value = 2");
+                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE EventID ='" + user.SearchField + "'", new DynamicParameters());
+                    return output.ToList();
                 }
-                else if (user.value == 3)
+                else if (user.Value == 3)
                 {
                     Console.WriteLine("value = 3");
+                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE EventID ='" + user.SearchField + "'", new DynamicParameters());
+                    return output.ToList();
                 }
                 else
                 {
-                    Console.WriteLine("value = 0");
-                    Console.WriteLine(user.value);
+                    Console.WriteLine("type not selected");
+                    return null;
                 }
-                return output.ToList();
-            }
-        }
-        public static List<SearchModel> LoadSearch()
-        {
-            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            {
-                var output = cnn.Query<SearchModel>("SELECT * FROM event", new DynamicParameters());
-                return output.ToList();
             }
         }
 

@@ -7,12 +7,12 @@ using Splashify.Models;
 
 namespace Splashify.Controllers
 {
-    public class DashboradSearchController : Controller
+    public class DashboardSearchController : Controller
     {
 
         List<SearchModel> SearchObj = new List<SearchModel>();
 
-        public DashboradSearchController()
+        public DashboardSearchController()
         {
 
         }
@@ -70,47 +70,25 @@ namespace Splashify.Controllers
 
             SearchModel s = new SearchModel();
             s.SearchField = Search.SearchField;
-            s.value = Search.value;
+            s.Value = Search.Value;
 
-            //SearchModel searchObj = new SearchModel();
 
-            if (Search.value == 1)
-            {
-                Console.WriteLine("value = 1");
-                //return View("~/Views/Home/Dashboard.cshtml");
-            }
-            else if (Search.value == 2)
-            {
-                Console.WriteLine("value = 2");
-                //return View("~/Views/Home/Dashboard.cshtml");
-            }
-            else if (Search.value == 3)
-            {
-                Console.WriteLine("value = 3");
-                //return View("~/Views/Home/Dashboard.cshtml");
-            }
-            else
-            {
-                Console.WriteLine("value = 0");
-                Console.WriteLine(Search.value);
-                Console.WriteLine(Search.SearchField);
-                Console.WriteLine(s.value);
-                Console.WriteLine(s.SearchField);
-                //return View("~/Views/Home/Dashboard.cshtml");
-            }
+            StringBuilder SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
 
-            StringBuilder SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>Name</th><th>Date</th><th>Gender</th></tr>");
-
-            SearchObj = SqliteDataAccess.CompetitorSearch(s);
+            SearchObj = SqliteDataAccess.LoadSearch(s);
 
             foreach (var e in SearchObj)
             {
                 SearchListHtml.Append("<tr><td>");
-                SearchListHtml.Append(e.name);
+                SearchListHtml.Append(e.EventID);
                 SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.startdate);
+                SearchListHtml.Append(e.CompetitorID);
                 SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.gender);
+                SearchListHtml.Append(e.JumpID);
+                SearchListHtml.Append("</td><td>");
+                SearchListHtml.Append(e.Jumpnr);
+                SearchListHtml.Append("</td><td>");
+                SearchListHtml.Append(e.Finalscore);
                 SearchListHtml.Append("</td></tr>");
             }
 
