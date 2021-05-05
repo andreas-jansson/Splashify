@@ -50,9 +50,9 @@
                 <form asp-controller="User" asp-action="Register" method="post">
                     <ul>
                         <li><input asp-for="FnameField" type="text" class="form-control" placeholder="First Name" /></li>
-                        <span id="error-message" asp-validation-for="FnameField"></span>
+                        <li><span id="error-message" asp-validation-for="FnameField"></span></li>
                         <li><input asp-for="LnameField" type="text" class="form-control" placeholder="Last Name" /></li>
-                        <span id="error-message" asp-validation-for="LnameField"></span>
+                        <li><span id="error-message" asp-validation-for="LnameField"></span></li>
                         <li><input asp-for="BirthField" type="text" class="form-control" placeholder="YYMMDD-XXXX" /></li>
                         <li><span id="error-message" asp-validation-for="BirthField"></span></li>
                         <li><input asp-for="EmailField" type="text" class="form-control" placeholder="E-mail" /></li>

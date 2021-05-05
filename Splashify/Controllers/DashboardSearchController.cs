@@ -7,12 +7,12 @@ using Splashify.Models;
 
 namespace Splashify.Controllers
 {
-    public class DashboradSearchController : Controller
+    public class DashboardSearchController : Controller
     {
 
         List<SearchModel> SearchObj = new List<SearchModel>();
 
-        public DashboradSearchController()
+        public DashboardSearchController()
         {
 
         }

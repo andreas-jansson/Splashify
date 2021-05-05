@@ -103,3 +103,11 @@ fieldset {
     border: 1px black solid;
     align-self: center;
 }
+
+.event-list-box {
+    border: 2px lightgrey solid;
+    height: 300px;
+    width: 90%;
+    overflow-y: scroll;
+    margin: auto;
+}

@@ -189,3 +189,57 @@ margin: 20px 0 40px 0; /*Align text is lable-box with inputs in inputbox*/
     border: 1px black solid;
     align-self:center;
 }
+
+
+.competition-list-box {
+    border: 2px #e8e8eb solid;
+    border-radius: 5px;
+    height: 200px;
+    width: 580px;
+    overflow-y: scroll;
+    margin: auto;
+}
+
+.application-list-box {
+    height: 200px;
+    width: 900px;
+    overflow-y: scroll;
+    margin: auto;
+    border: 2px #e8e8eb solid;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.table {
+    table-layout: fixed;
+}
+
+.table, th, td {
+    /* border-collapse: collapse;*/
+    border: 1px lightgrey solid;
+    align-self: center;
+}
+
+.th, td {
+    width: 350px;
+}
+
+
+/*    Removes arrows from number inputfields*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+
+tr:nth-child(even) {
+    background: #bdd6ff;
+}
+

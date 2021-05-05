@@ -49,7 +49,7 @@
         <div class="title upcoming-title-h1">
             Upcoming Events
         </div>
-        @using (Html.BeginForm("GetEvent", "Event", FormMethod.Post))
+        @using (Html.BeginForm("GetEventList", "Event", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
             <fieldset>
@@ -57,9 +57,9 @@
             </fieldset>
 
         }
-        @Html.Raw(ViewBag.events)
-
-
+        <div class="event-list-box">
+            @Html.Raw(ViewBag.events)
+        </div>
         <div class="title clubs-title-h1">
             Clubs
         </div>

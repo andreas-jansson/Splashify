@@ -66,13 +66,15 @@
 
             <div class="scoring-header">
                 <h1 id="event-title-h1">Current competition</h1>
-                @Html.Raw(ViewBag.ppl)
-
-                @using (Html.BeginForm("GetPerson", "User", FormMethod.Post))
+                <div class="competition-list-box">
+                    @Html.Raw(ViewBag.eventjumps)
+                </div>
+                @using (Html.BeginForm("GetEvent", "Event", FormMethod.Post))
                 {
                     @Html.ValidationSummary(true)
                     <fieldset>
-                        <input type="submit" value="Get people" />
+                        <input type="text" name="eventID" placeholder="Event Name" />
+                        <input type="submit" value="Get Event" />
                     </fieldset>
 
                 }

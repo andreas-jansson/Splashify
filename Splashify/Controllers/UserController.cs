@@ -149,6 +149,15 @@ namespace Splashify.Controllers
             return View("~/Views/Home/Scoring.cshtml");
         }
 
+        //Test
+        public ActionResult test(LoginModel loginUser)
+        {
+            Console.WriteLine(loginUser.email);
+            Console.WriteLine(loginUser.password);
+
+
+            return View("~/Views/Home/Managment.cshtml");
+        }
 
 
 
@@ -157,6 +166,7 @@ namespace Splashify.Controllers
             UserModel u = new UserModel();
             u.email = (string)loginUser.email;
             u.password = (string)loginUser.password;
+
 
             UserModel user = SqliteDataAccess.AuthorizeUser(u);
 
@@ -180,7 +190,7 @@ namespace Splashify.Controllers
             else
             {
                 Console.WriteLine("Access Denied!");
-                return View("~/Views/Home/Login.cshtml");
+                return View("~/Views/Home/Dashboard.cshtml");
             }
 
         }
@@ -192,5 +202,10 @@ namespace Splashify.Controllers
             HttpContext.Session.Remove("UserName");
             return View("~/Views/Home/Dashboard.cshtml");
         }
+
+      
+
+
+
     }
 }

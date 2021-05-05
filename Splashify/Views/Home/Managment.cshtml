@@ -45,62 +45,28 @@
         <div class="rows-even box2">
             <h1>Role Applications</h1>
 
-            <div class="">
+            <div class="application-list-box">
 
-
+                @Html.Raw(ViewBag.RoleApps)
 
             </div>
-
-
-           @* <table>
-                <thead>
-                    <tr>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>E-mail</th>
-                        <th>Role</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Kenny</td>
-                        <td>Starfighter</td>
-                        <td>123@mail.se</td>
-                        <td>Judge</td>
-                    </tr>
-                    <tr>
-                        <td>Elliot</td>
-                        <td>Alderson</td>
-                        <td>456@mail.se</td>
-                        <td>Organizer</td>
-                    </tr>
-                    <tr>
-                        <td>Leia</td>
-                        <td>Organa</td>
-                        <td>789@mail.se</td>
-                        <td>Club</td>
-                    </tr>
-                </tbody>
-            </table>
-            <fieldset>
-                <input type="submit" id="approvebtn" value="Approve" />
-                <input type="submit" id="denybtn" value="Deny" />
-            </fieldset>*@
+            <form asp-controller="ApplicationHandler" asp-action="RoleApplication" method="post">
+                <input type="number" id="ID" name="userIDField" placeholder="User ID" />
+                <button type="submit" id="refreshbtn" name="button" value="refresh">Refresh</button>
+                <button type="submit" id="approvebtn" name="button" value="accept">Accept</button>
+                <button type="submit" id="denybtn" name="button" value="deny">Deny</button>
+            </form>
         </div>
 
 
-        <div class="rows-even box3">
+        @{Html.RenderPartial("_EventAppManagment", Model);}
 
-            @using (Html.BeginForm("GetSingleObject", "User", FormMethod.Post))
-            {
-                @Html.ValidationSummary(true)
-                <fieldset>
-                    <input type="submit" value="Go!" />
-                </fieldset>
-            }
+        @{Html.RenderPartial("_ManagmentPartial", Model);}
 
-        </div>
+
     </div>
-</div>
+
+
+    </div>
 
 

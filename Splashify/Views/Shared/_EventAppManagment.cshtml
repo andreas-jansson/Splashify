@@ -1,0 +1,21 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Splashify.Models.LoginModel
+
+
+<div class="rows-even box3">
+    <h1>Event Applications</h1>
+
+    <div class="application-list-box">
+
+        @Html.Raw(ViewBag.EventApps)
+
+    </div>
+    <form asp-controller="ApplicationHandler" asp-action="EventApplication" method="post">
+        <input type="number" id="ID" name="ID" placeholder="ID" />
+        <button type="submit" id="refreshbtn" name="button" value="refresh">Refresh</button>
+        <button type="submit" id="approvebtn" name="button" value="accept">Accept</button>
+        <button type="submit" id="denybtn" name="button" value="deny">Deny</button>
+    </form>
+</div>
