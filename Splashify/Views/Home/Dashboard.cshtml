@@ -52,12 +52,12 @@
         <div class="view-bottombox1">
             <form asp-controller="DashboardSearch" asp-action="GetSearch" method="post">
 
-                <input asp-for="SearchField" type="text" class="SearchBar" placeholder="test" />
+                <input asp-for="SearchField" type="text" class="SearchBar" placeholder="Search"/>
                 <span id="error-message" asp-validation-for="SearchField"></span>
 
                 <div class="custom-select">
-                    <select asp-for="Value">
-                        <option value="0">Select type:</option>
+                    <select asp-for="Value" required>
+                        <option value="">Select type:</option>
                         <option value="1">Competitor</option>
                         <option value="2">Judge</option>
                         <option value="3">Event</option>
@@ -65,7 +65,9 @@
                 </div>
                 <input type="submit" value="submit" />
             </form>
-            @Html.Raw(ViewBag.search)
+            <div>
+                @Html.Raw(ViewBag.search)
+            </div>
         </div>
 
         <div class="view-bottombox2">
@@ -74,7 +76,8 @@
             @* Need to get correct fromat into/from viewbag for dynamic graph data*@
 
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script type="text/javascript">google.charts.load("current", { packages: ["corechart"] });
+            <script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable([

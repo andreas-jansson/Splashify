@@ -79,13 +79,13 @@ namespace Splashify.Controllers
                 if (user.Value == 1)
                 {
                     Console.WriteLine("value = 1");
-                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE EventID ='" + user.SearchField + "'", new DynamicParameters());
+                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE CompetitorID ='" + user.SearchField + "'", new DynamicParameters());
                     return output.ToList();
                 }
                 else if (user.Value == 2)
                 {
                     Console.WriteLine("value = 2");
-                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE EventID ='" + user.SearchField + "'", new DynamicParameters());
+                    output = cnn.Query<SearchModel>("SELECT * FROM Eventjudge WHERE JudgeID ='" + user.SearchField + "'", new DynamicParameters());
                     return output.ToList();
                 }
                 else if (user.Value == 3)
@@ -96,7 +96,7 @@ namespace Splashify.Controllers
                 }
                 else
                 {
-                    Console.WriteLine("type not selected");
+                    Console.WriteLine("Error");
                     return null;
                 }
             }

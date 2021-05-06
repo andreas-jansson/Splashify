@@ -72,25 +72,83 @@ namespace Splashify.Controllers
             s.SearchField = Search.SearchField;
             s.Value = Search.Value;
 
+            StringBuilder SearchListHtml;
 
-            StringBuilder SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
-
-            SearchObj = SqliteDataAccess.LoadSearch(s);
-
-            foreach (var e in SearchObj)
+            if (s.Value == 1)
             {
-                SearchListHtml.Append("<tr><td>");
-                SearchListHtml.Append(e.EventID);
-                SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.CompetitorID);
-                SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.JumpID);
-                SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.Jumpnr);
-                SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.Finalscore);
-                SearchListHtml.Append("</td></tr>");
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
+
+                SearchObj = SqliteDataAccess.LoadSearch(s);
+                if (SearchObj == null) 
+                {
+                    return View("~/Views/Home/Dashboard.cshtml");
+                }
+
+                foreach (var e in SearchObj)
+                {
+                    SearchListHtml.Append("<tr><td>");
+                    SearchListHtml.Append(e.EventID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.CompetitorID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.JumpID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Jumpnr);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Finalscore);
+                    SearchListHtml.Append("</td></tr>");
+                }
             }
+            else if (s.Value == 2)
+            {
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>JudgeID</th><th>EventID</th></tr>");
+
+                SearchObj = SqliteDataAccess.LoadSearch(s);
+                if (SearchObj == null)
+                {
+                    return View("~/Views/Home/Dashboard.cshtml");
+                }
+
+                foreach (var e in SearchObj)
+                {
+                    SearchListHtml.Append("<tr><td>");
+                    SearchListHtml.Append(e.JudgeID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.EventID);
+                    SearchListHtml.Append("</td></tr>");
+                }
+            }
+            else if (s.Value == 3)
+            {
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
+
+                SearchObj = SqliteDataAccess.LoadSearch(s);
+                if (SearchObj == null)
+                {
+                    return View("~/Views/Home/Dashboard.cshtml");
+                }
+
+                foreach (var e in SearchObj)
+                {
+                    SearchListHtml.Append("<tr><td>");
+                    SearchListHtml.Append(e.EventID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.CompetitorID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.JumpID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Jumpnr);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Finalscore);
+                    SearchListHtml.Append("</td></tr>");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Error");
+                return View("~/Views/Home/Dashboard.cshtml");
+            }
+
 
             SearchListHtml.Append("</table>");
 
