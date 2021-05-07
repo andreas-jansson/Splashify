@@ -40,4 +40,7 @@
   <ItemGroup>
     <Folder Include="wwwroot\lib\jquery-validation-unobtrusive\jquery-validation-unobtrusive\" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\.editorconfig" Link=".editorconfig" />
+  </ItemGroup>
 </Project>
