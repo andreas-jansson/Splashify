@@ -1,0 +1,23 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Splashify.Models.CreateEventModel
+
+
+<h1>Create Event</h1>
+
+<form asp-controller="Event" asp-action="CreateEvent" method="post">
+    <input asp-for="eventID" type="text" class="form-control" placeholder="Event Name" />
+    <span id="error-message" asp-validation-for="eventID"></span>
+    <input asp-for="startdate" type="text" class="form-control" placeholder="Date" />
+    <span id="error-message" asp-validation-for="startdate"></span>
+    <input asp-for="gender" type="text" class="form-control" placeholder="Gender" />
+    <span id="error-message" asp-validation-for="gender"></span>
+    <input asp-for="judge1ID" type="number" class="form-control" placeholder="Judge" />
+    <span id="error-message" asp-validation-for="judge1ID"></span>
+    <input asp-for="judge2ID" type="number" class="form-control" placeholder="Judge" />
+    <span id="error-message" asp-validation-for="judge2ID"></span>
+    <input asp-for="judge3ID" type="number" class="form-control" placeholder="Judge" />
+    <span id="error-message" asp-validation-for="judge3ID"></span>
+    <input type="submit" value="Create" />
+</form>

@@ -56,7 +56,7 @@ namespace Splashify.Controllers
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Event(eventID,startdate,gender) values(@name, @startdate, @gender)", eventObj);
+                cnn.Execute("insert into Event(eventID,startdate,gender) values(@eventID, @startdate, @gender)", eventObj);
             }
         }
 
@@ -297,5 +297,23 @@ namespace Splashify.Controllers
                 cnn.Execute("delete from eventapplication where ID = @ID", applicant);
             }
         }
+
+
+        //Generic saves list - 
+        public static void SaveManyObjects<T>(List<T> obj, string query)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                foreach(var item in obj)
+                {
+
+                    cnn.Execute(query, item);
+
+                }
+
+            }
+        }
+
+
     }
 }

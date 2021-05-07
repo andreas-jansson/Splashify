@@ -10,24 +10,59 @@ namespace Splashify.Controllers
     public class EventController : Controller
     {
         List<EventJumpModel> jumpObj = new List<EventJumpModel>();
-        List<EventModel> eventObj = new List<EventModel>();
+        List<EventModel> eventObjList = new List<EventModel>();
+
 
         public EventController()
         {
 
         }
 
-        public ActionResult SetEvent(string EventNameField, string EventDateField, string EventGenderField, int Judge1Field, int Judge2Field, int Judge3Field)
+        public ActionResult CreateEvent(CreateEventModel createEventObj)
         {
             Console.WriteLine("SetEvent triggered!");
 
             EventModel eventObj = new EventModel();
-            eventObj.eventID = EventNameField;
-            eventObj.startdate = EventDateField;
-            eventObj.gender = EventGenderField;
+            eventObj.eventID = createEventObj.eventID;
+            eventObj.startdate = createEventObj.startdate;
+            eventObj.gender = createEventObj.gender;
+            Console.WriteLine(eventObj.eventID);
+            Console.WriteLine(eventObj.startdate);
+            Console.WriteLine(eventObj.gender);
+
             SqliteDataAccess.SaveEvent(eventObj);
 
-            return View("~/Views/Home/Application.cshtml");
+
+            EventJudgeModel eventJudgeObj1 = new EventJudgeModel();
+            EventJudgeModel eventJudgeObj2 = new EventJudgeModel();
+            EventJudgeModel eventJudgeObj3 = new EventJudgeModel();
+
+            eventJudgeObj1.eventID = createEventObj.eventID;
+            eventJudgeObj1.judgeID = createEventObj.judge1ID;
+
+            eventJudgeObj2.eventID = createEventObj.eventID;
+            eventJudgeObj2.judgeID = createEventObj.judge2ID;
+
+            eventJudgeObj3.eventID = createEventObj.eventID;
+            eventJudgeObj3.judgeID = createEventObj.judge3ID;
+
+            List<EventJudgeModel> eventJudgeObjList = new List<EventJudgeModel>();
+
+            eventJudgeObjList.Add(eventJudgeObj1);
+            eventJudgeObjList.Add(eventJudgeObj2);
+            eventJudgeObjList.Add(eventJudgeObj3);
+
+            foreach (var item in eventJudgeObjList){
+                Console.WriteLine("item: " + item.eventID + " " + item.judgeID);
+
+            }
+
+
+                string query = "insert into eventjudge(eventID, judgeID) values(@eventID, @judgeID)";
+            SqliteDataAccess.SaveManyObjects(eventJudgeObjList, query);
+
+
+            return View("~/Views/Home/Managment.cshtml");
         }
 
         public ActionResult GetEventList()
@@ -35,9 +70,9 @@ namespace Splashify.Controllers
 
             StringBuilder eventListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>Name</th><th>Date</th><th>Gender</th></tr>");
 
-            eventObj = SqliteDataAccess.LoadEvent();
+            eventObjList = SqliteDataAccess.LoadEvent();
 
-            foreach (var e in eventObj)
+            foreach (var e in eventObjList)
             {
                 eventListHtml.Append("<tr><td>");
                 eventListHtml.Append(e.eventID);
