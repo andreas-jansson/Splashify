@@ -1,0 +1,19 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Splashify.Models.LoginModel
+
+
+<div class="title clubapp-title-h1">
+    Club Application
+</div>
+<p>Your current club is: </p>
+
+@using (Html.BeginForm("", "", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <input type="text" name="ClubNameField" placeholder="Club Name" />
+        <input type="submit" value="Apply" />
+    </fieldset>
+}

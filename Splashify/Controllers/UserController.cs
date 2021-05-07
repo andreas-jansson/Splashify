@@ -178,6 +178,8 @@ namespace Splashify.Controllers
                     Console.WriteLine("Authenticated!");
                     HttpContext.Session.SetString("UserSession", user.role);
                     HttpContext.Session.SetString("UserName", user.fname);
+                    HttpContext.Session.SetString("UserClub", user.club);
+
                     return View("~/Views/Home/Dashboard.cshtml");
 
                 }

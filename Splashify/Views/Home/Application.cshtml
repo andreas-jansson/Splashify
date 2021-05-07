@@ -23,25 +23,22 @@
 
 <div class="container-application">
     <div class="box1">
-        <div class="title eventapp-title-h1">Event Application</div>
-        @using (Html.BeginForm("", "", FormMethod.Post))
-        {
-            @Html.ValidationSummary(true)
-            <fieldset>
-                <input type="number" name="EventNameField" placeholder="Event ID" />
-                <input type="submit" value="Apply" />
-            </fieldset>
-        }
-        <div class="title clubapp-title-h1">
-            Club Application
-        </div>
-        @using (Html.BeginForm("", "", FormMethod.Post))
-        {
-            @Html.ValidationSummary(true)
-            <fieldset>
-                <input type="text" name="ClubNameField" placeholder="Club Name" />
-                <input type="submit" value="Apply" />
-            </fieldset>
+        @{
+            if (Context.Session.GetString("UserSession") == "competitor")
+            {
+                await Html.RenderPartialAsync("_CompetitorViewApplication", Model);
+
+                    }
+            else if (Context.Session.GetString("UserSession") == "club")
+            {
+                await Html.RenderPartialAsync("_CLubViewApplication", Model);
+
+            }
+            else
+            {
+
+            }
+
         }
     </div>
 
@@ -72,8 +69,9 @@
             </fieldset>
         }
 
-
-        @Html.Raw(ViewBag.ppl)
+        <div class="event-list-box">
+            @Html.Raw(ViewBag.events)
+        </div>
 
     </div>
 </div>

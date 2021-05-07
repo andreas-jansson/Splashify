@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Splashify.Models.LoginModel
+
+<div class="title eventapp-title-h1">Event Application</div>
+<div class="event-application">
+    @using (Html.BeginForm("", "", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <input type="number" name="EventNameField" placeholder="Event ID" />
+            <input type="submit" value="Apply" />
+        </fieldset>
+    }
+
+</div>
+<div class="title eventapp-title-h1">Enroll Competitors</div>
+<div class="enroll-competitors">
+    @using (Html.BeginForm("", "", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <select>
+                <option value="">Select Event:</option>
+                <option value="1">os2021</option>
+                <option value="2">vm2021</option>
+                <option value="3">dynamic viewbag data</option>
+            </select>
+            <input type="text" name="userID" placeholder="User ID" />
+            <input type="submit" value="Apply" />
+        </fieldset>
+    }
+
+</div>
+<div class="title eventapp-title-h1">Club Members</div>
+<div class="list-competitors">
+
+</div>
