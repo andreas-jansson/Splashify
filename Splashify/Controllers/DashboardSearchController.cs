@@ -70,49 +70,85 @@ namespace Splashify.Controllers
 
             SearchModel s = new SearchModel();
             s.SearchField = Search.SearchField;
-            s.value = Search.value;
+            s.Value = Search.Value;
 
-            //SearchModel searchObj = new SearchModel();
+            StringBuilder SearchListHtml;
 
-            if (Search.value == 1)
+            if (s.Value == 1)
             {
-                Console.WriteLine("value = 1");
-                //return View("~/Views/Home/Dashboard.cshtml");
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
+
+                SearchObj = SqliteDataAccess.LoadSearch(s);
+                if (SearchObj == null) 
+                {
+                    return View("~/Views/Home/Dashboard.cshtml");
+                }
+
+                foreach (var e in SearchObj)
+                {
+                    SearchListHtml.Append("<tr><td>");
+                    SearchListHtml.Append(e.EventID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.CompetitorID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.JumpID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Jumpnr);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Finalscore);
+                    SearchListHtml.Append("</td></tr>");
+                }
             }
-            else if (Search.value == 2)
+            else if (s.Value == 2)
             {
-                Console.WriteLine("value = 2");
-                //return View("~/Views/Home/Dashboard.cshtml");
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>JudgeID</th><th>EventID</th></tr>");
+
+                SearchObj = SqliteDataAccess.LoadSearch(s);
+                if (SearchObj == null)
+                {
+                    return View("~/Views/Home/Dashboard.cshtml");
+                }
+
+                foreach (var e in SearchObj)
+                {
+                    SearchListHtml.Append("<tr><td>");
+                    SearchListHtml.Append(e.JudgeID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.EventID);
+                    SearchListHtml.Append("</td></tr>");
+                }
             }
-            else if (Search.value == 3)
+            else if (s.Value == 3)
             {
-                Console.WriteLine("value = 3");
-                //return View("~/Views/Home/Dashboard.cshtml");
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
+
+                SearchObj = SqliteDataAccess.LoadSearch(s);
+                if (SearchObj == null)
+                {
+                    return View("~/Views/Home/Dashboard.cshtml");
+                }
+
+                foreach (var e in SearchObj)
+                {
+                    SearchListHtml.Append("<tr><td>");
+                    SearchListHtml.Append(e.EventID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.CompetitorID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.JumpID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Jumpnr);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Finalscore);
+                    SearchListHtml.Append("</td></tr>");
+                }
             }
             else
             {
-                Console.WriteLine("value = 0");
-                Console.WriteLine(Search.value);
-                Console.WriteLine(Search.SearchField);
-                Console.WriteLine(s.value);
-                Console.WriteLine(s.SearchField);
-                //return View("~/Views/Home/Dashboard.cshtml");
+                Console.WriteLine("Error");
+                return View("~/Views/Home/Dashboard.cshtml");
             }
 
-            StringBuilder SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>Name</th><th>Date</th><th>Gender</th></tr>");
-
-            SearchObj = SqliteDataAccess.CompetitorSearch(s);
-
-            foreach (var e in SearchObj)
-            {
-                SearchListHtml.Append("<tr><td>");
-                SearchListHtml.Append(e.name);
-                SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.startdate);
-                SearchListHtml.Append("</td><td>");
-                SearchListHtml.Append(e.gender);
-                SearchListHtml.Append("</td></tr>");
-            }
 
             SearchListHtml.Append("</table>");
 

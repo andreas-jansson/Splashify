@@ -1,8 +1,12 @@
-﻿@{
+@{
     ViewData["Title"] = "Dashboard";
 }
 
 @model Splashify.Models.SearchModel
+<<<<<<< HEAD
+=======
+
+>>>>>>> Splashify/search_1
 
 @section css {
     <link href="@Url.Content("~/css/dashboardstylingcss.css")" rel="stylesheet" type="text/css" />
@@ -49,6 +53,7 @@
 
     <div class="view-scoring view-box2">
         <div class="view-bottombox1">
+<<<<<<< HEAD
         <form asp-controller="DashboardSearch" asp-action="GetSearch" method="post">
 
             <input asp-for="SearchField" type="text" class="random" placeholder="test" />
@@ -66,6 +71,26 @@
 
         </form>
         @Html.Raw(ViewBag.search)
+=======
+            <form asp-controller="DashboardSearch" asp-action="GetSearch" method="post">
+
+                <input asp-for="SearchField" type="text" class="SearchBar" placeholder="Search"/>
+                <span id="error-message" asp-validation-for="SearchField"></span>
+
+                <div class="custom-select">
+                    <select asp-for="Value" required>
+                        <option value="">Select type:</option>
+                        <option value="1">Competitor</option>
+                        <option value="2">Judge</option>
+                        <option value="3">Event</option>
+                    </select>
+                </div>
+                <input type="submit" value="submit" />
+            </form>
+            <div>
+                @Html.Raw(ViewBag.search)
+            </div>
+>>>>>>> Splashify/search_1
         </div>
 
         <div class="view-bottombox2">
@@ -74,7 +99,8 @@
             @* Need to get correct fromat into/from viewbag for dynamic graph data*@
 
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-            <script type="text/javascript">google.charts.load("current", { packages: ["corechart"] });
+            <script type="text/javascript">
+    google.charts.load("current", { packages: ["corechart"] });
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
                     var data = google.visualization.arrayToDataTable([
