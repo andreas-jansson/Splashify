@@ -18,35 +18,8 @@ namespace Splashify.Controllers
         {
 
         }
-        /*
-        public ActionResult RegisterUser(string FnameField, string LnameField,
-            string EmailField, string PasswordField, string PasswordconfField,
-            string GenderField, string RoleRequestField)
-        {
-            Console.WriteLine("SetPerson triggered!");
-            Console.WriteLine("role: " + RoleRequestField);
-            UserModel user = new UserModel();
-            user.fname = FnameField;
-            user.lname = LnameField;
-            user.email = EmailField;
-            user.password = PasswordField;
-            user.gender = GenderField;
+    
 
-            if (PasswordField == PasswordconfField)
-            {
-                SqliteDataAccess.SavePerson(user);
-                return View("~/Views/Home/Dashboard.cshtml");
-
-            }
-            else
-            {
-                return View("~/Views/Home/Dashboard.cshtml");
-
-            }
-        }
-        */
-
-        /* Återstår att skicka rollansökan till annan databas*/
         [HttpPost]
         public ActionResult Register(RegisterModel user)
         {
@@ -59,16 +32,24 @@ namespace Splashify.Controllers
             newUser.password = user.PasswordField;
             newUser.birthdate = user.BirthField;
             newUser.gender = user.GenderField;
+            newUser.role = user.RoleField;
 
 
-            UserModel replica=SqliteDataAccess.UserExist(newUser);
+            UserModel replica =SqliteDataAccess.UserExist(newUser);
             if (replica == null)
             {
                 Console.WriteLine("replica: " + replica);
                 if (ModelState.IsValid)
                 {
-
+                    // Saves User in user table
                     SqliteDataAccess.SavePerson(newUser);
+
+                    // inserts role application 
+                    SqliteDataAccess.RoleApplication(newUser);
+                    //first time login sets session
+                    HttpContext.Session.SetString("UserSession", "default");
+                    HttpContext.Session.SetString("UserName", newUser.fname);
+
                     return View("~/Views/Home/Dashboard.cshtml");
                 }
                 else
@@ -126,12 +107,66 @@ namespace Splashify.Controllers
         }
 
 
+        public ActionResult GetSingleObject()
+        {
+            Console.WriteLine("GetObject triggered!");
+
+
+            // Test Event
+            EventModel obj = new EventModel();
+            obj.eventID="vm2021";
+
+            obj = SqliteDataAccess.SingleObject(obj, "event", "eventID");
+
+            Console.WriteLine(obj.eventID);
+            Console.WriteLine(obj.startdate);
+            Console.WriteLine(obj.gender);
+
+
+            // Test user
+            UserModel obj2 = new UserModel();
+            obj2.birthdate = "960810-1111";
+
+            obj2 = SqliteDataAccess.SingleObject(obj2, "user", "birthdate");
+
+            Console.WriteLine(obj2.fname);
+            Console.WriteLine(obj2.lname);
+            Console.WriteLine(obj2.role);
+
+            // Test club
+            ClubModel obj3= new ClubModel();
+            obj3.clubname = "sthlm finest";
+
+            obj3 = SqliteDataAccess.SingleObject(obj3, "club", "clubname");
+
+            Console.WriteLine(obj3.clubID);
+            Console.WriteLine(obj3.clubname);
+            Console.WriteLine(obj3.userID);
+
+
+
+
+            return View("~/Views/Home/Scoring.cshtml");
+        }
+
+        //Test
+        public ActionResult test(LoginModel loginUser)
+        {
+            Console.WriteLine(loginUser.email);
+            Console.WriteLine(loginUser.password);
+
+
+            return View("~/Views/Home/Managment.cshtml");
+        }
+
+
 
         public ActionResult Authorize(LoginModel loginUser)
         {
             UserModel u = new UserModel();
             u.email = (string)loginUser.email;
             u.password = (string)loginUser.password;
+
 
             UserModel user = SqliteDataAccess.AuthorizeUser(u);
 
@@ -155,7 +190,7 @@ namespace Splashify.Controllers
             else
             {
                 Console.WriteLine("Access Denied!");
-                return View("~/Views/Home/Login.cshtml");
+                return View("~/Views/Home/Dashboard.cshtml");
             }
 
         }
@@ -167,5 +202,10 @@ namespace Splashify.Controllers
             HttpContext.Session.Remove("UserName");
             return View("~/Views/Home/Dashboard.cshtml");
         }
+
+      
+
+
+
     }
 }

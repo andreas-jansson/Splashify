@@ -21,7 +21,7 @@ namespace Splashify.Controllers
             return ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
         }
 
-        //Person outdated - doesnt exist in db
+       
         public static List<UserModel> LoadPeople()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -31,18 +31,18 @@ namespace Splashify.Controllers
             }
         }
 
-        //outdated - doesnt exist in db
+       
         public static List<ScoreModel> LoadFinalScore()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                var output = cnn.Query<Models.ScoreModel>("SELECT * FROM user", new DynamicParameters());
+                var output = cnn.Query<ScoreModel>("SELECT * FROM user", new DynamicParameters());
                 return output.ToList();
             }
 
 
         }
-        //outdated - doesnt exist in db
+
         public static void SavePerson(UserModel user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -162,5 +162,140 @@ namespace Splashify.Controllers
             }
         }
 
+        public static void RoleApplication(UserModel user)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                //fetches the users data again in order to have a userID for the application query
+                UserModel userRefresh = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE email = @email", user);
+                userRefresh.role = user.role;
+                cnn.Execute("insert into roleapplication(userID, role) values(@userID, @role)", user);
+            }
+        }
+
+
+
+        //Generic returns 1 object
+        public static T SingleObject<T>(T obj, string table, string column)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                
+                T output = cnn.QuerySingleOrDefault<T>("SELECT * FROM " + table + " WHERE " + column + " = @" + column, obj);
+                
+                return output;
+            }
+        }
+
+        //Generic returns 1 string
+        public static string SingleObjectString<T>(T obj, string table, string column, string returncolumn)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+
+                var output = cnn.QueryFirstOrDefault<string>("SELECT " + returncolumn + " FROM " + table + " WHERE " + column + " = @" + column, obj);
+                return output;
+            }
+        }
+        
+        //Generic returns list - otestad
+        public static List <T>ManyObjects<T>(List<T> obj, string table)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+
+
+                var output = cnn.Query<T>("SELECT * FROM " + table, new DynamicParameters());
+                return output.ToList();
+
+            }
+        }
+
+
+        // Complex Jumps for judge overview
+        public static List<EventJumpModel>LoadEventJumps(EventJumpModel eventjump, string query)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+
+                var output = cnn.Query<EventJumpModel>(query, eventjump);
+                return output.ToList();
+
+            }
+        }
+
+        //Role Applications - info under managment
+        public static List<RoleApplicationModel> LoadRoleApplication()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<RoleApplicationModel>("select u.userID, u.fname, u.lname, ra.role from user as u join roleapplication as ra on u.userID = ra.userID; ", new DynamicParameters());
+                return output.ToList();
+            }
+        }
+
+
+        //Event Applications - info under managment
+        public static List<EventApplicationModel> LoadEventApplication()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                var output = cnn.Query<EventApplicationModel>("select ea.ID, " +
+                    "ea.eventID, ea.clubID, c.clubname, e.gender, e.startdate " +
+                    "from club as c inner join eventapplication as ea on " +
+                    "c.clubID = ea.clubID inner join event as e on " +
+                    "ea.eventID = e.eventID group by ea.eventID, " +
+                    "ea.clubID;", new DynamicParameters());
+
+                return output.ToList();
+            }
+        }
+
+
+        //Role Application - Denyed
+        public static void DenyRole(RoleApplicationModel applicant)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("delete from roleapplication where userID = @userID", applicant);
+            }
+        }
+        //Role Application - Approved
+        public static void ApproveRole(RoleApplicationModel applicant)
+        {
+
+           
+
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("update user set role = @role where userID = @userID", applicant);
+            }
+            DenyRole(applicant);
+
+        }
+
+        //Event Application - Approved
+        public static void ApproveEvent(EventApplicationModel applicant)
+        {
+            Console.WriteLine("event id:: " + applicant.eventID);
+            Console.WriteLine("club id:: " + applicant.clubID);
+
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("insert into eventclub(eventID, clubID) values(@eventID, @clubId)", applicant);
+            }
+            DenyEvent(applicant);
+
+        }
+
+
+        //Event Application - Denyed
+        public static void DenyEvent(EventApplicationModel applicant)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute("delete from eventapplication where ID = @ID", applicant);
+            }
+        }
     }
 }

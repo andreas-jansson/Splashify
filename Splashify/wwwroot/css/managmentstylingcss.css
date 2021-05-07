@@ -46,6 +46,12 @@
     flex-direction:column;
 }
 
+.box3 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 input {
     cursor: pointer;
 }
@@ -90,18 +96,23 @@ input[type=submit] {
     align-self:center;
 }
 
-table {
-    margin-left: 2%;
+button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    width: 100%;
+    min-width: 200px;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    align-self: center;
 }
 
-#approvebtn{
-    width:20%;
-}
 
-#denybtn {
-    width: 20%;
-    background-color: #f44336; /* Red */
-}
+
+
 
 fieldset {
     border: 0;
@@ -113,8 +124,76 @@ h1 {
     margin-left:2%;
 }
 
+/*          Application box  layout     */
+
+.application-list-box {
+    height: 200px;
+    width: 900px;
+    overflow-y: scroll;
+    margin: auto;
+    border: 2px #e8e8eb solid;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+}
+
+.table {
+    table-layout: fixed;
+}
+
+.table, th, td {
+    /* border-collapse: collapse;*/
+    border: 1px lightgrey solid;
+    align-self: center;
+}
+
+.th, td{
+    width:350px;
+}
+
+#ID{
+ 
+    margin-left:10%;
+    width:10%;
+}
+
+#refreshbtn {
+    width: 20%;
+    background-color: dodgerblue;
+    margin: auto;
+}
+
+#approvebtn {
+    margin: auto;
+    width: 20%;
+}
+
+#denybtn {
+    margin: auto;
+    width: 20%;
+    background-color: #f44336; /* Red */
+}
+
+/*    Removes arrows from number inputfields*/
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; 
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+tr:nth-child(even) {
+    background: #bdd6ff;
+}
+
+
+
 @media only screen and (max-width:600px) {
-    input[type=text] {
+    input [type=text] {
         width: 45%;
     }
 

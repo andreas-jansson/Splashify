@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 //Collection all models in one in order to use multiple in the same view
 namespace Splashify.Models
