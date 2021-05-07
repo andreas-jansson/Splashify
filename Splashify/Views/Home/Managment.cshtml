@@ -59,9 +59,9 @@
         </div>
 
 
-        @{Html.RenderPartial("_EventAppManagment", Model);}
+        @{await Html.RenderPartialAsync("_EventAppManagment", Model);}
 
-        @{Html.RenderPartial("_ManagmentPartial", Model);}
+        @{await Html.RenderPartialAsync("_ManagmentPartial", Model);}
 
 
     </div>
