@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Mvc;
 using Splashify.Models;
-
+using Microsoft.AspNetCore.Http;
 
 namespace Splashify.Controllers
 {
@@ -148,7 +148,58 @@ namespace Splashify.Controllers
 
         }
 
+        public ActionResult UppcomingEvents()
+        {
 
+            string query = "select * from event where startdate > date('now')";
+            EventModel eventObj = new EventModel();
+
+            eventObjList=SqliteDataAccess.LoadManyObjects(eventObj, query);
+
+            StringBuilder eventListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>Name</th><th>Date</th><th>Gender</th></tr>");
+            int i = 1;
+            foreach (var e in eventObjList)
+            {
+                eventListHtml.Append("<tr id="+i+"><td>");
+                eventListHtml.Append(e.eventID);
+                eventListHtml.Append("</td><td>");
+                eventListHtml.Append(e.startdate);
+                eventListHtml.Append("</td><td>");
+                eventListHtml.Append(e.gender);
+                eventListHtml.Append("</td></tr>");
+            }
+
+            eventListHtml.Append("</table>");
+
+
+            ViewBag.UpcomingEvents = eventListHtml;
+
+            return View("~/Views/Home/Application.cshtml");
+        }
+
+
+        //Club applies to participate in an event
+        public ActionResult EventApplication(string eventID)
+        {
+
+            //Behöver kontroller om ansökan redan finns och om eventet ej tagit plats
+
+            ClubModel club = new ClubModel();
+            club.userID = (int)HttpContext.Session.GetInt32("UserID");
+            club = SqliteDataAccess.SingleObject(club, "club", "userID");
+
+            string query = "insert into eventapplication(clubID, eventID) values(@clubID, @eventID)";
+
+
+            EventApplicationModel application = new EventApplicationModel();
+            application.eventID = eventID;
+            application.clubID = club.clubID;
+
+            SqliteDataAccess.SaveSingleObject(application, query);
+
+            return View("~/Views/Home/Application.cshtml");
+
+        }
 
 
     }

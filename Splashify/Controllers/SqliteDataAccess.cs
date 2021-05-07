@@ -124,7 +124,7 @@ namespace Splashify.Controllers
         }
 
 
-        //Checks if user exists already
+        //Checks if user exists already - registration
         public static UserModel UserExist(UserModel user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -161,6 +161,7 @@ namespace Splashify.Controllers
 
             }
         }
+
 
         public static void RoleApplication(UserModel user)
         {
@@ -199,13 +200,13 @@ namespace Splashify.Controllers
         }
         
         //Generic returns list - otestad
-        public static List <T>ManyObjects<T>(List<T> obj, string table)
+        public static List <T>LoadManyObjects<T>(T obj, string query)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
 
 
-                var output = cnn.Query<T>("SELECT * FROM " + table, new DynamicParameters());
+                var output = cnn.Query<T>(query, new DynamicParameters());
                 return output.ToList();
 
             }
@@ -299,7 +300,7 @@ namespace Splashify.Controllers
         }
 
 
-        //Generic saves list - 
+        //Generic saves list
         public static void SaveManyObjects<T>(List<T> obj, string query)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -311,6 +312,16 @@ namespace Splashify.Controllers
 
                 }
 
+            }
+        }
+        
+
+        //Generic save object
+        public static void SaveSingleObject<T>(T obj, string query)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute( query, obj);
             }
         }
 

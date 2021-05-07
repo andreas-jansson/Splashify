@@ -79,12 +79,14 @@ span {
     text-align: center;
 }
 
-form{
-    display:flex;
-    flex-direction:row;
-    justify-content:space-evenly;
-    flex-wrap:nowrap;
+form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: nowrap;
+    margin: auto;
     width:100%;
+    vertical-align:bottom;
 }
 
 .view-bottombox1 {
@@ -95,10 +97,10 @@ form{
     margin-top: 3%;
     width: 50%;
     margin: 1% 1% 0 1%;
-    min-height: 300px;
+    height:500px;
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    flex-direction: column;
+    justify-content: flex-start;
 }
 
 
@@ -109,15 +111,24 @@ form{
     border-radius: 3px;
     margin-top: 3%;
     width: 50%;
-    height:100%;
+    height: 500px;
     min-height: 300px;
     margin: 1% 1% 0 1%;
 }
 
+.infobox{
+    border:2px solid lightgrey;
+    margin:auto;
+    width:95%;
+    height:300px;
+}
 .table, th, td {
     /* border-collapse: collapse;*/
     border: 1px black solid;
     align-self: center;
+}
+.th, td{
+    width:350px;
 }
 
 .donutchart{
@@ -133,21 +144,24 @@ fieldset {
 
 input {
     cursor: pointer;
-    height:80px;
+    height: 80px;
+    vertical-align: bottom;
+    margin: 5px;
+    height: 55px;
 }
 
 select {
     order: 1;
     width: 100%;
-    height: 55px;
-    margin-top: 30%;
-    margin-left: 1%;
+    height:60px;
+    width:120px;
+    margin: 5px;
     background-color: DodgerBlue;
     -webkit-appearance: none;
-    border:0;
-    font:20px;
-    font-weight:bold;
-    color:white; 
+    border: 0;
+    font: 20px;
+    font-weight: bold;
+    color: white;
 }
 
 
@@ -155,10 +169,6 @@ select {
 input[type=text] {
     order:2;
     width: 70%;
-    padding: 12px 20px;
-    margin: 10px 0;
-    box-sizing: border-box;
-    cursor: pointer;
     font-size:20px;
 
 }
@@ -167,29 +177,21 @@ input[type=text] {
 
 input[type=datetime] {
     width: 33%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    cursor: pointer;
 }
 
 
 input[type=number] {
     width: 100%;
-    margin: 8px 0;
-    box-sizing: border-box;
-    cursor: pointer;
 }
 
 
 input[type=submit] {
-    margin-top:4%;
     order: 3;
     background-color: #4CAF50; /* Green */
     border: none;
     color: white;
     width: 70px;
-    height:53px;
+    height:60px;
     text-align: center;
     text-decoration: none;
     font-size: 12px;

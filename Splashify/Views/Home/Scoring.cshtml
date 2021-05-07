@@ -8,7 +8,7 @@
 @model Splashify.Models.IndexModel
 
 @{
-    if (Context.Session.GetString("UserSession") != "organizer" && Context.Session.GetString("UserSession") != "club")
+    if (Context.Session.GetString("UserSession") != "organizer" && Context.Session.GetString("UserSession") != "judge")
     {
         <script>
             window.location.href = "@Url.Action("Login", "Home")";

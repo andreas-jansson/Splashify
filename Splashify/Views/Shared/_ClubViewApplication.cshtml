@@ -5,11 +5,11 @@
 
 <div class="title eventapp-title-h1">Event Application</div>
 <div class="event-application">
-    @using (Html.BeginForm("", "", FormMethod.Post))
+    @using (Html.BeginForm("EventApplication", "Event", FormMethod.Post))
     {
         @Html.ValidationSummary(true)
         <fieldset>
-            <input type="number" name="EventNameField" placeholder="Event ID" />
+            <input type="text" name="eventID" placeholder="Event ID" />
             <input type="submit" value="Apply" />
         </fieldset>
     }
@@ -27,13 +27,32 @@
                 <option value="2">vm2021</option>
                 <option value="3">dynamic viewbag data</option>
             </select>
-            <input type="text" name="userID" placeholder="User ID" />
+            <input type="number" name="userID" placeholder="User ID" />
             <input type="submit" value="Apply" />
         </fieldset>
     }
 
 </div>
-<div class="title eventapp-title-h1">Club Members</div>
-<div class="list-competitors">
+<div class="title club-h1">Club Members</div>
+<div class="infobox club-members">
 
 </div>
+@using (Html.BeginForm("", "", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <input type="submit" value="Search" />
+    </fieldset>
+}
+
+<div class="title enrolled-h1">Enrolled Members</div>
+<div class="infobox enrolled-competitors">
+
+</div>
+@using (Html.BeginForm("", "", FormMethod.Post))
+{
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <input type="submit" value="Search" />
+    </fieldset>
+}

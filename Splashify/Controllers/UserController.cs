@@ -50,6 +50,7 @@ namespace Splashify.Controllers
                     HttpContext.Session.SetString("UserSession", "default");
                     HttpContext.Session.SetString("UserName", newUser.fname);
 
+
                     return View("~/Views/Home/Dashboard.cshtml");
                 }
                 else
@@ -179,6 +180,8 @@ namespace Splashify.Controllers
                     HttpContext.Session.SetString("UserSession", user.role);
                     HttpContext.Session.SetString("UserName", user.fname);
                     HttpContext.Session.SetString("UserClub", user.club);
+                    HttpContext.Session.SetInt32("UserID", user.userID);
+
 
                     return View("~/Views/Home/Dashboard.cshtml");
 
