@@ -206,7 +206,7 @@ namespace Splashify.Controllers
             {
 
 
-                var output = cnn.Query<T>(query, new DynamicParameters());
+                var output = cnn.Query<T>(query, obj);
                 return output.ToList();
 
             }

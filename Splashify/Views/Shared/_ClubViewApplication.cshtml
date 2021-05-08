@@ -35,21 +35,21 @@
 </div>
 <div class="title club-h1">Club Members</div>
 <div class="infobox club-members">
-
+    @Html.Raw(ViewBag.ClubMembers)
 </div>
-@using (Html.BeginForm("", "", FormMethod.Post))
+@using (Html.BeginForm("ClubMembers", "Club", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
     <fieldset>
-        <input type="submit" value="Search" />
+        <input type="submit" value="Refresh" id="refreshbtn" />
     </fieldset>
 }
 
 <div class="title enrolled-h1">Enrolled Members</div>
 <div class="infobox enrolled-competitors">
-
+    @Html.Raw(ViewBag.EnrolledMembers)
 </div>
-@using (Html.BeginForm("", "", FormMethod.Post))
+@using (Html.BeginForm("EnrolledMembers", "club", FormMethod.Post))
 {
     @Html.ValidationSummary(true)
     <fieldset>
