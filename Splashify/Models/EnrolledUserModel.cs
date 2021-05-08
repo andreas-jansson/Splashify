@@ -5,6 +5,7 @@ namespace Splashify.Models
     {
         public string eventID { get; set; }
         public int userID { get; set; }
+        public int competitorID { get; set; }
         public string clubname { get; set; }
         public string fname { get; set; }
         public string lname { get; set; }

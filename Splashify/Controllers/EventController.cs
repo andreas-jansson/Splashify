@@ -181,21 +181,22 @@ namespace Splashify.Controllers
         //Club applies to participate in an event
         public ActionResult EventApplication(string eventID)
         {
+            string query1 = "select * from club where userID = @userID";
 
-            //Behöver kontroller om ansökan redan finns och om eventet ej tagit plats
 
             ClubModel club = new ClubModel();
             club.userID = (int)HttpContext.Session.GetInt32("UserID");
-            club = SqliteDataAccess.SingleObject(club, "club", "userID");
 
-            string query = "insert into eventapplication(clubID, eventID) values(@clubID, @eventID)";
+            club = SqliteDataAccess.SingleObject(club, query1);
+
+            string query2 = "insert into eventapplication(clubID, eventID) values(@clubID, @eventID)";
 
 
             EventApplicationModel application = new EventApplicationModel();
             application.eventID = eventID;
             application.clubID = club.clubID;
 
-            SqliteDataAccess.SaveSingleObject(application, query);
+            SqliteDataAccess.SaveSingleObject(application, query2);
 
             return View("~/Views/Home/Application.cshtml");
 

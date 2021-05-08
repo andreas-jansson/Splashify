@@ -17,15 +17,15 @@
 </div>
 <div class="title eventapp-title-h1">Enroll Competitors</div>
 <div class="enroll-competitors">
-    @using (Html.BeginForm("", "", FormMethod.Post))
+    @using (Html.BeginForm("EnrollMember", "Club", FormMethod.Post))
     {
         @Html.ValidationSummary(true)
         <fieldset>
-            <select>
+            <select name="eventID">
                 <option value="">Select Event:</option>
-                <option value="1">os2021</option>
-                <option value="2">vm2021</option>
-                <option value="3">dynamic viewbag data</option>
+                <option value="os2021">os2021</option>
+                <option value="vm2021">vm2021</option>
+                <option value="Dyk Kupp 2021">Dyk Kupp 2021</option>
             </select>
             <input type="number" name="userID" placeholder="User ID" />
             <input type="submit" value="Apply" />

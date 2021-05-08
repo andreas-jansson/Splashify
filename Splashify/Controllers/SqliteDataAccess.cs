@@ -177,12 +177,12 @@ namespace Splashify.Controllers
 
 
         //Generic returns 1 object
-        public static T SingleObject<T>(T obj, string table, string column)
+        public static T SingleObject<T>(T obj, string query)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 
-                T output = cnn.QuerySingleOrDefault<T>("SELECT * FROM " + table + " WHERE " + column + " = @" + column, obj);
+                T output = cnn.QuerySingleOrDefault<T>(query, obj);
                 
                 return output;
             }

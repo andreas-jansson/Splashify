@@ -3,7 +3,7 @@ namespace Splashify.Models
 {
     public class ScoreModel
     {
-        public int ContestantID { get; set; }
+        public int CompetitorID { get; set; }
         public int EventID { get; set; }
         public int JumpNr { get; set; }
         public int JumpTypeField { get; set; }
