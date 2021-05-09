@@ -10,8 +10,8 @@ namespace Splashify.Controllers
 {
     public class ClubController : Controller
     {
-
-        List<UserModel> user = new List<UserModel>();
+        private List<UserModel> user = new List<UserModel>();
+        private List<ClubModel> clubs = new List<ClubModel>(); 
         List<EnrolledUserModel> enrolled = new List<EnrolledUserModel>();
         List<CompetitorModel> competitorList = new List<CompetitorModel>();
 
@@ -122,7 +122,7 @@ namespace Splashify.Controllers
             obj.eventID = eventID;
             obj.userID = (int)HttpContext.Session.GetInt32("UserID");
             string query1 = "select * from eventclub as ec join club as c on ec.clubID = c.clubID where userID = @userID";
-            Console.WriteLine("1."+ eventID +" "+userID );
+            Console.WriteLine("1." + eventID + " " + userID);
             obj = SqliteDataAccess.SingleObject(obj, query1);
 
             if (obj == null)
@@ -158,6 +158,38 @@ namespace Splashify.Controllers
             }
             return View("~/Views/Home/Application.cshtml");
 
+        }
+
+        public ActionResult Clubs() 
+        {
+            string query = "select clubID, userID, clubname from club order by clubname"; 
+                //+ "where userID = @userID";
+
+            ClubModel clubObj = new ClubModel();
+            clubObj.userID = (int)HttpContext.Session.GetInt32("UserID");
+            clubs = SqliteDataAccess.LoadManyObjects(clubObj, query);
+
+
+            StringBuilder clubListHtml = new StringBuilder("<table id=\"clubTbl\">" +
+              "<tr><th>Club</th><th>Club Id</th><th>User Id</th></tr>");
+
+            foreach (var club in clubs)
+            {
+                clubListHtml.Append("<tr><td>");
+                clubListHtml.Append(club.clubname);
+                clubListHtml.Append("</td><td>");
+                clubListHtml.Append(club.clubID);
+                clubListHtml.Append("</td><td>");
+                clubListHtml.Append(club.userID);
+                clubListHtml.Append("</td></tr>");
+            }
+
+            clubListHtml.Append("</table>");
+
+
+            ViewBag.Clubs = clubListHtml;
+
+            return View("~/Views/Home/Application.cshtml");
         }
     }
 }

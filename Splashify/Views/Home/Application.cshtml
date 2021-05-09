@@ -62,10 +62,10 @@
             Clubs
         </div>
         <div class="event-list-box">
-            @Html.Raw(ViewBag.events)
+            @Html.Raw(ViewBag.Clubs)
         </div>
 
-        @using (Html.BeginForm("", "", FormMethod.Post))
+        @using (Html.BeginForm("Clubs", "Club", FormMethod.Post))
         {
             @Html.ValidationSummary(true)
             <fieldset>
