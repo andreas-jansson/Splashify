@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Splashify.Models;
 
@@ -11,6 +12,7 @@ namespace Splashify.Controllers
 
         List<RoleApplicationModel> applications = new List<RoleApplicationModel>();
         List<EventApplicationModel> events = new List<EventApplicationModel>();
+        List<UserModel> users = new List<UserModel>();
 
 
         public ApplicationHandlerController()
@@ -133,5 +135,81 @@ namespace Splashify.Controllers
 
         }
 
+        public ActionResult ClubApplicationManagment (int userID, string button)
+        {
+
+
+            UserModel clubuser = new UserModel();
+            ClubModel club = new ClubModel();
+            UserModel user = new UserModel();
+
+            string query;
+            if (button == "refresh")
+            {
+                user.userID = (int)HttpContext.Session.GetInt32("UserID");
+                query = "select u.userID, u.fname, u.lname from user as u join clubapplication as ca on u.userID = ca.userID join club as c on c.clubID = ca.clubID where c.userID = @userID";
+                StringBuilder applicationListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>User ID</th><th>First Name</th><th>Last Name</th></tr>");
+                users = SqliteDataAccess.LoadManyObjects(user, query);
+
+                foreach (var app in users)
+                {
+                    applicationListHtml.Append("<tr><td>");
+                    applicationListHtml.Append(app.userID);
+                    applicationListHtml.Append("</td><td>");
+                    applicationListHtml.Append(app.fname);
+                    applicationListHtml.Append("</td><td>");
+                    applicationListHtml.Append(app.lname);
+                    applicationListHtml.Append("</td></tr>");
+                }
+
+                applicationListHtml.Append("</table>");
+
+                Console.WriteLine(applicationListHtml);
+
+                ViewBag.ClubApps = applicationListHtml;
+            }
+            else if (button == "accept" && userID != 0)
+            {
+                //check if userID + clubID exist in clubapplication
+                ClubModel exist = new ClubModel();
+                exist.userID = userID;
+                query = "select * from clubapplication where userID=@userID";
+                exist=SqliteDataAccess.SingleObject(exist, query);
+                if(exist == null)
+                {
+                    Console.WriteLine("User has not applied to this club");
+                    return View("~/Views/Home/Application.cshtml");
+                }
+                else {
+                    club.userID = (int)HttpContext.Session.GetInt32("UserID");
+                    query = "select * from club where userID=@userID";
+                    club = SqliteDataAccess.SingleObject(club, query);
+                    user.userID = userID;
+                    Console.WriteLine("user ID:" + user.userID);
+                    user.club = club.clubID;
+                    Console.WriteLine("user club:" + user.club);
+                    query = "update user set club = @club where userID = @userID";
+                    SqliteDataAccess.SaveSingleObject(user, query);
+                    query = "delete from clubapplication where userID=@userID";
+                    SqliteDataAccess.DenyApplication(user, query);
+                }
+
+            }
+            else if (button == "deny" && userID != 0)
+            {
+                query = "delete from clubapplication where userID=@userID";
+                user.userID = userID;
+                SqliteDataAccess.DenyApplication(user, query);
+            }
+            else
+            {
+                Console.WriteLine("Shit went wrong!");
+            }
+
+
+
+            return View("~/Views/Home/Application.cshtml");
+
+        }
     }
 }

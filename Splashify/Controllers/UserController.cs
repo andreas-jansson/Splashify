@@ -127,7 +127,7 @@ namespace Splashify.Controllers
                     Console.WriteLine("Authenticated!");
                     HttpContext.Session.SetString("UserSession", user.role);
                     HttpContext.Session.SetString("UserName", user.fname);
-                    HttpContext.Session.SetString("UserClub", user.club);
+                    HttpContext.Session.SetInt32("UserClub", user.club);
                     HttpContext.Session.SetInt32("UserID", user.userID);
 
 
@@ -156,7 +156,31 @@ namespace Splashify.Controllers
             return View("~/Views/Home/Dashboard.cshtml");
         }
 
-      
+        //returns clubinfo to competitor in view application
+        public ActionResult CheckClub()
+        {
+
+            string query = "select c.clubID, c.clubname from club as c join user as u on c.clubID = u.club where u.userID = @userID";
+            string clubinfo;
+
+
+            ClubModel club = new ClubModel();
+            club.userID = (int)HttpContext.Session.GetInt32("UserID");
+            club = SqliteDataAccess.SingleObject(club, query);
+
+            if (club != null)
+            {
+                clubinfo = club.clubname + " ID:" + club.clubID;
+
+            }
+            else
+            {
+                clubinfo = "No current club";
+            }
+            ViewBag.ClubInfo = clubinfo;
+            return View("~/Views/Home/Application.cshtml");
+        }
+
 
 
 

@@ -7,13 +7,37 @@
 <div class="title clubapp-title-h1">
     Club Application
 </div>
-<p>Your current club is: </p>
+<p>Your current club is: @Html.Raw(ViewBag.ClubInfo) </p>
+<div class="current-club-box">
+    @using (Html.BeginForm("CheckClub", "User", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <input type="submit" value="Refresh" />
+        </fieldset>
+    }
+</div>
 
-@using (Html.BeginForm("", "", FormMethod.Post))
-{
-    @Html.ValidationSummary(true)
-    <fieldset>
-        <input type="text" name="ClubNameField" placeholder="Club Name" />
-        <input type="submit" value="Apply" />
-    </fieldset>
-}
+<div class="club-application-box">
+    @using (Html.BeginForm("ClubApplication", "Club", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <input type="number" name="clubID" placeholder="Club ID" />
+            <input type="submit" value="Apply" />
+        </fieldset>
+    }
+</div>
+
+
+
+<div class="title competitor-upcoming-title-h1">Your Upcoming events</div>
+<div class="infobox competitor-upcoming-events-box">
+
+</div>
+
+
+<div class="title competitor-upcoming-title-h1">Your History</div>
+<div class="infobox competitor-history-events-box">
+
+</div>

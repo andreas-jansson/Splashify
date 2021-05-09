@@ -325,6 +325,14 @@ namespace Splashify.Controllers
             }
         }
 
+        //Generic Application - Denied
+        public static void DenyApplication<T>(T obj, string query)
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                cnn.Execute(query, obj);
+            }
+        }
 
     }
 }

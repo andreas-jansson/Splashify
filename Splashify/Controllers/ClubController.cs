@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Splashify.Models;
-
 
 namespace Splashify.Controllers
 {
@@ -22,8 +22,6 @@ namespace Splashify.Controllers
 
         public ActionResult ClubMembers()
         {
-
-
             string query = "select u.userID, u.club, u.fname, u.lname, " +
                 "u.birthdate, u.gender from user as u join club as c " +
                 "on u.club = c.clubID where c.userID = @userID";
@@ -114,15 +112,46 @@ namespace Splashify.Controllers
 
         }
 
-        //Adds member to eventcompetitor if club is in eventclub table
-        public ActionResult EnrollMember(string eventID, int userID)
+
+        //Dynamic select options for enrollmember
+        [HttpGet]
+        public IActionResult EnrollMember()
         {
+            Console.WriteLine("get triggerd");
+            var events = new CompetitorModel();
+
+            events.eventList = new List<SelectListItem> {
+                new SelectListItem {Text = "test1", Value="1"},
+                new SelectListItem { Text = "test2", Value="2"}
+            };
+
+
+            ViewBag.OptionEventList = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Shyju", Value = "1"},
+                new SelectListItem {Text = "Sean", Value = "2"}
+            };
+            return View(new CompetitorModel());
+
+           // return View(events);
+
+        }
+
+
+        //Adds member to eventcompetitor if club is in eventclub table
+        [HttpPost]
+        public ActionResult EnrollMember(CompetitorModel comp/*string eventID, int userID*/)
+        {
+            Console.WriteLine("post triggerd");
+
+            ViewBag.eventID = new List<string>() { "test1", "test2", "test3" };
+
             //checks if club is allowed to submit members for said event
             EnrolledUserModel obj = new EnrolledUserModel();
-            obj.eventID = eventID;
+            obj.eventID = comp.eventID;
             obj.userID = (int)HttpContext.Session.GetInt32("UserID");
             string query1 = "select * from eventclub as ec join club as c on ec.clubID = c.clubID where userID = @userID";
-            Console.WriteLine("1." + eventID + " " + userID);
+            Console.WriteLine("1."+ comp.eventID +" "+comp.userID );
             obj = SqliteDataAccess.SingleObject(obj, query1);
 
             if (obj == null)
@@ -134,21 +163,21 @@ namespace Splashify.Controllers
             else
             {
                 CompetitorModel competitor = new CompetitorModel();
-                competitor.userID = userID;
+                competitor.userID = comp.userID;
                 string query3 = "select * from competitor where userID = @userID";
                 competitor = SqliteDataAccess.SingleObject(competitor, query3);
-                competitor.eventID = eventID;
+                competitor.eventID = comp.eventID;
 
                 string query2 = "insert into eventcompetitor(eventID, competitorID) values(@eventID, @competitorID)";
                 SqliteDataAccess.SaveSingleObject(competitor, query2);
 
                 for (int i = 1; i < 7; i++)
                 {
-                    CompetitorModel comp = new CompetitorModel();
-                    comp.eventID = eventID;
-                    comp.competitorID = competitor.competitorID;
-                    comp.jumpnr = i;
-                    competitorList.Add(comp);
+                    CompetitorModel comp2 = new CompetitorModel();
+                    comp2.eventID = comp.eventID;
+                    comp2.competitorID = competitor.competitorID;
+                    comp2.jumpnr = i;
+                    competitorList.Add(comp2);
 
 
                 }
@@ -157,13 +186,26 @@ namespace Splashify.Controllers
 
             }
             return View("~/Views/Home/Application.cshtml");
+        }
+
+
+        public ActionResult ClubApplication(int clubID)
+        {
+            ClubModel club = new ClubModel();
+            club.clubID = clubID;
+            club.userID = (int)HttpContext.Session.GetInt32("UserID");
+            string query = "insert into clubapplication(clubID, userID) values(@clubID, @userID)";
+
+            SqliteDataAccess.SaveSingleObject(club, query);
+
+            return View("~/Views/Home/Application.cshtml");
 
         }
 
-        public ActionResult Clubs() 
+        public ActionResult Clubs()
         {
-            string query = "select clubID, userID, clubname from club order by clubname"; 
-                //+ "where userID = @userID";
+            string query = "select clubID, userID, clubname from club order by clubname";
+            //+ "where userID = @userID";
 
             ClubModel clubObj = new ClubModel();
             clubObj.userID = (int)HttpContext.Session.GetInt32("UserID");
@@ -191,5 +233,6 @@ namespace Splashify.Controllers
 
             return View("~/Views/Home/Application.cshtml");
         }
+
     }
 }

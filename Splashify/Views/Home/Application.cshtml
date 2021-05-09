@@ -28,15 +28,17 @@
             {
                 await Html.RenderPartialAsync("_CompetitorViewApplication", Model);
 
-                    }
+            }
             else if (Context.Session.GetString("UserSession") == "club")
             {
-                await Html.RenderPartialAsync("_CLubViewApplication", Model);
+                await Html.RenderPartialAsync("_ClubViewApplication", Model);
 
             }
             else
             {
-
+                <p>To view the different partial views, login with an account with either of the access below!</p>
+                <p>Club account: kalle@splashify.se pw:123</p>
+                <p>Competitor account: kenny@splashify.se pw:123</p>
             }
 
         }
