@@ -61,18 +61,16 @@
         }*@
 
 
-    <form asp-controller="Club" asp-action="EnrollMember">
-        <select asp-for="eventID" asp-items="new SelectList(@ViewBag.OptionEventList)">
-            <option>Select Event:</option>
-        </select>         
+    <form asp-controller="Club" asp-action="EnrollMember" method="post">
+        <select asp-for="eventID" asp-items="@Model.eventList">
+            </select>
         <input asp-for="userID" type="number" class="form-control" placeholder="User ID" />
         <button type="submit" id="refreshbtn" name="button">Submit</button>
     </form>
 
-    @*@Html.DropDownList("eventList", ViewBag.OptionList as SelectList, "Select Event:");*@
+    @*@Html.DropDownListFor(model => model.eventID, Model.eventList, "please", new { id = "test" })*@
 
-
-</div>
+    </div>
 
 <div class="title clubapp-title-h1">Club Applications</div>
 

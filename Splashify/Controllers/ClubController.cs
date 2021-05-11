@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -114,9 +115,9 @@ namespace Splashify.Controllers
 
 
         //Dynamic select options for enrollmember
-        [HttpGet]
-        public IActionResult EnrollMember()
+        public ActionResult EnrollMember()
         {
+            
             Console.WriteLine("get triggerd");
             var events = new CompetitorModel();
 
@@ -126,25 +127,48 @@ namespace Splashify.Controllers
             };
 
 
-            ViewBag.OptionEventList = new List<SelectListItem>
+           List <SelectListItem> events2 = new List<SelectListItem>()
             {
-                new SelectListItem {Text = "Shyju", Value = "1"},
-                new SelectListItem {Text = "Sean", Value = "2"}
+                new SelectListItem {Text = "Shyju", Value="1"},
+                new SelectListItem {Text = "Sean", Value="2"},
             };
-            return View(new CompetitorModel());
 
-           // return View(events);
+            //ViewBag.OptionEventList= events2;
+
+
+            List<SelectListItem> eventID = new List<SelectListItem>();
+            eventID.Add(new SelectListItem() { Text = "Shyju", Value = "1" });
+            eventID.Add(new SelectListItem() { Text = "test2", Value = "2" });
+            eventID.Add(new SelectListItem() { Text = "test3", Value = "3" });
+
+
+            eventID.Insert(eventID.Count, new SelectListItem { Text = "Others", Value = eventID.Count.ToString() });
+
+            CompetitorModel comp = new CompetitorModel();
+            ViewBag.OptionEventList = eventID;
+
+            // return (IEnumerable<SelectListItem>)events;
+
+            return View(events);
 
         }
 
 
         //Adds member to eventcompetitor if club is in eventclub table
         [HttpPost]
-        public ActionResult EnrollMember(CompetitorModel comp/*string eventID, int userID*/)
+        public ActionResult EnrollMember(CompetitorModel comp)
         {
             Console.WriteLine("post triggerd");
 
-            ViewBag.eventID = new List<string>() { "test1", "test2", "test3" };
+
+            var events = new CompetitorModel();
+
+            events.eventList = new List<SelectListItem> {
+                new SelectListItem {Text = "test1", Value="1"},
+                new SelectListItem { Text = "test2", Value="2"}
+            };
+
+            //ViewBag.OptionEventList = events2;
 
             //checks if club is allowed to submit members for said event
             EnrolledUserModel obj = new EnrolledUserModel();
@@ -185,7 +209,7 @@ namespace Splashify.Controllers
                 SqliteDataAccess.SaveManyObjects(competitorList, query4);
 
             }
-            return View("~/Views/Home/Application.cshtml");
+            return View(events);
         }
 
 
