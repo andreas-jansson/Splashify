@@ -5,7 +5,7 @@
 @model Splashify.Models.CompetitorModel
 
 <form asp-controller="Club" asp-action="EnrollMember" method="post">
-    <select asp-for="eventID" asp-items="@Model.eventList">
+    <select asp-for="eventID" asp-items="@ViewBag.OptionEventList">
     </select>
     <input asp-for="userID" type="number" class="form-control" placeholder="User ID" />
     <button type="submit" id="refreshbtn" name="button">Submit</button>

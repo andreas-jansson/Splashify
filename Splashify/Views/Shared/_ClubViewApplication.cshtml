@@ -1,7 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Http
+@using Newtonsoft.Json;
 @inject IHttpContextAccessor HttpContextAccessor
 @model Splashify.Models.CompetitorModel
+
+
+@{
+    ViewBag.test=TempData["test"];
+
+}
+
+
 
 <div class="title eventapp-title-h1">Event Application</div>
 <div class="event-application">
@@ -18,7 +27,7 @@
 
 <div class="title club-h1">Club Members</div>
 <div class="infobox club-members">
-    @Html.Raw(ViewBag.ClubMembers)
+    @Html.Raw(TempData.Peek("ClubMembers"))
 </div>
 
 @using (Html.BeginForm("ClubMembers", "Club", FormMethod.Post))
@@ -32,7 +41,8 @@
 <div class="title enrolled-h1">Enrolled Members</div>
 
 <div class="infobox enrolled-competitors">
-    @Html.Raw(ViewBag.EnrolledMembers)
+    @Html.Raw(TempData.Peek("EnrolledMembers"))
+
 </div>
 
 @using (Html.BeginForm("EnrolledMembers", "club", FormMethod.Post))
@@ -45,37 +55,23 @@
 <div class="title eventapp-title-h1">Enroll Competitors</div>
 
 <div class="enroll-competitors">
-    @*@using (Html.BeginForm("EnrollMember", "Club", FormMethod.Post))
-        {
-            @Html.ValidationSummary(true)
-            <fieldset>
-                <select asp-for="eventID" name="eventID" asp-items="new SelectList(ViewBag.OptionEventList)">
-                    <option value="">Select Event:</option>
-                    <option value="os2021">os2021</option>
-                    <option value="vm2021">vm2021</option>
-                    <option value="Dyk Kupp 2021">Dyk Kupp 2021</option>
-                </select>
-                <input type="number" name="userID" placeholder="User ID" />
-                <input type="submit" value="Apply" />
-            </fieldset>
-        }*@
-
 
     <form asp-controller="Club" asp-action="EnrollMember" method="post">
-        <select asp-for="eventID" asp-items="@Model.eventList">
-            </select>
+        <select asp-for="eventID" asp-items="@ViewBag.OptionEventList">
+            <option>Select:</option>
+        </select>
+
         <input asp-for="userID" type="number" class="form-control" placeholder="User ID" />
         <button type="submit" id="refreshbtn" name="button">Submit</button>
     </form>
 
-    @*@Html.DropDownListFor(model => model.eventID, Model.eventList, "please", new { id = "test" })*@
-
-    </div>
+</div>
 
 <div class="title clubapp-title-h1">Club Applications</div>
 
 <div class="infobox clubapp">
-    @Html.Raw(ViewBag.ClubApps)
+    @Html.Raw(TempData.Peek("ClubApps"))
+
 </div>
 @using (Html.BeginForm("ClubApplicationManagment", "ApplicationHandler", FormMethod.Post))
 {

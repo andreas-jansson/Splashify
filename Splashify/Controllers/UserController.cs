@@ -130,7 +130,6 @@ namespace Splashify.Controllers
                     HttpContext.Session.SetInt32("UserClub", user.club);
                     HttpContext.Session.SetInt32("UserID", user.userID);
 
-
                     return View("~/Views/Home/Dashboard.cshtml");
 
                 }
@@ -143,7 +142,7 @@ namespace Splashify.Controllers
             else
             {
                 Console.WriteLine("Access Denied!");
-                return View("~/Views/Home/Dashboard.cshtml");
+                return View("~/Views/Home/Login.cshtml");
             }
 
         }

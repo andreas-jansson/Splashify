@@ -11,11 +11,10 @@ namespace Splashify.Models
 
         public int competitorID { get; set; }
         public int userID { get; set; }
-        [BindProperty]
         public string eventID { get; set; }
         public int jumpnr { get; set; }
-        [HtmlAttributeName("asp-items")]
         public List<SelectListItem> eventList{ get; set; }
+        public List<string> eventListstring { get; set; }
 
     }
 }

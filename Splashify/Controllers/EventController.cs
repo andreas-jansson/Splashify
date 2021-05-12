@@ -172,9 +172,10 @@ namespace Splashify.Controllers
             eventListHtml.Append("</table>");
 
 
-            ViewBag.UpcomingEvents = eventListHtml;
+            //ViewBag.UpcomingEvents = eventListHtml;
+            TempData["UpcomingEvents"] = eventListHtml.ToString();
 
-            return View("~/Views/Home/Application.cshtml");
+            return RedirectToAction("Application", "Home");
         }
 
 
@@ -198,7 +199,7 @@ namespace Splashify.Controllers
 
             SqliteDataAccess.SaveSingleObject(application, query2);
 
-            return View("~/Views/Home/Application.cshtml");
+            return RedirectToAction("Application", "Home");
 
         }
 

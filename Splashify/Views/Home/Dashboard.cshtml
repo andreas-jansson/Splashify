@@ -67,7 +67,8 @@
                 <input type="submit" value="submit" />
             </form>
             <div class="infobox">
-                @Html.Raw(ViewBag.search)
+                @Html.Raw(TempData.Peek("search"))
+
             </div>
 
         </div>

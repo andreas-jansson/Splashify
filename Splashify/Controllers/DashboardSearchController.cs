@@ -152,10 +152,8 @@ namespace Splashify.Controllers
 
             SearchListHtml.Append("</table>");
 
-
-            ViewBag.search = SearchListHtml;
-
-            return View("~/Views/Home/Dashboard.cshtml");
+            TempData["search"] = SearchListHtml.ToString();
+            return RedirectToAction("Dashboard", "Home");
 
         }
 

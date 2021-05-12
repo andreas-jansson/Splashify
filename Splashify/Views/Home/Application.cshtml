@@ -21,6 +21,7 @@
 }
 
 
+
 <div class="container-application">
     <div class="box1">
         @{
@@ -49,7 +50,8 @@
             Upcoming Events
         </div>
         <div class="event-list-box">
-            @Html.Raw(ViewBag.UpcomingEvents)
+            @Html.Raw(TempData.Peek("UpcomingEvents"))
+
         </div>
         @using (Html.BeginForm("UppcomingEvents", "Event", FormMethod.Post))
         {
@@ -64,7 +66,8 @@
             Clubs
         </div>
         <div class="event-list-box">
-            @Html.Raw(ViewBag.Clubs)
+            @Html.Raw(TempData.Peek("Clubs"))
+
         </div>
 
         @using (Html.BeginForm("Clubs", "Club", FormMethod.Post))

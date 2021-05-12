@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -11,8 +13,9 @@ namespace Splashify.Controllers
 {
     public class ClubController : Controller
     {
-        private List<UserModel> user = new List<UserModel>();
-        private List<ClubModel> clubs = new List<ClubModel>(); 
+        private List<UserModel> userList = new List<UserModel>();
+        private List<ClubModel> clubs = new List<ClubModel>();
+        private List<EventModel> eventList = new List<EventModel>();
         List<EnrolledUserModel> enrolled = new List<EnrolledUserModel>();
         List<CompetitorModel> competitorList = new List<CompetitorModel>();
 
@@ -28,13 +31,13 @@ namespace Splashify.Controllers
                 "on u.club = c.clubID where c.userID = @userID";
             UserModel userObj = new UserModel();
             userObj.userID = (int)HttpContext.Session.GetInt32("UserID");
-            user = SqliteDataAccess.LoadManyObjects(userObj, query);
+            userList = SqliteDataAccess.LoadManyObjects(userObj, query);
 
             StringBuilder userListHtml = new StringBuilder("<table id=\"pplTbl\">" +
                 "<tr><th>User ID</th><th>Club</th><th>First Name</th>" +
                 "<th>Last Name</th><th>Birthdate</th><th>Gender</th></tr>");
 
-            foreach (var person in user)
+            foreach (var person in userList)
             {
                 userListHtml.Append("<tr><td>");
                 userListHtml.Append(person.userID);
@@ -56,8 +59,10 @@ namespace Splashify.Controllers
 
 
             ViewBag.ClubMembers = userListHtml;
+            TempData["ClubMembers"] = userListHtml.ToString();
+           // return View("~/Views/Home/Application.cshtml");
+            return RedirectToAction("Application", "Home");
 
-            return View("~/Views/Home/Application.cshtml");
         }
 
 
@@ -108,80 +113,73 @@ namespace Splashify.Controllers
 
 
             ViewBag.EnrolledMembers = userListHtml;
+            TempData["EnrolledMembers"] = userListHtml.ToString();
 
-            return View("~/Views/Home/Application.cshtml");
+            return RedirectToAction("Application", "Home");
 
         }
 
 
         //Dynamic select options for enrollmember
-        public ActionResult EnrollMember()
+        public List<SelectListItem>  ApprovedEventList(int userID)
         {
-            
-            Console.WriteLine("get triggerd");
-            var events = new CompetitorModel();
-
-            events.eventList = new List<SelectListItem> {
-                new SelectListItem {Text = "test1", Value="1"},
-                new SelectListItem { Text = "test2", Value="2"}
-            };
-
-
-           List <SelectListItem> events2 = new List<SelectListItem>()
-            {
-                new SelectListItem {Text = "Shyju", Value="1"},
-                new SelectListItem {Text = "Sean", Value="2"},
-            };
-
-            //ViewBag.OptionEventList= events2;
-
-
-            List<SelectListItem> eventID = new List<SelectListItem>();
-            eventID.Add(new SelectListItem() { Text = "Shyju", Value = "1" });
-            eventID.Add(new SelectListItem() { Text = "test2", Value = "2" });
-            eventID.Add(new SelectListItem() { Text = "test3", Value = "3" });
-
-
-            eventID.Insert(eventID.Count, new SelectListItem { Text = "Others", Value = eventID.Count.ToString() });
 
             CompetitorModel comp = new CompetitorModel();
-            ViewBag.OptionEventList = eventID;
+            comp.userID = userID;
+            string query = "select e.eventID from eventclub as ec inner join club as c on ec.clubID = c.clubID inner join event as e on e.eventID = ec.eventID where userID = 16  and startdate >= date('now')";
+            competitorList = SqliteDataAccess.LoadManyObjects(comp, query);
+            List<SelectListItem> events2 = new List<SelectListItem>();
 
-            // return (IEnumerable<SelectListItem>)events;
+            foreach (var obj in competitorList)
+            {
+                events2.Add(new SelectListItem { Text = obj.eventID , Value = obj.eventID });
+            }
 
-            return View(events);
+            comp.eventList = events2;
+            return events2;
+
+        }
+
+        public List<string> ApprovedEventList2(int userID)
+        {
+
+            CompetitorModel comp = new CompetitorModel();
+            comp.userID = userID;
+            string query = "select e.eventID from eventclub as ec inner join club as c on ec.clubID = c.clubID inner join event as e on e.eventID = ec.eventID where userID = 16  and startdate >= date('now')";
+            competitorList = SqliteDataAccess.LoadManyObjects(comp, query);
+
+            var events2 = new List<string>();
+           
+                foreach (var obj in competitorList)
+                {
+                    events2.Add(obj.eventID);
+                }
+
+            
+           
+
+            comp.eventListstring = events2.ToList();
+            return events2.ToList();
 
         }
 
 
         //Adds member to eventcompetitor if club is in eventclub table
-        [HttpPost]
         public ActionResult EnrollMember(CompetitorModel comp)
         {
-            Console.WriteLine("post triggerd");
-
-
-            var events = new CompetitorModel();
-
-            events.eventList = new List<SelectListItem> {
-                new SelectListItem {Text = "test1", Value="1"},
-                new SelectListItem { Text = "test2", Value="2"}
-            };
-
-            //ViewBag.OptionEventList = events2;
 
             //checks if club is allowed to submit members for said event
             EnrolledUserModel obj = new EnrolledUserModel();
             obj.eventID = comp.eventID;
             obj.userID = (int)HttpContext.Session.GetInt32("UserID");
-            string query1 = "select * from eventclub as ec join club as c on ec.clubID = c.clubID where userID = @userID";
-            Console.WriteLine("1."+ comp.eventID +" "+comp.userID );
+            string query1 = "select * from eventclub as ec join club as c on ec.clubID = c.clubID where userID = @userID and ec.eventID = @eventID";
+            Console.WriteLine("1. "+ comp.eventID +" "+comp.userID );
             obj = SqliteDataAccess.SingleObject(obj, query1);
 
             if (obj == null)
             {
                 Console.WriteLine("NULL");
-                return View("~/Views/Home/Application.cshtml");
+                return RedirectToAction("Application", "Home");
 
             }
             else
@@ -209,7 +207,7 @@ namespace Splashify.Controllers
                 SqliteDataAccess.SaveManyObjects(competitorList, query4);
 
             }
-            return View(events);
+            return RedirectToAction("Application", "Home");
         }
 
 
@@ -222,7 +220,7 @@ namespace Splashify.Controllers
 
             SqliteDataAccess.SaveSingleObject(club, query);
 
-            return View("~/Views/Home/Application.cshtml");
+            return RedirectToAction("Application", "Home");
 
         }
 
@@ -254,8 +252,8 @@ namespace Splashify.Controllers
 
 
             ViewBag.Clubs = clubListHtml;
-
-            return View("~/Views/Home/Application.cshtml");
+            TempData["Clubs"] = clubListHtml.ToString();
+            return RedirectToAction("Application", "Home");
         }
 
     }

@@ -9,7 +9,7 @@
 
     <div class="application-list-box">
 
-        @Html.Raw(ViewBag.EventApps)
+        @Html.Raw(TempData.Peek("EventApps"))
 
     </div>
     <form asp-controller="ApplicationHandler" asp-action="EventApplication" method="post">

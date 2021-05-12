@@ -50,7 +50,7 @@ namespace Splashify.Controllers
 
                 Console.WriteLine(applicationListHtml);
 
-                ViewBag.RoleApps = applicationListHtml;
+                TempData["RoleApps"] = applicationListHtml.ToString();
             }
             else if (button == "accept" && userIDField != 0)
             {
@@ -67,8 +67,7 @@ namespace Splashify.Controllers
             {
                 Console.WriteLine("Shit went wrong!");
             }
-
-            return View("~/Views/Home/Managment.cshtml");
+            return RedirectToAction("Managment", "Home");
 
         }
 
@@ -108,7 +107,7 @@ namespace Splashify.Controllers
 
                 Console.WriteLine(applicationListHtml);
 
-                ViewBag.EventApps = applicationListHtml;
+                TempData["EventApps"] = applicationListHtml.ToString();
             }
             else if (button == "accept" && ID != 0)
             {
@@ -131,7 +130,7 @@ namespace Splashify.Controllers
             }
 
 
-            return View("~/Views/Home/Managment.cshtml");
+            return RedirectToAction("Managment", "Home");
 
         }
 
@@ -166,7 +165,8 @@ namespace Splashify.Controllers
 
                 Console.WriteLine(applicationListHtml);
 
-                ViewBag.ClubApps = applicationListHtml;
+                //ViewBag.ClubApps = applicationListHtml;
+                TempData["ClubApps"] = applicationListHtml.ToString();
             }
             else if (button == "accept" && userID != 0)
             {
@@ -208,7 +208,7 @@ namespace Splashify.Controllers
 
 
 
-            return View("~/Views/Home/Application.cshtml");
+            return RedirectToAction("Application", "Home");
 
         }
     }
