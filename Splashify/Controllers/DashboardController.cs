@@ -53,7 +53,6 @@ namespace Splashify.Controllers
             string club_query = "SELECT COUNT(*) FROM User WHERE role = 'club'";
             string judge_query = "SELECT COUNT(*) FROM User WHERE role = 'judge'";
 
-
             int obj = new int();
 
             int numcompetitors = SqliteDataAccess.SingleObject<int>(obj, competitor_query);
@@ -71,7 +70,6 @@ namespace Splashify.Controllers
             UserRoleStatsHTML.Append("<p>Judges: ");
             UserRoleStatsHTML.Append(numjudges);
             UserRoleStatsHTML.Append("</p>");
-
 
             return UserRoleStatsHTML.ToString();
         }

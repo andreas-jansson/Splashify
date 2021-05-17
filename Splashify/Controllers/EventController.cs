@@ -193,11 +193,12 @@ namespace Splashify.Controllers
 
             eventObjList=SqliteDataAccess.LoadManyObjects(eventObj, query);
 
-            StringBuilder eventListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>Name</th><th>Date</th><th>Gender</th></tr>");
+            StringBuilder eventListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th style='width:25px'>&nbsp;</th><th>Name</th><th>Date</th><th>Gender</th></tr>");
             int i = 1;
             foreach (var e in eventObjList)
             {
-                eventListHtml.Append("<tr id="+i+"><td>");
+                // onclick='javascript:alert(\"hej\")'
+                eventListHtml.Append("<tr id=" + i + "><td width='25px'><img src='../css/images/plus_icon.png' class='icon' onclick='javascript:document.getElementById(\"eventID\").value=\"" + e.eventID + "\"'></td><td>");
                 eventListHtml.Append(e.eventID);
                 eventListHtml.Append("</td><td>");
                 eventListHtml.Append(e.startdate);

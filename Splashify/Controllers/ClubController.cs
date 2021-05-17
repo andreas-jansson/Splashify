@@ -39,7 +39,7 @@ namespace Splashify.Controllers
 
             foreach (var person in userList)
             {
-                userListHtml.Append("<tr><td>");
+                userListHtml.Append("<tr onclick='javascript:document.getElementById(\"userID\").value = \"" + person.userID + "\"'><td>");
                 userListHtml.Append(person.userID);
                 userListHtml.Append("</td><td>");
                 userListHtml.Append(person.club);
