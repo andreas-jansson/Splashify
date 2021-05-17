@@ -156,7 +156,6 @@ fieldset {
 
 .table, th, td {
     /* border-collapse: collapse;*/
-    border: 1px black solid;
     align-self: center;
     table-layout: fixed;
 }
@@ -203,6 +202,33 @@ tr:nth-child(even) {
     overflow-y:scroll;
 }
 
+/*          Tooltip         */
 
+.tooltip {
+    background-image: url('icons/help-circle-outline.svg');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: lightgrey;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
 
 

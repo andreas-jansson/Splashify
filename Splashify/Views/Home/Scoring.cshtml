@@ -43,19 +43,48 @@
                     <div class="lable-box">
                         <ul>
                             <li><lable>Contestant ID</lable></li>
-                            <li><lable>Event ID</lable></li>
-                            <li><lable>Jump nr</lable></li>
                             <li><lable>Jump Code</lable></li>
                             <li><lable>Score</lable></li>
                         </ul>
                     </div>
                     <div class="input-box">
-                        <input type="number" name="ContestantIDField" placeholder="Contest ID" />
-                        <input type="number" name="EventIDField" placeholder="Event ID" />
-                        <input type="number" name="JumpNrField" placeholder="Jump Nr" />
-                        <input type="number" name="JumpTypeField" placeholder="Jump code" />
-                        <input type="number" name="ScoreField" placeholder="Score" />
-                        <input type="submit" value="submit" />
+                        <input type="number" name="ContestantIDField" placeholder="Contest ID" required />
+                        <input type="text" name="JumpTypeField" placeholder="Jump code" required />
+                        <select name="JumpTypeField" required>
+                            <option value="">Jump Type:</option>
+                            <option value="100">Forward Dive Straight</option>
+                            <option value="200C"></option>
+                            <option value="300"></option>
+                            <option value="400"></option>
+                            <option value="500"></option>
+                            <option value="600"></option>
+                        </select>
+
+                            <select name="ScoreField" required>
+                                <option value="">Score:</option>
+                                <option value="0">0</option>
+                                <option value="0.5">0.5</option>
+                                <option value="1">1</option>
+                                <option value="1.5">1.5</option>
+                                <option value="2">2</option>
+                                <option value="2.5">2.5</option>
+                                <option value="3">3</option>
+                                <option value="3.5">3.5</option>
+                                <option value="4">4</option>
+                                <option value="4.5">4.5</option>
+                                <option value="5">5</option>
+                                <option value="5.5">5.5</option>
+                                <option value="6">6</option>
+                                <option value="6.5">6.5</option>
+                                <option value="7">7</option>
+                                <option value="7.5">7.5</option>
+                                <option value="8">8</option>
+                                <option value="8.5">8.5</option>
+                                <option value="9">9</option>
+                                <option value="9.5">9.5</option>
+                                <option value="10">10</option>
+                            </select>
+                            <input type="submit" value="submit" />
                     </div>
                 </fieldset>
             }
@@ -67,13 +96,13 @@
             <div class="scoring-header">
                 <h1 id="event-title-h1">Current competition</h1>
                 <div class="competition-list-box">
-                    @Html.Raw(ViewBag.eventjumps)
+                    @Html.Raw(TempData.Peek("eventjumps"))
+
                 </div>
                 @using (Html.BeginForm("GetEvent", "Event", FormMethod.Post))
                 {
                     @Html.ValidationSummary(true)
                     <fieldset>
-                        <input type="text" name="eventID" placeholder="Event Name" />
                         <input type="submit" value="Get Event" />
                     </fieldset>
 

@@ -9,15 +9,34 @@
 <form asp-controller="Event" asp-action="CreateEvent" method="post">
     <input asp-for="eventID" type="text" class="form-control" placeholder="Event Name" />
     <span id="error-message" asp-validation-for="eventID"></span>
-    <input asp-for="startdate" type="text" class="form-control" placeholder="Date" />
+
+    <input asp-for="startdate" type="datetime" class="form-control" placeholder="YYYY-MM-DD" />
     <span id="error-message" asp-validation-for="startdate"></span>
-    <input asp-for="gender" type="text" class="form-control" placeholder="Gender" />
+
+    <select asp-for="gender">
+        <option value="">Gender:</option>
+        <option value="male">Male</option>
+        <option value="female">Female:</option>
+    </select>
     <span id="error-message" asp-validation-for="gender"></span>
-    <input asp-for="judge1ID" type="number" class="form-control" placeholder="Judge" />
+
+    <select asp-for="eventtype">
+        <option value="">Height:</option>
+        <option value="3">3m</option>
+        <option value="5">5m</option>
+        <option value="7.5">7.5m</option>
+        <option value="10">10m</option>
+    </select>
+
+
+    <input asp-for="judge1ID" id="judgeinput" type="number" class="form-control" placeholder="Judge" />
     <span id="error-message" asp-validation-for="judge1ID"></span>
-    <input asp-for="judge2ID" type="number" class="form-control" placeholder="Judge" />
+
+    <input asp-for="judge2ID" id="judgeinput"  type="number" class="form-control" placeholder="Judge" />
     <span id="error-message" asp-validation-for="judge2ID"></span>
-    <input asp-for="judge3ID" type="number" class="form-control" placeholder="Judge" />
+
+    <input asp-for="judge3ID" id="judgeinput"  type="number" class="form-control" placeholder="Judge" />
     <span id="error-message" asp-validation-for="judge3ID"></span>
+
     <input type="submit" value="Create" />
 </form>

@@ -1,9 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -38,25 +40,26 @@ namespace Splashify.Controllers
         public IActionResult Privacy()
         {
 
-            List<SelectListItem> events2 = new List<SelectListItem>()
-            {
-                new SelectListItem {Text = "Shyju", Value="1"},
-                new SelectListItem {Text = "Sean", Value="2"},
-            };
-            ViewBag.OptionEventList= events2;
-
             return View();
         }
   
 
         public IActionResult Dashboard()
         {
-            var userRoles = new DashboardStatsController().GetUsersStats();
-            var numEvents = new DashboardStatsController().GetNumEvents();
-            var nextEventDate = new DashboardStatsController().GetNextEvent();
-            ViewBag.userRolesStats = userRoles;
-            ViewBag.numEvents = numEvents;
-            ViewBag.nextEventDate = nextEventDate;
+
+
+            ArrayList header = new ArrayList {"title", "title2" };
+            ArrayList data1 = new ArrayList { "gotta", 2};
+            ArrayList data2 = new ArrayList { "go", 3 };
+            ArrayList data3 = new ArrayList { "really", 5 };
+            ArrayList data4 = new ArrayList { "fast", 8 };
+            ArrayList data = new ArrayList { header, data1, data2, data3, data4 };
+
+
+            string datastr = JsonConvert.SerializeObject(data, Formatting.None);
+
+            ViewBag.dataj = new HtmlString(datastr);
+
             return View();
         }
 
@@ -69,11 +72,8 @@ namespace Splashify.Controllers
 
         public IActionResult Application()
         {
-            Console.WriteLine("App");
             if (HttpContext.Session.GetString("UserSession") == "club") {
                 var eventlist = new ClubController().ApprovedEventList((int)HttpContext.Session.GetInt32("UserID"));
-              /*  TempData["SaveEventList"] = eventlist;
-                TempData.Keep("SaveEventList");*/
                 ViewBag.OptionEventList = eventlist;
             }
             return View();

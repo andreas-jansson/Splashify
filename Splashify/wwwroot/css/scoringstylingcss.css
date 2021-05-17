@@ -184,11 +184,6 @@ margin: 20px 0 40px 0; /*Align text is lable-box with inputs in inputbox*/
 }
 
 
-.table, th, td {
-    /* border-collapse: collapse;*/
-    border: 1px black solid;
-    align-self:center;
-}
 
 
 .competition-list-box {
@@ -217,7 +212,6 @@ margin: 20px 0 40px 0; /*Align text is lable-box with inputs in inputbox*/
 
 .table, th, td {
     /* border-collapse: collapse;*/
-    border: 1px lightgrey solid;
     align-self: center;
 }
 
@@ -241,5 +235,21 @@ input[type=number] {
 
 tr:nth-child(even) {
     background: #bdd6ff;
+}
+
+
+select {
+    order: 1;
+    width: 100%;
+    height: 50px;
+    width: 99%;
+    margin: 5px;
+    background-color: white;
+    -webkit-appearance: none;
+    border: 1px grey solid;
+    border-radius:2px;
+    font: 20px;
+    color:grey;
+    padding-left:20px;
 }
 

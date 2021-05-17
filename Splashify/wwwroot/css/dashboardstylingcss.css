@@ -85,6 +85,7 @@ form {
     justify-content: space-evenly;
     flex-wrap: nowrap;
     margin: auto;
+    margin-top:-5px;
     width:100%;
     vertical-align:bottom;
 }
@@ -116,15 +117,15 @@ form {
     margin: 1% 1% 0 1%;
 }
 
-.infobox{
-    border:2px solid lightgrey;
-    margin:auto;
-    width:95%;
-    height:300px;
+.infobox {
+    border: 2px solid lightgrey;
+    margin: auto;
+    width: 95%;
+    height: 300px;
+    color: #8099af;
 }
 .table, th, td {
     /* border-collapse: collapse;*/
-    border: 1px black solid;
     align-self: center;
 }
 .th, td{
@@ -197,6 +198,35 @@ input[type=submit] {
     font-size: 12px;
     font-weight:bold;
 }
+/*          Tooltip         */
+
+.tooltip {
+    background-image: url('icons/help-circle-outline.svg');
+    width: 25px;
+    height: 25px;
+    background-repeat: no-repeat;
+    position: relative;
+    display: inline-block;
+    float: right;
+    margin-left: 10px;
+    margin-top:20px;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: lightgrey;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
 
 
 @media only screen and (max-width:600px) {
@@ -237,4 +267,12 @@ input[type=submit] {
         align-self: center;
     }
 
+}
+
+input[type=number] {
+    -moz-appearance: textfield; /* Firefox */
+}
+
+tr:nth-child(even) {
+    background: #bdd6ff;
 }

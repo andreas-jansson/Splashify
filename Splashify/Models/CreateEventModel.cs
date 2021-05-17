@@ -8,7 +8,7 @@ namespace Splashify.Models
         [Required]
         public string eventID { get; set; }
         [Required]
-        public string startdate { get; set; }
+        public DateTime startdate { get; set; }
         [Required]
         public string gender { get; set; }
         [Required]
@@ -17,6 +17,8 @@ namespace Splashify.Models
         public int judge2ID { get; set; }
         [Required]
         public int judge3ID { get; set; }
+        [Required]
+        public string eventtype { get; set; }
 
     }
 }
