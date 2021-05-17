@@ -51,6 +51,12 @@ namespace Splashify.Controllers
 
         public IActionResult Dashboard()
         {
+            var userRoles = new DashboardStatsController().GetUsersStats();
+            var numEvents = new DashboardStatsController().GetNumEvents();
+            var nextEventDate = new DashboardStatsController().GetNextEvent();
+            ViewBag.userRolesStats = userRoles;
+            ViewBag.numEvents = numEvents;
+            ViewBag.nextEventDate = nextEventDate;
             return View();
         }
 

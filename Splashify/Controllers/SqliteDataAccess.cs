@@ -14,14 +14,12 @@ namespace Splashify.Controllers
 {
     public class SqliteDataAccess
     {
-
-
-        private static string LoadConnectionString()
+        protected static string LoadConnectionString()
         {
             return ConfigurationManager.ConnectionStrings["Default"].ConnectionString;
+          
         }
 
-       
         public static List<UserModel> LoadPeople()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -31,7 +29,6 @@ namespace Splashify.Controllers
             }
         }
 
-       
         public static List<ScoreModel> LoadFinalScore()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -39,8 +36,6 @@ namespace Splashify.Controllers
                 var output = cnn.Query<ScoreModel>("SELECT * FROM user", new DynamicParameters());
                 return output.ToList();
             }
-
-
         }
 
         public static void SavePerson(UserModel user)
@@ -60,13 +55,21 @@ namespace Splashify.Controllers
             }
         }
 
-
         public static List<EventModel> LoadEvent()
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 var output = cnn.Query<EventModel>("SELECT * FROM event", new DynamicParameters());
                 return output.ToList();
+            }
+        }
+
+        public static string GetNextEventDate()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                EventModel output = cnn.Query<EventModel>("SELECT * FROM event WHERE startdate > DATE('now') ORDER BY startdate ASC LIMIT 1", new DynamicParameters()).First();
+                return output.startdate;
             }
         }
 
@@ -107,8 +110,6 @@ namespace Splashify.Controllers
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-               
-
                 UserModel output = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE email = @email", user);
 
                 if (output == null)
@@ -158,10 +159,8 @@ namespace Splashify.Controllers
                 {
                     return null;
                 }
-
             }
         }
-
 
         public static void RoleApplication(UserModel user)
         {
@@ -174,14 +173,11 @@ namespace Splashify.Controllers
             }
         }
 
-
-
         //Generic returns 1 object
         public static T SingleObject<T>(T obj, string query)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                
                 T output = cnn.QuerySingleOrDefault<T>(query, obj);
                 
                 return output;
@@ -193,35 +189,29 @@ namespace Splashify.Controllers
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-
                 var output = cnn.QueryFirstOrDefault<string>("SELECT " + returncolumn + " FROM " + table + " WHERE " + column + " = @" + column, obj);
                 return output;
             }
         }
         
         //Generic returns list - otestad
-        public static List <T>LoadManyObjects<T>(T obj, string query)
+        public static List<T> LoadManyObjects<T>(T obj, string query)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-
-
                 var output = cnn.Query<T>(query, obj);
                 return output.ToList();
-
             }
         }
-
 
         // Complex Jumps for judge overview
         public static List<EventJumpModel>LoadEventJumps(EventJumpModel eventjump, string query)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-
                 var output = cnn.Query<EventJumpModel>(query, eventjump);
-                return output.ToList();
 
+                return output.ToList();
             }
         }
 
@@ -264,15 +254,11 @@ namespace Splashify.Controllers
         //Role Application - Approved
         public static void ApproveRole(RoleApplicationModel applicant)
         {
-
-           
-
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
                 cnn.Execute("update user set role = @role where userID = @userID", applicant);
             }
             DenyRole(applicant);
-
         }
 
         //Event Application - Approved
@@ -286,7 +272,6 @@ namespace Splashify.Controllers
                 cnn.Execute("insert into eventclub(eventID, clubID) values(@eventID, @clubId)", applicant);
             }
             DenyEvent(applicant);
-
         }
 
 
@@ -307,14 +292,10 @@ namespace Splashify.Controllers
             {
                 foreach(var item in obj)
                 {
-
                     cnn.Execute(query, item);
-
                 }
-
             }
         }
-        
 
         //Generic save object
         public static void SaveSingleObject<T>(T obj, string query)
@@ -333,6 +314,5 @@ namespace Splashify.Controllers
                 cnn.Execute(query, obj);
             }
         }
-
     }
 }

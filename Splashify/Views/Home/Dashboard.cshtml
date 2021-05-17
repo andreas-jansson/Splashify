@@ -23,18 +23,14 @@
     <div class="view-scoring view-box1">
         <div class="view-topbox1">
             <span>
-                Competitors: 56
-                </br>
-                Judges:12
-                </br>
-                Clubs: 8
+                @Html.Raw(ViewBag.userRolesStats)
             </span>
         </div>
         <div class="view-topbox2">
             <span>
-                Next event: 2021-06-06
+                Next event: @Html.Raw(ViewBag.nextEventDate)
                 </br>
-                Total events: 132
+                Total events: @Html.Raw(ViewBag.numEvents)
             </span>
         </div>
         <div class="view-topbox3">
