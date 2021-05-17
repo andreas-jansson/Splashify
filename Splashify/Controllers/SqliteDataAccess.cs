@@ -70,6 +70,15 @@ namespace Splashify.Controllers
             }
         }
 
+        public static string GetNextEventDate()
+        {
+            using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
+            {
+                EventModel output = cnn.Query<EventModel>("SELECT * FROM event WHERE startdate > DATE('now') ORDER BY startdate ASC LIMIT 1", new DynamicParameters()).First();
+                return output.startdate.ToString();
+            }
+        }
+
         //Search
         public static List<SearchModel> LoadSearch(SearchModel user)
         {
