@@ -6,13 +6,17 @@
 
 
 @{
-    ViewBag.test=TempData["test"];
+    ViewBag.test = TempData["test"];
 
 }
 
 
 
 <div class="title eventapp-title-h1">Event Application</div>
+<div class="tooltip">
+    <span class="tooltiptext">Enter the name of the event in order to apply for it.</span>
+    <span class="tooltiptext">Once approved you will be able to add club members to the event in the section enroll competitors.</span>
+</div>
 <div class="event-application">
     @using (Html.BeginForm("EventApplication", "Event", FormMethod.Post))
     {
@@ -26,6 +30,9 @@
 </div>
 
 <div class="title club-h1">Club Members</div>
+<div class="tooltip">
+    <span class="tooltiptext">Click "Refresh" to view all members of your club</span>
+</div>
 <div class="infobox club-members">
     @Html.Raw(TempData.Peek("ClubMembers"))
 </div>
@@ -39,7 +46,9 @@
 }
 
 <div class="title enrolled-h1">Enrolled Members</div>
-
+<div class="tooltip">
+    <span class="tooltiptext">Click "Refresh" to view club members who are enrolled for upcoming events</span>
+</div>
 <div class="infobox enrolled-competitors">
     @Html.Raw(TempData.Peek("EnrolledMembers"))
 
@@ -53,6 +62,9 @@
     </fieldset>
 }
 <div class="title eventapp-title-h1">Enroll Competitors</div>
+<div class="tooltip">
+    <span class="tooltiptext">Choose an event and enter the clubmembers user ID to entroll them for a future competition</span>
+</div>
 
 <div class="enroll-competitors">
 
@@ -68,7 +80,9 @@
 </div>
 
 <div class="title clubapp-title-h1">Club Applications</div>
-
+<div class="tooltip">
+    <span class="tooltiptext">Here is a list of applicatns who whishes to join your club. Enter their user ID and select an option</span>
+</div>
 <div class="infobox clubapp">
     @Html.Raw(TempData.Peek("ClubApps"))
 

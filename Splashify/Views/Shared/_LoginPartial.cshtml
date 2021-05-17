@@ -9,7 +9,6 @@
 <ul class="navbar-nav">
     @if (Context.Session.GetString("UserSession") != null)
     {
-        @*<a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @Context.Session.GetString("UserName")!</a>*@
         <p id="greetings">Hello @Context.Session.GetString("UserName")</p>
         <div class="sign-in-out">
             <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Logout">

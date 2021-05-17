@@ -10,14 +10,12 @@
 }
 
 
+}
 <script>
-    /* Attempt of getting dynamic data from viewbag into google grapgs */
-    /*var temp1 = ViewBag.dataj;
-    var datassa = JSON.parse(temp1);*/
-
-    var datass = @Html.Raw(Json.Serialize(@ViewBag.dataj));
-                @ViewBag.dataj
+    var temp1 = '@ViewBag.dataj';
+    var datass = JSON.parse(temp1);
 </script>
+
 
 <div class="view-container">
     <div class="view-scoring view-box1">
@@ -50,10 +48,12 @@
 
     <div class="view-scoring view-box2">
         <div class="view-bottombox1">
-
+            <div class="tooltip">
+                <span class="tooltiptext">Select a category and search for the name. You can also leave the text field empty to view all results!</span>
+            </div>
             <form asp-controller="DashboardSearch" asp-action="GetSearch" method="post">
 
-                <input asp-for="SearchField" type="text" class="SearchBar" placeholder="Search"/>
+                <input asp-for="SearchField" type="text" class="SearchBar" placeholder="Search" />
                 <span id="error-message" asp-validation-for="SearchField"></span>
 
                 <div class="custom-select">
@@ -80,16 +80,11 @@
 
             <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
             <script type="text/javascript">
-    google.charts.load("current", { packages: ["corechart"] });
+
+                google.charts.load("current", { packages: ["corechart"] });
                 google.charts.setOnLoadCallback(drawChart);
                 function drawChart() {
-                    var data = google.visualization.arrayToDataTable([
-                        ['Task', 'Hours per Day'],
-                        ['VM', 11],
-                        ['OS Summer', 2],
-                        ['SM', 2],
-                        ['EM', 4],
-                    ]);
+                    var data = google.visualization.arrayToDataTable(datass);
 
                     var options = {
                         title: 'Events',

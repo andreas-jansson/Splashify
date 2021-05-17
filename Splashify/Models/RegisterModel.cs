@@ -3,8 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Splashify.Models
 {
+
     public class RegisterModel
     {
+
         public string FnameField { get; set; }
 
         [Required(ErrorMessage = "* Enter a last name")]

@@ -56,7 +56,7 @@ namespace Splashify.Controllers
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into Event(eventID,startdate,gender) values(@eventID, @startdate, @gender)", eventObj);
+                cnn.Execute("insert into Event(eventID,startdate,gender, eventtype) values(@eventID, @startdate, @gender, @eventtype)", eventObj);
             }
         }
 
@@ -334,5 +334,6 @@ namespace Splashify.Controllers
             }
         }
 
+   
     }
 }

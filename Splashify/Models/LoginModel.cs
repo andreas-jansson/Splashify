@@ -6,6 +6,7 @@ namespace Splashify.Models
   
     public class LoginModel
     {
+
         [Required(ErrorMessage = "* Enter a valid E-mail")]
         [EmailAddress(ErrorMessage = "* Enter a valid E-mail")]
         public string email { get; set; }
