@@ -22,6 +22,15 @@ namespace Splashify.Controllers
         {
             Console.WriteLine("SetEvent triggered!");
 
+
+            if(createEventObj.eventID == "NULL" || createEventObj.eventID == "null" || createEventObj.eventID == "Null")
+            {
+                return RedirectToAction("Managment", "Home");
+
+            }
+
+
+
             EventModel eventObj = new EventModel();
             eventObj.eventID = createEventObj.eventID;
             eventObj.startdate = createEventObj.startdate;
@@ -65,7 +74,7 @@ namespace Splashify.Controllers
             SqliteDataAccess.SaveManyObjects(eventJudgeObjList, query);
 
 
-            return View("~/Views/Home/Managment.cshtml");
+            return RedirectToAction("Managment", "Home");
         }
 
         public ActionResult GetEventList()
@@ -91,7 +100,7 @@ namespace Splashify.Controllers
 
             ViewBag.events = eventListHtml;
 
-            return View("~/Views/Home/Scoring.cshtml");
+            return RedirectToAction("Scoring", "Home");
 
         }
         //gets the current/upcoming event for the judge
@@ -193,12 +202,14 @@ namespace Splashify.Controllers
 
             eventObjList=SqliteDataAccess.LoadManyObjects(eventObj, query);
 
-            StringBuilder eventListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th style='width:25px'>&nbsp;</th><th>Name</th><th>Date</th><th>Gender</th></tr>");
+              StringBuilder eventListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th style='width:25px'>&nbsp;</th><th>Name</th><th>Date</th><th>Gender</th></tr>");
+
             int i = 1;
             foreach (var e in eventObjList)
             {
                 // onclick='javascript:alert(\"hej\")'
-                eventListHtml.Append("<tr id=" + i + "><td width='25px'><img src='../css/images/plus_icon.png' class='icon' onclick='javascript:document.getElementById(\"eventID\").value=\"" + e.eventID + "\"'></td><td>");
+               // eventListHtml.Append("<tr id=" + i + "><td id='add-icon-cell'><img src='~/images/plus_icon.png' class='icon' onclick='javascript:document.getElementById(\"eventID\").value=\"" + e.eventID + "\"'></td><td>");
+                eventListHtml.Append("<tr id=" + i + "><td class='add-icon-cell' onclick='javascript:document.getElementById(\"eventID\").value=\"" + e.eventID + "\"'</td><td>");
                 eventListHtml.Append(e.eventID);
                 eventListHtml.Append("</td><td>");
                 eventListHtml.Append(e.startdate);
@@ -206,6 +217,7 @@ namespace Splashify.Controllers
                 eventListHtml.Append(e.gender);
                 eventListHtml.Append("</td></tr>");
             }
+            
 
             eventListHtml.Append("</table>");
 

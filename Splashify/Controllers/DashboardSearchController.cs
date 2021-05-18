@@ -68,6 +68,14 @@ namespace Splashify.Controllers
 
             Console.WriteLine("GetSearch triggered!");
 
+            //checks for input null from user
+            if(Search.SearchField == "null" || Search.SearchField == "Null" || Search.SearchField == "NULL")
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
+
+
+
             SearchModel s = new SearchModel();
             s.SearchField = Search.SearchField;
             s.Value = Search.Value;
@@ -81,7 +89,7 @@ namespace Splashify.Controllers
                 SearchObj = SqliteDataAccess.LoadSearch(s);
                 if (SearchObj == null) 
                 {
-                    return View("~/Views/Home/Dashboard.cshtml");
+                    return RedirectToAction("Dashboard", "Home");
                 }
 
                 foreach (var e in SearchObj)
@@ -106,7 +114,7 @@ namespace Splashify.Controllers
                 SearchObj = SqliteDataAccess.LoadSearch(s);
                 if (SearchObj == null)
                 {
-                    return View("~/Views/Home/Dashboard.cshtml");
+                    return RedirectToAction("Dashboard", "Home");
                 }
 
                 foreach (var e in SearchObj)
@@ -125,7 +133,7 @@ namespace Splashify.Controllers
                 SearchObj = SqliteDataAccess.LoadSearch(s);
                 if (SearchObj == null)
                 {
-                    return View("~/Views/Home/Dashboard.cshtml");
+                    return RedirectToAction("Dashboard", "Home");
                 }
 
                 foreach (var e in SearchObj)
@@ -146,7 +154,7 @@ namespace Splashify.Controllers
             else
             {
                 Console.WriteLine("Error");
-                return View("~/Views/Home/Dashboard.cshtml");
+                return RedirectToAction("Dashboard", "Home");
             }
 
 

@@ -232,13 +232,16 @@ tr:nth-child(even) {
 }
 
 
-img.icon {
-    border: 0px;
-    padding: 0px;
-    width: 100px;
-    height: 100px;
-}
-
 img:hover {
     cursor: pointer;
+}
+
+.add-icon-cell {
+    cursor: pointer;
+    width: 70px;
+    height: 30px;
+    vertical-align:central;
+    background-image: url('icons/plus-box.png');
+    background-repeat: no-repeat;
+    background-size:cover;
 }

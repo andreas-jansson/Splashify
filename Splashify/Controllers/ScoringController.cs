@@ -20,6 +20,14 @@ namespace Splashify.Controllers
         public ActionResult SetScore(int ContestantIDField, string JumpTypeField, float ScoreField)
         {
 
+
+
+            //checks for input null from user
+            if (JumpTypeField == "null" || JumpTypeField == "Null" || JumpTypeField == "NULL")
+            {
+                return RedirectToAction("Scoring", "Home");
+            }
+
             //get upcoming event info based on judgeID/userID
 
             //get the first jumpnumber that hasnt been scored by said judge for CompetitorID
@@ -28,7 +36,7 @@ namespace Splashify.Controllers
 
             //Trigger check for finalscore
 
-       
+
 
 
             string query_next_event = "select e.eventID, j.judgeID, e.startdate " +
