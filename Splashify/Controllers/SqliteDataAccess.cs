@@ -171,7 +171,6 @@ namespace Splashify.Controllers
             }
         }
 
-
         public static void RoleApplication(UserModel user)
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
@@ -179,9 +178,10 @@ namespace Splashify.Controllers
                 //fetches the users data again in order to have a userID for the application query
                 UserModel userRefresh = cnn.QuerySingleOrDefault<UserModel>("SELECT * FROM user WHERE email = @email", user);
                 userRefresh.role = user.role;
-                cnn.Execute("insert into roleapplication(userID, role) values(@userID, @role)", user);
+                cnn.Execute("insert into roleapplication(userID, role) values(@userID, @role)", userRefresh);
             }
         }
+
 
 
 

@@ -56,6 +56,7 @@ namespace Splashify.Controllers
             {
                 //Finds the requested role
                 applicant.role = SqliteDataAccess.SingleObjectString(applicant, "roleapplication", "userID", "role");
+                //Approves request
                 SqliteDataAccess.ApproveRole(applicant);
 
             }

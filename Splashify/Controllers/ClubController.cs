@@ -235,7 +235,7 @@ namespace Splashify.Controllers
 
 
             StringBuilder clubListHtml = new StringBuilder("<table id=\"clubTbl\">" +
-              "<tr><th>Club</th><th>Club Id</th><th>User Id</th></tr>");
+              "<tr><th>Club</th><th>Club Id</th></tr>");
 
             foreach (var club in clubs)
             {
@@ -243,8 +243,6 @@ namespace Splashify.Controllers
                 clubListHtml.Append(club.clubname);
                 clubListHtml.Append("</td><td>");
                 clubListHtml.Append(club.clubID);
-                clubListHtml.Append("</td><td>");
-                clubListHtml.Append(club.userID);
                 clubListHtml.Append("</td></tr>");
             }
 
@@ -254,6 +252,30 @@ namespace Splashify.Controllers
             ViewBag.Clubs = clubListHtml;
             TempData["Clubs"] = clubListHtml.ToString();
             return RedirectToAction("Application", "Home");
+        }
+
+        public ActionResult CreateClub(ClubModel club)
+        {
+            if(club.clubname == "NULL" || club.clubname == "Null" || club.clubname == "null")
+            {
+                Console.WriteLine("Input text null");
+                return RedirectToAction("Managment", "Home");
+            }
+            ClubModel replica = new ClubModel();
+            string query_replica = "select * from club where clubname = @clubname";
+            replica = SqliteDataAccess.SingleObject(club, query_replica);
+            if(replica != null)
+            {
+                Console.WriteLine("Club already exists");
+                return RedirectToAction("Managment", "Home");
+
+            }
+
+            string query = "insert into club(userID, clubname) values(@userId, @clubname)";
+            SqliteDataAccess.SaveSingleObject(club, query);
+            Console.WriteLine("Club created");
+            return RedirectToAction("Managment", "Home");
+
         }
 
     }

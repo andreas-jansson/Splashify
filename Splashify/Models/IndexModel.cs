@@ -11,6 +11,7 @@ namespace Splashify.Models
         public EventModel eventModel { get; set; }
         public LoginModel logintModel { get; set; }
         public SearchModel SearchModel { get; set; }
+        public ClubModel ClubModel { get; set; }
         public CompetitorModel CompetitorModel { get; set; }
 
     }

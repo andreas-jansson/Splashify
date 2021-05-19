@@ -51,29 +51,29 @@ namespace Splashify.Controllers
                     HttpContext.Session.SetString("UserName", newUser.fname);
 
 
-                    return View("~/Views/Home/Dashboard.cshtml");
+                    return RedirectToAction("Dashboard", "Home");
                 }
                 else
                 {
-                    return View("~/Views/Home/Register.cshtml");
+                    return RedirectToAction("Register", "Home");
                 }
             }
             else if(replica.fname == "birthdate duplicate")
             {
                 Console.WriteLine("replica: " + replica.fname);
-                return View("~/Views/Home/Register.cshtml");
+                return RedirectToAction("Register", "Home");
 
             }
             else if (replica.fname == "email duplicate")
             {
                 Console.WriteLine("replica: " + replica.fname);
-                return View("~/Views/Home/Register.cshtml");
+                return RedirectToAction("Register", "Home");
 
             }
             else 
             {
                 Console.WriteLine("replica: " + replica.fname);
-                return View("~/Views/Home/Register.cshtml");
+                return RedirectToAction("Register", "Home");
 
             }
 
@@ -104,7 +104,7 @@ namespace Splashify.Controllers
 
             ViewBag.ppl = userListHtml;
 
-            return View("~/Views/Home/Scoring.cshtml");
+            return RedirectToAction("Scoring", "Home");
         }
 
 
@@ -130,19 +130,19 @@ namespace Splashify.Controllers
                     HttpContext.Session.SetInt32("UserClub", user.club);
                     HttpContext.Session.SetInt32("UserID", user.userID);
 
-                    return View("~/Views/Home/Dashboard.cshtml");
+                    return RedirectToAction("Dashboard", "Home");
 
                 }
                 else
                 {
                     Console.WriteLine("Access Denied!");
-                    return View("~/Views/Home/Login.cshtml");
+                    return RedirectToAction("Login", "Home");
                 }
             }
             else
             {
                 Console.WriteLine("Access Denied!");
-                return View("~/Views/Home/Login.cshtml");
+                return RedirectToAction("Login", "Home");
             }
 
         }
@@ -152,7 +152,7 @@ namespace Splashify.Controllers
 
             HttpContext.Session.Remove("UserSession");
             HttpContext.Session.Remove("UserName");
-            return View("~/Views/Home/Dashboard.cshtml");
+            return RedirectToAction("Dashboard", "Home");
         }
 
         //returns clubinfo to competitor in view application

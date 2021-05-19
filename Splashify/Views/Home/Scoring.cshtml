@@ -21,19 +21,25 @@
 }
 
 <div class="scoring-container">
+
     <div class="top-box">
-        <div class="info-box">
-            <h1 id="jmp-info-h1">Jump Type Codes</h1>
-            <ul>
-                <li id="jmp-info-li">1: Forward</li>
-                <li id="jmp-info-li">2: Backward</li>
-                <li id="jmp-info-li">3: Islander</li>
-                <li id="jmp-info-li">4: German</li>
-                <li id="jmp-info-li">5: Handstand</li>
-                <li id="jmp-info-li">6: Pike</li>
-            </ul>
+        <div class="scoring-header">
+            <h1 id="event-title-h1">Current competition</h1>
+            <div class="competition-list-box">
+                @Html.Raw(TempData.Peek("eventjumps"))
+
+            </div>
+            @using (Html.BeginForm("GetEvent", "Event", FormMethod.Post))
+            {
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <input type="submit" value="Get Event" />
+                </fieldset>
+
+            }
         </div>
     </div>
+
     <div class="main-container">
         <div class="main box1">
             @using (Html.BeginForm("SetScore", "Scoring", FormMethod.Post))
@@ -42,24 +48,14 @@
                 <fieldset>
                     <div class="lable-box">
                         <ul>
-                            <li><lable>Contestant ID</lable></li>
+                            <li><lable>Competitor ID</lable></li>
                             <li><lable>Jump Code</lable></li>
                             <li><lable>Score</lable></li>
                         </ul>
                     </div>
                     <div class="input-box">
                         <input type="number" name="ContestantIDField" placeholder="Contest ID" required />
-                        <input type="text" name="JumpTypeField" placeholder="Jump code" required />
-                        <select name="JumpTypeField" required>
-                            <option value="">Jump Type:</option>
-                            <option value="100">Forward Dive Straight</option>
-                            <option value="200C"></option>
-                            <option value="300"></option>
-                            <option value="400"></option>
-                            <option value="500"></option>
-                            <option value="600"></option>
-                        </select>
-
+                        <input type="text" name="JumpTypeField" placeholder="Jump code e.g. 101A" required />
                             <select name="ScoreField" required>
                                 <option value="">Score:</option>
                                 <option value="0">0</option>
@@ -93,22 +89,67 @@
 
         <div class="main box2">
 
-            <div class="scoring-header">
-                <h1 id="event-title-h1">Current competition</h1>
-                <div class="competition-list-box">
-                    @Html.Raw(TempData.Peek("eventjumps"))
-
-                </div>
-                @using (Html.BeginForm("GetEvent", "Event", FormMethod.Post))
-                {
-                    @Html.ValidationSummary(true)
-                    <fieldset>
-                        <input type="submit" value="Get Event" />
-                    </fieldset>
-
-                }
+            <div class="info-box groupnr">
+                <h1 id="jmp-info-h1">Jump Type Codes</h1>
+                <ul>
+                    <li id="jmp-info-li">100: Forward</li>
+                    <li id="jmp-info-li">100: Forward</li>
+                    <li id="jmp-info-li">101: Backward</li>
+                    <li id="jmp-info-li">102: Islander</li>
+                    <li id="jmp-info-li">103: German</li>
+                    <li id="jmp-info-li">104: Handstand</li>
+                    <li id="jmp-info-li">105: Pike</li>
+                </ul>
+                <ul>
+                    <li id="jmp-info-li">200: Forward</li>
+                    <li id="jmp-info-li">201: Backward</li>
+                    <li id="jmp-info-li">202: Islander</li>
+                    <li id="jmp-info-li">203: German</li>
+                    <li id="jmp-info-li">204: Handstand</li>
+                    <li id="jmp-info-li">205: Pike</li>
+                </ul>
+                <ul>
+                    <li id="jmp-info-li">300: Forward</li>
+                    <li id="jmp-info-li">301: Backward</li>
+                    <li id="jmp-info-li">302: Islander</li>
+                    <li id="jmp-info-li">303: German</li>
+                    <li id="jmp-info-li">304: Handstand</li>
+                    <li id="jmp-info-li">305: Pike</li>
+                </ul>
+                <ul>
+                    <li id="jmp-info-li">400: Forward</li>
+                    <li id="jmp-info-li">401: Backward</li>
+                    <li id="jmp-info-li">402: Islander</li>
+                    <li id="jmp-info-li">403: German</li>
+                    <li id="jmp-info-li">404: Handstand</li>
+                    <li id="jmp-info-li">405: Pike</li>
+                </ul>
+                <ul>
+                    <li id="jmp-info-li">500: Forward</li>
+                    <li id="jmp-info-li">501: Backward</li>
+                    <li id="jmp-info-li">502: Islander</li>
+                    <li id="jmp-info-li">503: German</li>
+                    <li id="jmp-info-li">504: Handstand</li>
+                    <li id="jmp-info-li">505: Pike</li>
+                </ul>
+                <ul>
+                    <li id="jmp-info-li">600: Forward</li>
+                    <li id="jmp-info-li">601: Backward</li>
+                    <li id="jmp-info-li">602: Islander</li>
+                    <li id="jmp-info-li">603: German</li>
+                    <li id="jmp-info-li">604: Handstand</li>
+                    <li id="jmp-info-li">605: Pike</li>
+                </ul>
             </div>
-
+            <div class="info-box style">
+                <h1 id="jmp-info-h1">Jump Type Styles</h1>
+                <ul>
+                    <li id="jmp-info-li">A: Forward</li>
+                    <li id="jmp-info-li">B: Forward</li>
+                    <li id="jmp-info-li">C: Backward</li>
+                    <li id="jmp-info-li">D: Islander</li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

@@ -118,7 +118,7 @@ namespace Splashify.Controllers
                 "inner join judge as ju on ju.judgeID = s.judgeID " +
                 "inner join user as us on us.userID = ju.userID " +
                 "where j.eventID = @eventID " +
-                "group by j.jumpID, s.judgeID";
+                "group by j.jumpID";
 
 
             EventJumpModel eventjump = new EventJumpModel();

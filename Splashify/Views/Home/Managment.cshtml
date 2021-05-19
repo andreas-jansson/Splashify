@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Managment";
+    ViewData["Title"] = "Management";
 }
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
@@ -39,7 +39,7 @@
 
             </div>
             <form asp-controller="ApplicationHandler" asp-action="RoleApplication" method="post">
-                <input type="number" id="ID" name="userID" placeholder="User ID" />
+                <input type="number" id="ID" name="userIDField" placeholder="User ID" />
                 <button type="submit" id="refreshbtn" name="button" value="refresh">Refresh</button>
                 <button type="submit" id="approvebtn" name="button" value="accept">Accept</button>
                 <button type="submit" id="denybtn" name="button" value="deny">Deny</button>

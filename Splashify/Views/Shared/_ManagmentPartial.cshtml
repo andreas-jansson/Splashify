@@ -1,18 +1,16 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using Microsoft.AspNetCore.Http
 @inject IHttpContextAccessor HttpContextAccessor
-@model Splashify.Models.SearchModel
+@model Splashify.Models.ClubModel
 
 
 <div class="rows-even box3">
-
-
-        @using (Html.BeginForm("GetSingleObject", "User", FormMethod.Post))
-        {
-            @Html.ValidationSummary(true)
-            <fieldset>
-                <input type="submit" value="Go!" />
-            </fieldset>
-        }
+    <form asp-controller="Club" asp-action="CreateClub" method="post">
+        <input asp-for="clubname" type="text" class="form-control" placeholder="Club Name" />
+        <span id="error-message" asp-validation-for="clubname"></span>
+        <input asp-for="userID" type="number" class="form-control" placeholder="UserID" />
+        <span id="error-message" asp-validation-for="userID"></span>
+        <button type="submit">Create</button>
+    </form>
 
 </div>

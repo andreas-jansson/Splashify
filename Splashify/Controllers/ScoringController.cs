@@ -25,7 +25,7 @@ namespace Splashify.Controllers
             //checks for input null from user
             if (JumpTypeField == "null" || JumpTypeField == "Null" || JumpTypeField == "NULL")
             {
-                return RedirectToAction("Scoring", "Home");
+                return RedirectToAction("Dashboard", "Home");
             }
 
             //get upcoming event info based on judgeID/userID
@@ -39,7 +39,7 @@ namespace Splashify.Controllers
 
 
 
-            string query_next_event = "select e.eventID, j.judgeID, e.startdate " +
+            string query_next_event = "select e.eventID, j.judgeID, e.startdate, e.eventtype " +
             "from event as e " +
             "inner join eventjudge as ej on e.eventID = ej.eventID " +
             "inner join judge as j on j.judgeID = ej.judgeID " +
@@ -55,6 +55,7 @@ namespace Splashify.Controllers
             Console.WriteLine("userID: " + eventinfo.userID);
             eventinfo =SqliteDataAccess.SingleObject(eventinfo, query_next_event);
             Console.WriteLine("eventinfo: " + eventinfo.eventID + " " + eventinfo.judgeID);
+            eventinfo.competitorID = ContestantIDField;
             var eventID = eventinfo.eventID;
             var judgeID = eventinfo.judgeID;
             float height = eventinfo.height;
@@ -84,9 +85,9 @@ namespace Splashify.Controllers
             //Fetches latest jump nr if a score exists
             //if null assumse current jumpnr is 1
             //else take the number and add 1 to it if it isnt already max number
-            string query_next_jump ="select j.jumpnr, j.jumpID from score as s inner join jump as j on j.jumpID = s.jumpID where eventID = @eventID and judgeID = @judgeID order by jumpnr desc LIMIT 1";
+            string query_next_jump ="select j.jumpnr, j.jumpID from score as s inner join jump as j on j.jumpID = s.jumpID where eventID = @eventID and judgeID = @judgeID and competitorID = @competitorID order by jumpnr desc LIMIT 1";
             eventinfo = SqliteDataAccess.SingleObject(eventinfo, query_next_jump);
-            //Console.WriteLine("current jump: " + eventinfo.jumpnr);
+            Console.WriteLine("current jump: " + eventinfo.jumpID);
 
             string query_score = "";
             string query_jump_type = "update jump set jumptype = @jumptype where jumpID=@jumpID";
@@ -151,6 +152,7 @@ namespace Splashify.Controllers
                     score_edge.judgeID = judgeID;
                     score_edge.score = ScoreField;
                     score_edge.jumptype = ID;
+                    Console.WriteLine("JumpID:" + score_edge.jumpID);
                     jumpID = score_edge.jumpID;
                     query_score = "insert into score(jumpID, judgeID, score) values(@jumpID, @judgeID, @score)";
                     SqliteDataAccess.SaveSingleObject(score_edge, query_score);
