@@ -76,7 +76,7 @@ namespace Splashify.Controllers
 
             if (s.Value == 1)
             {
-                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>First Name</th><th>Last Name</th><th>Event</th><th>Jumpnr</th><th>Finalscore</th></tr>");
 
                 SearchObj = SqliteDataAccess.LoadSearch(s);
                 if (SearchObj == null) 
@@ -87,11 +87,11 @@ namespace Splashify.Controllers
                 foreach (var e in SearchObj)
                 {
                     SearchListHtml.Append("<tr><td>");
+                    SearchListHtml.Append(e.Fname);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Lname);
+                    SearchListHtml.Append("</td><td>");
                     SearchListHtml.Append(e.EventID);
-                    SearchListHtml.Append("</td><td>");
-                    SearchListHtml.Append(e.CompetitorID);
-                    SearchListHtml.Append("</td><td>");
-                    SearchListHtml.Append(e.JumpID);
                     SearchListHtml.Append("</td><td>");
                     SearchListHtml.Append(e.Jumpnr);
                     SearchListHtml.Append("</td><td>");
@@ -101,7 +101,7 @@ namespace Splashify.Controllers
             }
             else if (s.Value == 2)
             {
-                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>JudgeID</th><th>EventID</th></tr>");
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>First Name</th><th>Last Name</th><th>Event</th><th>Date</th></tr>");
 
                 SearchObj = SqliteDataAccess.LoadSearch(s);
                 if (SearchObj == null)
@@ -112,15 +112,19 @@ namespace Splashify.Controllers
                 foreach (var e in SearchObj)
                 {
                     SearchListHtml.Append("<tr><td>");
-                    SearchListHtml.Append(e.JudgeID);
+                    SearchListHtml.Append(e.Fname);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.Lname);
                     SearchListHtml.Append("</td><td>");
                     SearchListHtml.Append(e.EventID);
+                    SearchListHtml.Append("</td><td>");
+                    SearchListHtml.Append(e.startdate);
                     SearchListHtml.Append("</td></tr>");
                 }
             }
             else if (s.Value == 3)
             {
-                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>EventID</th><th>CompetitorID</th><th>JumpID</th><th>Jumpnr</th><th>Finalscore</th></tr>");
+                SearchListHtml = new StringBuilder("<table id=\"pplTbl\"><tr><th>Event</th><th>date</th><th>Competitor</th><th>Jumpnr</th><th>Finalscore</th></tr>");
 
                 SearchObj = SqliteDataAccess.LoadSearch(s);
                 if (SearchObj == null)
@@ -133,9 +137,9 @@ namespace Splashify.Controllers
                     SearchListHtml.Append("<tr><td>");
                     SearchListHtml.Append(e.EventID);
                     SearchListHtml.Append("</td><td>");
-                    SearchListHtml.Append(e.CompetitorID);
+                    SearchListHtml.Append(e.startdate);
                     SearchListHtml.Append("</td><td>");
-                    SearchListHtml.Append(e.JumpID);
+                    SearchListHtml.Append(e.CompetitorID);
                     SearchListHtml.Append("</td><td>");
                     SearchListHtml.Append(e.Jumpnr);
                     SearchListHtml.Append("</td><td>");

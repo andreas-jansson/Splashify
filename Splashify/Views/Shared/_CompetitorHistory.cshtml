@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewData["Title"] = "_CompetitorHistory";
+}
+
+@using Microsoft.AspNetCore.Identity
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@model Splashify.Models.SearchModel
+
+<h1>
+    <div class="event-list-box">
+            @Html.Raw(ViewBag.UpcomingEvents)
+    </div>
+    @using (Html.BeginForm("CompetitorHistory", "Event", FormMethod.Post))
+    {
+        @Html.ValidationSummary(true)
+        <fieldset>
+            <input type="submit" value="Search" />
+        </fieldset>
+
+    }
+</h1>
+
