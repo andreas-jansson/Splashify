@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Dapper;
+using Splashify.Models;
+using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SQLite;
-using System.Data.SqlClient;
-using Dapper;
-using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using Splashify.Models;
 
 namespace Splashify.Controllers
 
@@ -88,19 +86,52 @@ namespace Splashify.Controllers
                 if (user.Value == 1)
                 {
                     Console.WriteLine("value = 1");
-                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE CompetitorID ='" + user.SearchField + "'", new DynamicParameters());
+                    if (user.SearchField != null) 
+                    {
+                        output = cnn.Query<SearchModel>("select fname, lname, eventid, jumpnr, finalscore " +
+                            "from jump JOIN (competitor JOIN user ON user.userID = competitor.userID) ON jump.competitorID = competitor.competitorID " +
+                            "where fname = '" + user.SearchField + "'", new DynamicParameters());
+                    }
+                    else 
+                    {
+                        output = cnn.Query<SearchModel>("select fname, lname, eventid, jumpnr, finalscore " +
+                            "from jump JOIN (competitor JOIN user ON user.userID = competitor.userID) " +
+                            "ON jump.competitorID = competitor.competitorID ", new DynamicParameters());
+                    }
                     return output.ToList();
                 }
                 else if (user.Value == 2)
                 {
                     Console.WriteLine("value = 2");
-                    output = cnn.Query<SearchModel>("SELECT * FROM Eventjudge WHERE JudgeID ='" + user.SearchField + "'", new DynamicParameters());
+                    if (user.SearchField != null)
+                    {
+                        output = cnn.Query<SearchModel>("select fname, lname, event.eventid, startdate " +
+                            "from user JOIN (judge JOIN (eventjudge JOIN event ON event.eventID = eventjudge.eventID) " +
+                            "ON judge.judgeID = eventjudge.judgeID) ON user.userID = judge.userID " +
+                            "where fname = '" + user.SearchField + "'", new DynamicParameters());
+                    }
+                    else 
+                    {
+                        output = cnn.Query<SearchModel>("select fname, lname, event.eventid, startdate " +
+                            "from user JOIN (judge JOIN (eventjudge JOIN event ON event.eventid = eventjudge.eventid) " +
+                            "ON judge.judgeid = eventjudge.judgeid) ON user.userid = judge.userid ", new DynamicParameters());
+                    }
                     return output.ToList();
                 }
                 else if (user.Value == 3)
                 {
                     Console.WriteLine("value = 3");
-                    output = cnn.Query<SearchModel>("SELECT * FROM Jump WHERE EventID ='" + user.SearchField + "'", new DynamicParameters());
+                    if (user.SearchField != null) 
+                    {
+                        output = cnn.Query<SearchModel>("SELECT event.eventid, startdate, competitorid, jumpnr, finalscore " +
+                            "FROM Jump JOIN event ON jump.eventid = event.eventid " +
+                            "WHERE event.eventid ='" + user.SearchField + "'", new DynamicParameters());
+                    }
+                    else 
+                    {
+                        output = cnn.Query<SearchModel>("SELECT event.eventid, startdate, competitorid, jumpnr, finalscore " +
+                        "FROM Jump JOIN event ON jump.eventid = event.eventid ", new DynamicParameters());
+                    }
                     return output.ToList();
                 }
                 else

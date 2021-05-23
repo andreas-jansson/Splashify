@@ -39,5 +39,7 @@
 
 <div class="title competitor-upcoming-title-h1">Your History</div>
 <div class="infobox competitor-history-events-box">
-
+    @{ 
+        await Html.RenderPartialAsync("_CompetitorHistory", Model);
+    }
 </div>
