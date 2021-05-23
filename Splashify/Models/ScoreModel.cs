@@ -11,6 +11,7 @@ namespace Splashify.Models
         public int jumpID { get; set; }
         public int jumptype { get; set; }
         public float height { get; set; }
+        public float eventtype { get; set; }
         public float score { get; set; }
         public DateTime startdate { get; set; }
     }

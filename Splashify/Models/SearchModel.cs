@@ -8,14 +8,9 @@ namespace Splashify.Models
     {
         public string SearchField { get; set; }
         public int Value { get; set; }
-<<<<<<< HEAD
-=======
-
-
         public string Fname { get; set; }
         public string Lname { get; set; }
         public string startdate { get; set; }
->>>>>>> Splashify/search_2
         public string JudgeID { get; set; }
         public string EventID { get; set; }
         public string CompetitorID { get; set; }

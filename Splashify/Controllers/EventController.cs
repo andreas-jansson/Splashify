@@ -113,12 +113,12 @@ namespace Splashify.Controllers
                 " us.lname as JudgeLastName, s.score, j.finalscore " +
                 "from jump as j " +
                 "left join score as s on j.jumpID = s.jumpID " +
-                "inner join competitor as c on c.competitorID = j.competitorID " +
-                "inner join user as u on u.userID = c.userID " +
-                "inner join judge as ju on ju.judgeID = s.judgeID " +
-                "inner join user as us on us.userID = ju.userID " +
+                "left join competitor as c on c.competitorID = j.competitorID " +
+                "left join user as u on u.userID = c.userID " +
+                "left join judge as ju on ju.judgeID = s.judgeID " +
+                "left join user as us on us.userID = ju.userID " +
                 "where j.eventID = @eventID " +
-                "group by j.jumpID";
+                "order by j.competitorID and j.jumpnr";
 
 
             EventJumpModel eventjump = new EventJumpModel();
@@ -152,7 +152,7 @@ namespace Splashify.Controllers
                 return RedirectToAction("Scoring", "Home");
 
             }
-            Console.WriteLine("userID: " + eventjump.eventID);
+            Console.WriteLine("event: " + eventjump.eventID);
 
             jumpObjList = SqliteDataAccess.LoadEventJumps(eventjump, query);
             Console.WriteLine("list: " + jumpObjList);
@@ -160,7 +160,6 @@ namespace Splashify.Controllers
             int i = 1;
             foreach (var jump in jumpObjList)
             {
-                Console.WriteLine("Ev: " + jump.eventID);
                 jumpListHtml.Append("<tr id="+i+"><td>");
                 jumpListHtml.Append(eventjump.eventID);
                 jumpListHtml.Append("</td><td>");

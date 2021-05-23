@@ -46,7 +46,7 @@ namespace Splashify.Controllers
 
         public IActionResult Dashboard()
         {
-
+            /*
 
             ArrayList header = new ArrayList {"title", "title2" };
             ArrayList data1 = new ArrayList { "gotta", 2};
@@ -57,6 +57,11 @@ namespace Splashify.Controllers
 
 
             string datastr = JsonConvert.SerializeObject(data, Formatting.None);
+
+            ViewBag.dataj = new HtmlString(datastr);*/
+
+            var dataarray = new DashboardStatsController().GoogleGraph();
+            string datastr = JsonConvert.SerializeObject(dataarray, Formatting.None);
 
             ViewBag.dataj = new HtmlString(datastr);
 

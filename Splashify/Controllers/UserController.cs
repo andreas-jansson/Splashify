@@ -41,6 +41,18 @@ namespace Splashify.Controllers
                 Console.WriteLine("replica: " + replica);
                 if (ModelState.IsValid)
                 {
+                    //Creates encryption object and adds hash + salt to users password and salt
+                    passwordEncryptionController newPW = new passwordEncryptionController();
+                    newPW.generateSalt();
+                    var hash = newPW.generateHash(newUser.password, true);
+                    var salt = newPW.getSalt();
+
+                    newUser.password = hash;
+                    newUser.salt = salt;
+                    Console.WriteLine("hash: " + hash);
+                    Console.WriteLine("salt: " + salt);
+
+
                     // Saves User in user table
                     SqliteDataAccess.SavePerson(newUser);
 
@@ -115,14 +127,25 @@ namespace Splashify.Controllers
             UserModel u = new UserModel();
             u.email = (string)loginUser.email;
             u.password = (string)loginUser.password;
-
-
             UserModel user = SqliteDataAccess.AuthorizeUser(u);
+
+
+ 
+
 
             if (ModelState.IsValid && user != null)
             {
 
-                if (user.password == u.password)
+                //creates hash of inserted password with the salt that belongs to the username
+                passwordEncryptionController hashPW = new passwordEncryptionController();
+                hashPW.setSalt(user.salt);
+                var hash = hashPW.generateHash(u.password, true);
+
+                Console.WriteLine("salt: " + user.salt);
+                Console.WriteLine("hash: " + hash);
+                Console.WriteLine("password: " + user.password);
+
+                if (user.password == hash)
                 {
                     Console.WriteLine("Authenticated!");
                     HttpContext.Session.SetString("UserSession", user.role);

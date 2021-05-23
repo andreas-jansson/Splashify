@@ -30,7 +30,9 @@ namespace Splashify.Controllers
             byte[] byte_salt = new byte[salt_max_size];
             saltGenerator.GetNonZeroBytes(byte_salt);
 
-            salt = byte_salt.ToString();
+            //salt = byte_salt.ToString();
+            salt = BitConverter.ToString(byte_salt);
+
         }
 
         public string generateHash(string input, bool return_hash)
@@ -83,7 +85,7 @@ namespace Splashify.Controllers
             return salt;
         }
 
-        public string getHasg()
+        public string getHash()
         {
             return hash;
         }

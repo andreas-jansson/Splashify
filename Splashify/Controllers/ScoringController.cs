@@ -54,11 +54,11 @@ namespace Splashify.Controllers
             eventinfo.userID = (int)HttpContext.Session.GetInt32("UserID");
             Console.WriteLine("userID: " + eventinfo.userID);
             eventinfo =SqliteDataAccess.SingleObject(eventinfo, query_next_event);
-            Console.WriteLine("eventinfo: " + eventinfo.eventID + " " + eventinfo.judgeID);
+            Console.WriteLine("eventinfo: " + eventinfo.eventID + " " + eventinfo.judgeID + " Height:" + eventinfo.eventtype);
             eventinfo.competitorID = ContestantIDField;
             var eventID = eventinfo.eventID;
             var judgeID = eventinfo.judgeID;
-            float height = eventinfo.height;
+            var height = eventinfo.eventtype;
             int jumpID=0;
 
 
@@ -66,7 +66,7 @@ namespace Splashify.Controllers
             //Only allows scoring for an event if the eventdate is today
             DateTime thedate = eventinfo.startdate;
             DateTime today = DateTime.Today;
-            //if (today == thedate)
+            //  if (today == thedate)
             if (true)
             {
                 Console.WriteLine("IF! today: " + today + " startdate: " + thedate);
@@ -87,7 +87,7 @@ namespace Splashify.Controllers
             //else take the number and add 1 to it if it isnt already max number
             string query_next_jump ="select j.jumpnr, j.jumpID from score as s inner join jump as j on j.jumpID = s.jumpID where eventID = @eventID and judgeID = @judgeID and competitorID = @competitorID order by jumpnr desc LIMIT 1";
             eventinfo = SqliteDataAccess.SingleObject(eventinfo, query_next_jump);
-            Console.WriteLine("current jump: " + eventinfo.jumpID);
+           // Console.WriteLine("current jump: " + eventinfo.jumpID);
 
             string query_score = "";
             string query_jump_type = "update jump set jumptype = @jumptype where jumpID=@jumpID";
@@ -129,9 +129,15 @@ namespace Splashify.Controllers
             jump.groupnr = groupnr;
             jump.style = style;
             jump.height = height;
-            string query_dd = "select * from jumptype where groupnr = 101 and height = 3 and style = 'A'";
+            string query_dd = "select * from jumptype where groupnr = @groupnr and height = @height and style = @style";
             jump=SqliteDataAccess.SingleObject(jump, query_dd);
-            int ID = jump.ID;
+            if(jump == null)
+            {
+                Console.WriteLine("Jumptype does not exist");
+               return RedirectToAction("Scoring", "Home");
+
+            }
+            int ID = jump.id;
             var dd = jump.value;
 
 
@@ -162,7 +168,7 @@ namespace Splashify.Controllers
 
 
                 }
-            else if (eventinfo.jumpnr != 5)
+            else if (eventinfo.jumpnr != 6)
             {
                 query_score = "insert into score(jumpID, judgeID, score) values(@jumpID, @judgeID, @score)";
                 Console.WriteLine("jump is: " + eventinfo.jumpnr);
@@ -183,7 +189,7 @@ namespace Splashify.Controllers
 
                 //insert score for jumpnr
             }
-            else if (eventinfo.jumpnr == 5)
+            else if (eventinfo.jumpnr == 6)
             {
                 Console.WriteLine("Error you have already scored all jumps for this competitor" + eventinfo.jumpnr);
 

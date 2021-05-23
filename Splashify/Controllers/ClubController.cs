@@ -126,7 +126,7 @@ namespace Splashify.Controllers
 
             CompetitorModel comp = new CompetitorModel();
             comp.userID = userID;
-            string query = "select e.eventID from eventclub as ec inner join club as c on ec.clubID = c.clubID inner join event as e on e.eventID = ec.eventID where userID = 16  and startdate >= date('now')";
+            string query = "select e.eventID from eventclub as ec inner join club as c on ec.clubID = c.clubID inner join event as e on e.eventID = ec.eventID where userID = @userID  and startdate >= date('now')";
             competitorList = SqliteDataAccess.LoadManyObjects(comp, query);
             List<SelectListItem> events2 = new List<SelectListItem>();
 

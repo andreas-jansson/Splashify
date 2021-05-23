@@ -115,6 +115,7 @@ button {
 }
 
 
+
 #refreshbtn {
     width: 20%;
     background-color: dodgerblue;
@@ -180,14 +181,31 @@ tr:nth-child(even) {
     margin: auto;
 }
 
+.current-club-box {
+    margin-left: 15px;
+    display: flex;
+}
+
+.club-text-box{
+    width:64%;
+}
+
+.club-btn-box {
+    width:36%;
+}
+#your-club-btn {
+    width: 100%;
+}
+
+#club-app-input{
+    width:65%;
+}
 /*                        */
 /*       Club view        */
 /*                        */
-
-
 .event-application {
-    padding-top:50px;
-    padding-left:80px;
+    padding-top: 50px;
+    padding-left: 80px;
 }
 
 .enroll-competitors{

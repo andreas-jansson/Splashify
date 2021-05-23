@@ -45,7 +45,7 @@ namespace Splashify.Controllers
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                cnn.Execute("insert into User(fname,lname, email, password, birthdate, gender, role) values(@fname, @lname,@email, @password, @birthdate, @gender, 'default')", user);
+                cnn.Execute("insert into User(fname,lname, email, password, salt ,birthdate, gender, role) values(@fname, @lname,@email, @password, @salt, @birthdate, @gender, 'default')", user);
             }
         }
 
@@ -72,8 +72,16 @@ namespace Splashify.Controllers
         {
             using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
             {
-                EventModel output = cnn.Query<EventModel>("SELECT * FROM event WHERE startdate > DATE('now') ORDER BY startdate ASC LIMIT 1", new DynamicParameters()).First();
-                return output.startdate.ToString();
+                try
+                {
+                    EventModel output = cnn.Query<EventModel>("SELECT * FROM event WHERE startdate >= DATE('now') ORDER BY startdate ASC LIMIT 1", new DynamicParameters()).First();
+                    return output.startdate.ToString();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine("error: " + e);
+                    return "Empyt";
+                }
             }
         }
 

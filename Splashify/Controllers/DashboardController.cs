@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Html;
+using System.Collections;
 
 namespace Splashify.Controllers
 {
@@ -17,25 +18,31 @@ namespace Splashify.Controllers
 
         }
 
-        public ActionResult GoogleGraph()
+        public ArrayList GoogleGraph()
         {
 
-            var tupleList = new List<(string, int)>
-            {
-                ("cow",3),
-                ("chickens",6),
-                ("airplane",2)
-            };
+            string competitor_query = "SELECT COUNT(*) FROM User WHERE role = 'competitor'";
+            string club_query = "SELECT COUNT(*) FROM User WHERE role = 'club'";
+            string judge_query = "SELECT COUNT(*) FROM User WHERE role = 'judge'";
+
+            int obj = new int();
+
+            int numcompetitors = SqliteDataAccess.SingleObject<int>(obj, competitor_query);
+            int numclubs = SqliteDataAccess.SingleObject<int>(obj, club_query);
+            int numjudges = SqliteDataAccess.SingleObject<int>(obj, judge_query);
 
 
 
 
+            ArrayList header = new ArrayList {"title", "title2" };
+            ArrayList data1 = new ArrayList { "Club Admins", numclubs };
+            ArrayList data2 = new ArrayList { "Judges", numjudges };
+            ArrayList data3 = new ArrayList { "Competitors", numcompetitors };
+            ArrayList data = new ArrayList { header, data1, data2, data3 };
 
-            string datastr = JsonConvert.SerializeObject(tupleList, Formatting.None);
-
-            ViewBag.dataj = new HtmlString(datastr);
-            return RedirectToAction("Dashboard", "Home");
+            return data;
         }
+
 
         public ActionResult DashboardInfo()
         {
