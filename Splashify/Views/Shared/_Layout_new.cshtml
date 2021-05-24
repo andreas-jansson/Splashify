@@ -57,34 +57,41 @@
             </div>
 
             <div class="button-area">
+
                 <div class="sidebutton button1">
                     <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Dashboard">
                         <div class="button-icon btn1"></div>
                         <div class=" button-text">Dashboard</div>
                     </a>
                 </div>
-
-                <div class="sidebutton button2">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Scoring">
-                        <div class="button-icon btn2"></div>
-                        <div class=" button-text">Scoring</div>
-                    </a>
+                @if (Context.Session.GetString("UserSession") == "judge" || Context.Session.GetString("UserSession") == "organizer")
+                {
+                    <div class="sidebutton button2">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Scoring">
+                            <div class="button-icon btn2"></div>
+                            <div class=" button-text">Scoring</div>
+                        </a>
+                    </div>
+                }
+                @if (Context.Session.GetString("UserSession") == "club" || Context.Session.GetString("UserSession") == "competitor")
+                {
+                    <div class="sidebutton button3">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Application">
+                            <div class="button-icon btn3"></div>
+                            <div class=" button-text">Application</div>
+                        </a>
+                    </div>
+                }
+                @if (Context.Session.GetString("UserSession") == "organizer")
+                {
+                    <div class="sidebutton button4">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Managment">
+                            <div class="button-icon btn4"></div>
+                            <div class=" button-text">Management</div>
+                        </a>
+                    </div>
+                }
                 </div>
-
-                <div class="sidebutton button3">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Application">
-                        <div class="button-icon btn3"></div>
-                        <div class=" button-text">Application</div>
-                    </a>
-                </div>
-
-                <div class="sidebutton button4">
-                    <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Managment">
-                        <div class="button-icon btn4"></div>
-                        <div class=" button-text">Management</div>
-                    </a>
-                </div>
-            </div>
 
         </div>
 
