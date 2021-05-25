@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="livedb.db" />
     <None Remove="testdb.db" />
   </ItemGroup>
   <ItemGroup>
@@ -34,7 +35,7 @@
     <Content Remove="wwwroot\lib\jquery-validation\dist\jquery.validate.min.js" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="testdb.db">
+    <Content Include="livedb.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

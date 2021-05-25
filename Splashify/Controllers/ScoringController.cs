@@ -256,10 +256,12 @@ namespace Splashify.Controllers
                 //Calcualtes finalscore
                 var final_score = (median_score * 3) * dd;
                 Console.WriteLine("Final score: " + final_score);
-
+                final_score.ToString("0.00");
+                Console.WriteLine("fscore: " + final_score);
                 EventJumpModel finalScore = new EventJumpModel();
                 finalScore.finalscore = final_score;
                 finalScore.jumpID = jumpID; 
+
 
                 var query_final = "update jump set finalscore = @finalscore where jumpID=@jumpID";
 

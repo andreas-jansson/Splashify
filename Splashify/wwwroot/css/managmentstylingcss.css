@@ -32,7 +32,7 @@
     border-radius: 3px;
     border: 1px #CAD3C8 solid;
     font-weight: 200;
-    color: #8099af;
+    color: #495f73;
 }
 
 .box1{
@@ -52,9 +52,28 @@
     flex-direction: column;
 }
 
+.box4 {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#create-club-form{
+    width:70%;
+    margin-left:15%;
+}
+
+#create-club-btn{
+    width:50%;
+}
+
+#create-club-h1{
+    margin-top:-20px;
+}
+
 input {
     cursor: pointer;
-    width:23%;
+    width: 23%;
 }
 
 input[type=text] {
@@ -128,7 +147,7 @@ h1 {
 
 .application-list-box {
     height: 200px;
-    width: 900px;
+    width: 90%;
     overflow-y: scroll;
     margin: auto;
     border: 2px #e8e8eb solid;

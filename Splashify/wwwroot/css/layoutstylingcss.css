@@ -48,6 +48,7 @@
         align-items: flex-end;
         height: 40px;
         width: 100px;
+        margin-top:0;
     }
 
     .login-icon {
@@ -63,6 +64,18 @@
         background-repeat: no-repeat;
         width: 35px;
         height: 35px;
+    }
+
+    #greetings {
+        height: 20px;
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        text-align: center;
+        vertical-align: central;
+        float: left;
+        padding-right: 10px;
+        border:1px red solid;
     }
 
 
@@ -247,7 +260,6 @@
 
     .greeting-box {
         float: right;
-        border: 2px red solid;
     }
 
     .sign-in-out {

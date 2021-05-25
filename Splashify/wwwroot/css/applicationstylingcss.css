@@ -7,7 +7,8 @@
 }
 
 
-.container-application {
+
+  .container-application {
     height: 100%;
     width: 100%;
     display: flex;
@@ -262,4 +263,25 @@ img:hover {
     background-image: url('icons/plus-box.png');
     background-repeat: no-repeat;
     background-size:cover;
+}
+
+@media only screen and (max-width:600px) {
+    .container-application {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        margin-top: 85px;
+        border: 2px red solid;
+    }
+
+    .box1 {
+        width: 100%
+    }
+
+    .box2 {
+        width: 100%;
+    }
 }

@@ -4,13 +4,14 @@
 @model Splashify.Models.ClubModel
 
 
-<div class="rows-even box3">
-    <form asp-controller="Club" asp-action="CreateClub" method="post">
+<div class="rows-even box4">
+    <h1 id="create-club-h1">Create Club</h1>
+    <form asp-controller="Club" asp-action="CreateClub" method="post" id="create-club-form">
         <input asp-for="clubname" type="text" class="form-control" placeholder="Club Name" />
         <span id="error-message" asp-validation-for="clubname"></span>
         <input asp-for="userID" type="number" class="form-control" placeholder="UserID" />
         <span id="error-message" asp-validation-for="userID"></span>
-        <button type="submit">Create</button>
+        <button type="submit" id="create-club-btn">Create</button>
     </form>
 
 </div>

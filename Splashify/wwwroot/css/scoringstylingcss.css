@@ -2,32 +2,13 @@
     margin: 0;
     padding: 0;
     height: 100%;
+    color: #495f73;
 }
 
 
 /*       CSS for Scoring.cshtml          */
 /*        These are inside .content      */
 
-
-
-/*                                      */
-/*               Phone                   */
-/*                                       */
-
-@media only screen and (max-width:600px) {
-    .scoring-container {
-        margin-top: 40px;
-    }
-
-    .box1 {
-
-    }
-
-    .box2 {
-        visibility: hidden;
-        clear: both;
-    }
-}
 
 
 
@@ -39,21 +20,20 @@
 
 
 .scoring-container {
-    margin-top:85px;
+    margin-top: 85px;
     height: auto;
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
 }
 
 
 .top-box {
-    height:350px;
+    height: 350px;
     width: 100%;
-    background:white;
-    margin:1% 1% 1% 1%;
-
+    background: white;
+    margin: 1% 1% 1% 1%;
 }
 
 .main-container {
@@ -68,7 +48,7 @@
     border-radius: 3px;
     border: 1px #CAD3C8 solid;
     font-weight: 200;
-    color: #8099af;
+    color: #495f73;
     height: 400px;
     width: 48%;
 }
@@ -78,29 +58,29 @@
 .box1 {
     margin: 1% 1% 0 1%;
     min-width: 600px;
-    flex-shrink:0;
+    flex-shrink: 0;
 }
 
 .box2 {
     margin: 1% 0 0 0;
     min-width: 600px;
     flex-shrink: 0;
-    align-content:center;
-    display:flex;
-    justify-content:center;
+    align-content: center;
+    display: flex;
+    justify-content: center;
 }
 
 
 /* parent to input boxes*/
 
 fieldset {
-    border:0 none;
+    border: 0 none;
 }
 
 .lable-box {
     display: inline-block;
     width: 28%;
-    min-width:150px;
+    min-width: 150px;
     min-height: 380px;
     text-align: right;
     white-space: nowrap;
@@ -114,63 +94,63 @@ fieldset {
     min-height: 380px;
     min-width: 390px;
     float: right;
-    flex-shrink:0;
+    flex-shrink: 0;
 }
 
-.info-box{
-    width:40%;
-    height:90%;
-    text-align:left;
-    margin:1% 0 0 1%;
-    overflow-y:scroll;
+.info-box {
+    width: 40%;
+    height: 90%;
+    text-align: left;
+    margin: 1% 0 0 1%;
+    overflow-y: scroll;
 }
 
 
 input {
     cursor: pointer;
-    width:90%;
+    width: 90%;
 }
 
 
-input[type=text] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    cursor: pointer;
-}
+    input[type=text] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
 
-input[type=number] {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    box-sizing: border-box;
-    cursor: pointer;
-}
+    input[type=number] {
+        width: 100%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        box-sizing: border-box;
+        cursor: pointer;
+    }
 
 
-input[type=submit] {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    width: 100%;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-}
+    input[type=submit] {
+        background-color: #4CAF50; /* Green */
+        border: none;
+        color: white;
+        width: 100%;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+    }
 
 
 text {
-width: 200px;
+    width: 200px;
 }
 
 
-.scoring-header{
+.scoring-header {
 }
 
 ul {
-list-style-type: none;
+    list-style-type: none;
 }
 
 #jmp-info-li {
@@ -179,13 +159,13 @@ list-style-type: none;
 
 
 li {
-margin: 20px 0 40px 0; /*Align text is lable-box with inputs in inputbox*/
+    margin: 20px 0 40px 0; /*Align text is lable-box with inputs in inputbox*/
 }
 
 /* li for jump type codes*/
 
-#jmp-info-h1{
-    font-size:15px;
+#jmp-info-h1 {
+    font-size: 15px;
 }
 
 
@@ -252,9 +232,46 @@ select {
     background-color: white;
     -webkit-appearance: none;
     border: 1px grey solid;
-    border-radius:2px;
+    border-radius: 2px;
     font: 20px;
-    color:grey;
-    padding-left:20px;
+    color: grey;
+    padding-left: 20px;
+}
+
+
+
+/*                                      */
+/*               Phone                   */
+/*                                       */
+
+@media only screen and (max-width:600px) {
+    .main-container {
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        overflow-x: hidden;
+    }
+
+    .scoring-container {
+        margin-top: 40px;
+    }
+
+    .box1 {
+        width: 100%;
+    }
+
+    .box2 {
+        width: 100%;
+    }
+
+    .application-list-box {
+        width: 100%;
+    }
+
+    .competition-list-box {
+     width:100%;
+    }
+
 }
 

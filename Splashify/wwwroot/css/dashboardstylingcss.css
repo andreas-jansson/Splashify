@@ -122,8 +122,8 @@ form {
     margin: auto;
     width: 95%;
     height: 300px;
-    color: #8099af;
-    overflow-y:scroll;
+    color: #495f73;
+    overflow-y: scroll;
 }
 .table, th, td {
     /* border-collapse: collapse;*/
